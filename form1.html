@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>WEB design components using TailwindCSS and AlpineJS</title>
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="author" content="freelance.in.rs" />
+        <meta name="keywords" content="WEB, design" />
+        <meta name="description" content="WEB design" />
+        <meta name="rating" content="General" />
+        <meta name="distribution" content="Global" />
+        <meta name="robots" content="index, follow" />
+        <meta name="revisit-after" content="7 days" />
+
+        <link href="css/main.css" rel="stylesheet" preload="" />
+        <script defer src="js/alpine.min.js"></script>
+        <script>
+            // On page load or when changing themes, best to add inline in `head` to avoid FOUC
+            if (
+                localStorage.theme === 'dark' ||
+                (!('theme' in localStorage) &&
+                    window.matchMedia('(prefers-color-scheme: dark)').matches)
+            ) {
+                document.documentElement.classList.add('dark')
+            } else {
+                document.documentElement.classList.remove('dark')
+            }
+        </script>
+
+        <link rel="shortcut icon" type="image/x-icon" href="img/logo/logo180x180.svg" />
+        <link rel="icon" type="image/x-icon" href="favicon.svg" />
+        <link rel="apple-touch-icon" sizes="80x80" href="img/logo/touch-icon-iphone.svg" />
+        <link rel="apple-touch-icon" sizes="152x152" href="img/logo/touch-icon-ipad.svg" />
+        <link rel="apple-touch-icon" sizes="180x180" href="img/logo/touch-icon-iphone-retina.svg" />
+        <link rel="apple-touch-icon" sizes="167x167" href="img/logo/touch-icon-ipad-retina.svg" />
+    </head>
+
+    <body class="min-h-screen bg-neutral-200 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300">
+
+
+                <!-- ====== Contact Section Start ====== -->
+                <section id="contact" class="relative z-10 py-10 overflow-hidden border-t border-neutral-500 lg:py-16">
+                    <div class="container mx-auto">
+                        <div class="flex flex-wrap lg:justify-between">
+                            <div class="w-full px-4 lg:w-1/2 xl:w-6/12">
+                                <div class="max-w-lg mb-12 text-blue-500 lg:mb-0">
+                                    <span class="block mb-4 text-base font-semibold">Contact Us</span>
+                                    <h3 class="mb-6 text-3xl font-bold text-8 sm:text-10 lg:text-9 xl:text-10">
+                                        CONTACT US
+                                    </h3>
+                                    <p class="text-base leading-relaxed mb-9 text-neutral-700 dark:text-neutral-300">
+                                        If you are interested in our services or just want to check if what we offer really suits your specific needs, please contact us.
+                                    </p>
+                                    <div class="flex w-full max-w-sm mb-8">
+                                        <div class="flex items-center justify-center mr-6">
+                                            <svg class="size-8" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path
+                                                    d="M30.6 11.8002L17.7 3.5002C16.65 2.8502 15.3 2.8502 14.3 3.5002L1.39998 11.8002C0.899983 12.1502 0.749983 12.8502 1.04998 13.3502C1.39998 13.8502 2.09998 14.0002 2.59998 13.7002L3.44998 13.1502V25.8002C3.44998 27.5502 4.84998 28.9502 6.59998 28.9502H25.4C27.15 28.9502 28.55 27.5502 28.55 25.8002V13.1502L29.4 13.7002C29.6 13.8002 29.8 13.9002 30 13.9002C30.35 13.9002 30.75 13.7002 30.95 13.4002C31.3 12.8502 31.15 12.1502 30.6 11.8002ZM13.35 26.7502V18.5002C13.35 18.0002 13.75 17.6002 14.25 17.6002H17.75C18.25 17.6002 18.65 18.0002 18.65 18.5002V26.7502H13.35ZM26.3 25.8002C26.3 26.3002 25.9 26.7002 25.4 26.7002H20.9V18.5002C20.9 16.8002 19.5 15.4002 17.8 15.4002H14.3C12.6 15.4002 11.2 16.8002 11.2 18.5002V26.7502H6.69998C6.19998 26.7502 5.79998 26.3502 5.79998 25.8502V11.7002L15.5 5.4002C15.8 5.2002 16.2 5.2002 16.5 5.4002L26.3 11.7002V25.8002Z"
+                                                    fill="currentColor" />
+                                            </svg>
+                                        </div>
+                                        <div class="w-full">
+                                            <h4 class="mb-1 text-xl font-bold">
+                                                Our location:
+                                            </h4>
+                                            <p class="text-base text-neutral-700 dark:text-neutral-300">
+                                                Novi Sad, Serbia.
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="flex w-full max-w-sm mb-8">
+                                        <div class="flex items-center justify-center mr-6">
+                                            <svg class="size-8" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <g clip-path="url(#clip0_941_17577)">
+                                                    <path
+                                                        d="M24.3 31.1499C22.95 31.1499 21.4 30.7999 19.7 30.1499C16.3 28.7999 12.55 26.1999 9.19997 22.8499C5.84997 19.4999 3.24997 15.7499 1.89997 12.2999C0.39997 8.59994 0.54997 5.54994 2.29997 3.84994C2.34997 3.79994 2.44997 3.74994 2.49997 3.69994L6.69997 1.19994C7.74997 0.599942 9.09997 0.899942 9.79997 1.89994L12.75 6.29994C13.45 7.34994 13.15 8.74994 12.15 9.44994L10.35 10.6999C11.65 12.7999 15.35 17.9499 21.25 21.6499L22.35 20.0499C23.2 18.8499 24.55 18.4999 25.65 19.2499L30.05 22.1999C31.05 22.8999 31.35 24.2499 30.75 25.2999L28.25 29.4999C28.2 29.5999 28.15 29.6499 28.1 29.6999C27.2 30.6499 25.9 31.1499 24.3 31.1499ZM3.79997 5.54994C2.84997 6.59994 2.89997 8.74994 3.99997 11.4999C5.24997 14.6499 7.64997 18.0999 10.8 21.2499C13.9 24.3499 17.4 26.7499 20.5 27.9999C23.2 29.0999 25.35 29.1499 26.45 28.1999L28.85 24.0999C28.85 24.0499 28.85 24.0499 28.85 23.9999L24.45 21.0499C24.45 21.0499 24.35 21.0999 24.25 21.2499L23.15 22.8499C22.45 23.8499 21.1 24.1499 20.1 23.4999C13.8 19.5999 9.89997 14.1499 8.49997 11.9499C7.84997 10.8999 8.09997 9.54994 9.09997 8.84994L10.9 7.59994V7.54994L7.94997 3.14994C7.94997 3.09994 7.89997 3.09994 7.84997 3.14994L3.79997 5.54994Z"
+                                                        fill="currentColor" />
+                                                    <path
+                                                        d="M29.3 14.25C28.7 14.25 28.25 13.8 28.2 13.2C27.8 8.15003 23.65 4.10003 18.55 3.75003C17.95 3.70003 17.45 3.20003 17.5 2.55003C17.55 1.95003 18.05 1.45003 18.7 1.50003C24.9 1.90003 29.95 6.80003 30.45 13C30.5 13.6 30.05 14.15 29.4 14.2C29.4 14.25 29.35 14.25 29.3 14.25Z"
+                                                        fill="currentColor" />
+                                                    <path
+                                                        d="M24.35 14.7002C23.8 14.7002 23.3 14.3002 23.25 13.7002C22.95 11.0002 20.85 8.90018 18.15 8.55018C17.55 8.50018 17.1 7.90018 17.15 7.30018C17.2 6.70018 17.8 6.25018 18.4 6.30018C22.15 6.75018 25.05 9.65018 25.5 13.4002C25.55 14.0002 25.15 14.5502 24.5 14.6502C24.4 14.7002 24.35 14.7002 24.35 14.7002Z"
+                                                        fill="currentColor" />
+                                                </g>
+                                                <defs>
+                                                    <clipPath id="clip0_941_17577">
+                                                        <rect width="32" height="32" fill="currentColor" />
+                                                    </clipPath>
+                                                </defs>
+                                            </svg>
+                                        </div>
+                                        <div class="w-full duration-200 transform hover:scale-x-105">
+                                            <h4 class="mb-1 text-xl font-bold">
+                                                Call us
+                                            </h4>
+                                            <a href="tel:+381644023591"
+                                                class="text-base text-neutral-700 dark:text-neutral-300 hover:text-blue-500">+381-64-123-45-67</a>
+                                        </div>
+                                    </div>
+                                    <div class="flex w-full max-w-sm mb-8">
+                                        <div class="flex items-center justify-center mr-6">
+                                            <svg class="size-8" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path
+                                                    d="M28 4.7998H3.99998C2.29998 4.7998 0.849976 6.1998 0.849976 7.9498V24.1498C0.849976 25.8498 2.24998 27.2998 3.99998 27.2998H28C29.7 27.2998 31.15 25.8998 31.15 24.1498V7.8998C31.15 6.1998 29.7 4.7998 28 4.7998ZM28 7.0498C28.05 7.0498 28.1 7.0498 28.15 7.0498L16 14.8498L3.84998 7.0498C3.89998 7.0498 3.94998 7.0498 3.99998 7.0498H28ZM28 24.9498H3.99998C3.49998 24.9498 3.09998 24.5498 3.09998 24.0498V9.2498L14.8 16.7498C15.15 16.9998 15.55 17.0998 15.95 17.0998C16.35 17.0998 16.75 16.9998 17.1 16.7498L28.8 9.2498V24.0998C28.9 24.5998 28.5 24.9498 28 24.9498Z"
+                                                    fill="currentColor" />
+                                            </svg>
+                                        </div>
+                                        <div class="w-full duration-200 transform hover:scale-105">
+                                            <h4 class="mb-1 text-xl font-bold">
+                                                Send E-mail
+                                            </h4>
+                                            <a href="mailto:%7A%6F%72%61%6E%76%69%6E%73@%67%6D%61%69%6C.%63%6F%6D"
+                                                class="text-base text-neutral-700 dark:text-neutral-300 hover:text-blue-500">zoranvins @ GMAIL</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="w-full px-4 lg:w-1/2 xl:w-5/12">
+                                <div x-data="{ loading: false, showAlertMessage: false, showSuccessMessage: false, name: '', email: '', note: '', errors: [] }"
+                                    x-cloak>
+                                    <div class="relative p-8 rounded-lg shadow-lg sm:p-12">
+                                        <div x-show="showAlertMessage" x-transition:enter="transition ease-out duration-300"
+                                            x-transition:enter-start="opacity-0 transform scale-90"
+                                            x-transition:enter-end="opacity-100 transform scale-100"
+                                            x-transition:leave="transition ease-in duration-300"
+                                            x-transition:leave-start="opacity-100 transform scale-100"
+                                            x-transition:leave-end="opacity-0 transform scale-90">
+                                            <div class="p-4 my-4 text-orange-700 bg-orange-100 border-l-4 border-orange-500"
+                                                role="alert">
+                                                <p>
+                                                    Fix the listed errors!
+                                                </p>
+                                            </div>
+                                        </div>
+                
+                                        <form method="POST" x-on:submit.prevent="loading=true; 
+                                                        if (name == '' && email == '') {
+                                                            errors = {
+                                                                name: ['Ime i prezime je obavezno'],
+                                                                email: ['E-mail adresa je obavezna']
+                                                            }
+                            
+                                                            loading = false;
+                                                            showAlertMessage = true;
+                                                            return;
+                                                        }
+                            
+                                                        if (name && email == '') {
+                                                            errors = {
+                                                                email: ['E-mail adresa je obavezna']
+                                                            }
+                            
+                                                            loading = false;
+                                                            showAlertMessage = true;
+                                                            return;
+                                                        }
+                            
+                                                        if (name == '' && email) {
+                                                            errors = {
+                                                                name: ['Ime i prezime je obavezno']
+                                                            }
+                            
+                                                            loading = false;
+                                                            showAlertMessage = true;
+                                                            return;
+                                                        }
+                            
+                                                        const expression = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+                                                        const validEmail = expression.test(String(email).toLowerCase())
+                            
+                                                        if (email != '' && ! validEmail) {
+                                                            errors = {
+                                                                email: ['Unesite ispravnu e-mail adresu']
+                                                            }
+                            
+                                                            loading = false;
+                                                            showAlertMessage = true;
+                                                            return;
+                                                        }
+                                                        // Replace this with your own Sheety API
+                                                        let url = 'https://api.sheety.co/0d344eb3f5a8d1b59501527b3f8dc428/freelance/messages';
+                                                        let body = {
+                                                            message: {
+                                                                name: name,
+                                                                email: email,
+                                                                note: note
+                                                            }
+                                                        }
+                                                        fetch(url, {
+                                                            method: 'POST',
+                                                            body: JSON.stringify(body)
+                                                        })
+                                                        .then((response) => response.json())
+                								        .then(data => {
+                									        loading = false;
+                									        showAlertMessage = false;
+                									        name = '';
+                									        email = '';
+                                                            note = '';
+                								        });
+                                                    ">
+                                            <div class="relative mb-6">
+                                                <input id="name" x-model="name" x-on:keydown="delete errors['name']"
+                                                    x-bind:class="{ 'border-red-500 text-red-500': errors['name'] }" type="text"
+                                                    placeholder="Ime i prezime"
+                                                    class="w-full rounded px-[14px] py-3 text-base outline-none border border-black focus:border-blue-500 dark:border-white bg-neutral-800 dark:bg-neutral-200 text-neutral-200 dark:text-neutral-800" />
+                                                <template x-if="errors['name']">
+                                                    <span>
+                                                        <svg class="absolute w-6 h-6 text-red-600 fill-current" style="
+                                                                            top: 10px;
+                                                                            right: 12px;
+                                                                        " xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                                            <path
+                                                                d="M11.953,2C6.465,2,2,6.486,2,12s4.486,10,10,10s10-4.486,10-10S17.493,2,11.953,2z M13,17h-2v-2h2V17z M13,13h-2V7h2V13z" />
+                                                        </svg>
+                                                        <span class="block mt-2 text-sm text-red-600" x-text="errors['name']"></span>
+                                                    </span>
+                                                </template>
+                                            </div>
+                                            <div class="relative mb-6">
+                                                <input id="email" type="text"
+                                                    class="w-full rounded px-[14px] py-3 text-base outline-none border border-black focus:border-blue-500 dark:border-white bg-neutral-800 dark:bg-neutral-200 text-neutral-200 dark:text-neutral-800"
+                                                    x-model="email" x-on:keydown="delete errors['email']"
+                                                    x-bind:class="{ 'border-red-500 text-red-500': errors['email'] }"
+                                                    placeholder="imeprezime@primer.com" />
+                                                <template x-if="errors['email']">
+                                                    <span>
+                                                        <svg class="absolute w-6 h-6 text-red-600 fill-current" style="
+                                                                            top: 10px;
+                                                                            right: 12px;
+                                                                        " xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                                            <path
+                                                                d="M11.953,2C6.465,2,2,6.486,2,12s4.486,10,10,10s10-4.486,10-10S17.493,2,11.953,2z M13,17h-2v-2h2V17z M13,13h-2V7h2V13z" />
+                                                        </svg>
+                                                        <span class="block mt-2 text-sm text-red-600" x-text="errors['email']"></span>
+                                                    </span>
+                                                </template>
+                                            </div>
+                                            <div class="relative mb-6">
+                                                <textarea id="note" rows="6" placeholder="Va&#353;a poruka"
+                                                    class="w-full rounded px-[14px] py-3 text-base outline-none border border-black focus:border-blue-500 dark:border-white bg-neutral-800 dark:bg-neutral-200 text-neutral-200 dark:text-neutral-800"
+                                                    x-model="note" x-on:keydown="delete errors['note']"
+                                                    x-bind:class="{ 'border-red-500 text-red-500': errors['note'] }"></textarea>
+                                            </div>
+                                            <div class="relative">
+                                                <a href="mailto:%7A%6F%72%61%6E%76%69%6E%73@%67%6D%61%69%6C.%63%6F%6D">
+                                                    <button type="submit"
+                                                        class="w-full p-3 font-bold text-white bg-blue-500 border rounded-lg hover:bg-blue-700 border-primary"
+                                                        x-bind:disabled="loading == true">
+                                                        <template x-if="loading == false">
+                                                            <div>
+                                                                Send message
+                                                            </div>
+                                                        </template>
+                                                        <template x-if="loading == true">
+                                                            <div>
+                                                                Not working still
+                                                            </div>
+                                                        </template>
+                                                    </button>
+                                                </a>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- ====== Contact Section End ====== -->
+
+</body>
+
+</html>
