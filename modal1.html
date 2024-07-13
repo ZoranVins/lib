@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>WEB design components using TailwindCSS and AlpineJS</title>
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="author" content="freelance.in.rs" />
+        <meta name="keywords" content="WEB, design" />
+        <meta name="description" content="WEB design" />
+        <meta name="rating" content="General" />
+        <meta name="distribution" content="Global" />
+        <meta name="robots" content="index, follow" />
+        <meta name="revisit-after" content="7 days" />
+
+        <link href="css/main.css" rel="stylesheet" preload="" />
+        <script defer src="js/alpine.min.js"></script>
+        <script>
+            // On page load or when changing themes, best to add inline in `head` to avoid FOUC
+            if (
+                localStorage.theme === 'dark' ||
+                (!('theme' in localStorage) &&
+                    window.matchMedia('(prefers-color-scheme: dark)').matches)
+            ) {
+                document.documentElement.classList.add('dark')
+            } else {
+                document.documentElement.classList.remove('dark')
+            }
+        </script>
+
+        <link
+            rel="shortcut icon"
+            type="image/x-icon"
+            href="img/logo/logo180x180.svg"
+        />
+        <link rel="icon" type="image/x-icon" href="favicon.svg" />
+        <link
+            rel="apple-touch-icon"
+            sizes="80x80"
+            href="img/logo/touch-icon-iphone.svg"
+        />
+        <link
+            rel="apple-touch-icon"
+            sizes="152x152"
+            href="img/logo/touch-icon-ipad.svg"
+        />
+        <link
+            rel="apple-touch-icon"
+            sizes="180x180"
+            href="img/logo/touch-icon-iphone-retina.svg"
+        />
+        <link
+            rel="apple-touch-icon"
+            sizes="167x167"
+            href="img/logo/touch-icon-ipad-retina.svg"
+        />
+    </head>
+
+    <body
+        class="min-h-screen bg-neutral-200 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300"
+    >
+        <!-- ====== Modal Section Start -->
+        <section
+            x-data="{modalOpen: false}"
+            @keydown.escape="modalOpen = false"
+            id="referenceModal"
+            aria-label="referenceModal"
+        >
+            <div class="container py-20 mx-auto">
+                <button
+                    @click="modalOpen = true"
+                    class="px-6 py-3 text-base font-medium text-white rounded-full bg-neutral-500"
+                >
+                    Reference
+                </button>
+            </div>
+            <div
+                x-show="modalOpen"
+                x-transition
+                class="fixed top-0 left-0 flex items-center justify-center w-full h-full px-4 py-0"
+            >
+                <div
+                    @click.outside="modalOpen = false"
+                    class="container w-full h-full min-h-screen px-8 py-4 overflow-y-scroll text-center shadow-md bg-neutral-100 rounded-5 dark:bg-neutral-900 lg:py-8 lg:px-20 lg:overflow-y-auto"
+                >
+                    <div class="flex items-center justify-between border-b-2 border-b-black dark:border-b-white">
+                        <h3 class="flex pb-4 text-xl font-bold text-black dark:text-white sm:text-2xl">
+                            REFERENTNA LISTA
+                        </h3>
+                        <button @click="modalOpen = false" class="block px-4 pb-4 rounded-md text-neutral-900 dark:text-neutral-100">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 50 50" fill="currentColor">
+                                <path
+                                    d="M 9.15625 6.3125 L 6.3125 9.15625 L 22.15625 25 L 6.21875 40.96875 L 9.03125 43.78125 L 25 27.84375 L 40.9375 43.78125 L 43.78125 40.9375 L 27.84375 25 L 43.6875 9.15625 L 40.84375 6.3125 L 25 22.15625 Z">
+                                </path>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="grid grid-cols-1 text-base leading-relaxed text-left lg:text-xl lg:grid-cols-2 lg:gap-4 text-neutral-900 dark:text-neutral-100">
+                        <div class="mt-2 mb-10">
+                            <p>Hotel <b>Prag</b>, Beograd</p>
+                            <p>Hotel <b>Art Radisson</b>, Beograd</p>
+                            <p>Hotel <b>Constantinus Palace</b>, Ni&#353;</p>
+                            <p>Hotel <b>Tami Residence</b>, Ni&#353;</p>
+                            <p>Hotel <b>Queen</b>, Novi Sad</p>
+                            <p>Hotel <b>Element</b>, Novi Sad</p>
+                            <p>Hotel <b>Galleria</b>, Subotica</p>
+                            <p>Hotel <b>Park</b>, Novi Sad</p>
+                            <p>Hotel <b>Stari Krovovi</b>, Veternik</p>
+                            <p>Hotel <b>ARTA Boutique</b>, Novi Sad</p>
+                            <p>Hotel <b>Moskva (Night club)</b>, Beograd</p>
+                            <p>Hotel <b>Zlatiborski Biser</b>, Zlatibor</p>
+                            <p>Institut Sremska Kamenica 3</p>
+                            <p>Stamb.-posl. objekat <b>Sakura Park</b>, Novi Beograd</p>
+                            <p><b>Park Novi Restaurants</b>, Novi Sad</p>
+                            <p>&#352;kola za osn. i sred.obraz. <b>Milan Petrovi&#263;</b>, Novi Sad</p>
+                            <p>Pokrajinski zavod za za&#353;titu prirode, Novi Sad</p>
+                            <p><b>Suess Consulting</b> d.o.o., Novi Sad</p>
+                            <p><b>2D Soft</b>, Novi Sad</p>
+                            <p><b>EWA Soft</b>, Novi Sad</p>
+                            <p><b>Minaqua spa centar</b>, Novi Sad</p>
+                            <p><b>Privredna komora Vojvodine</b>, Novi Sad</p>
+                            <p><b>Prezident</b> (ekskluz. sala za proslave), Ivanjica</p>
+                            <p><b>Galens</b>, Novi Sad</p>
+                            <p><b>Europak</b>, Stari Banovci</p>
+                            <p><b>Res trade</b>, Novi Sad</p>
+                            <p><b>Karin Komerc</b>, Veternik</p>
+                            <p><b>Agro &#262;ori&#263;</b>, Ba&#353;aid</p>
+                            <p><b>Galenika</b> (upravna zgrada), Zemun</p>
+                            <p><b>NESTLE FRONERI</b> (upravna zgrada), Stara Pazova</p>
+                            <p><b>Gumatic</b> (poslovno-stambeni objekat), Novi Sad</p>
+                            <p><b>Gumatic</b> (poslovni objekat Passent Home), Novi Sad</p>
+                            <p><b>Agrorit</b> (upravna zgrada), Melenci</p>
+                            <p><b>Ru Metal</b>, Ruma</p>
+                            <p><b>Inoba&#269;ka d.o.o.</b>, Novi Sad</p>
+                            <p>Vinska ku&#263;a <b>&quot;Kova&#269;evi&#263;&quot;</b>, Irig</p>
+                            <p><b>Volpe night club</b>, Kragujevac</p>
+                            <p><b>Jardin plus club</b>, Ba&#269;ka Palanka</p>
+                            <p><b>Night club Catch</b>, Novi Sad</p>
+                            <p><b>Gentleman&apos;s pub</b>, Subotica</p>
+                            <p><b>Crveni petao club</b>, Novi Sad</p>
+                            <p><b>Mystic club</b>, Novi Sad</p>
+                            <p><b>Atelje 212 night club</b>, Novi Sad</p>
+                            <p><b>Pashanga club</b>, Novi Sad</p>
+                            <p><b>Caffe Square</b>, Novi Sad</p>
+                            <p><b>Caffe poslasti&#269;arnica &quot;Slatki Kutak&quot;</b>, Zrenjanin</p>
+                            <p><b>Caffe&amp;Bar &quot;Pri&#269;a&quot;</b>, Novi Sad</p>
+                            <p><b>Paprika caffe restoran</b>, Novi Sad</p>
+                        </div>
+                        <div class="mt-2 mb-10">
+                            <p><b>Buda bar caffe</b>, Novi Sad</p>
+                            <p><b>Macchiato caffe</b>, Novi Sad</p>
+                            <p><b>Fashion caffe</b>, Novi Sad</p>
+                            <p><b>Palma caffe</b>, Temerin</p>
+                            <p><b>Kafemat Bar&amp;Restaurant</b>, Novi Sad</p>
+                            <p><b>Kafemat Bar&amp;Restaurant</b>, Zrenjanin</p>
+                            <p><b>Caffe Milanello</b>, Novi Sad</p>
+                            <p><b>Dukat pekara</b>, Novi Sad</p>
+                            <p><b>Temerinska &#269;arda</b>, Temerin</p>
+                            <p><b>Caffe&amp;Pizzeria Olimp</b>, Ba&#269;ka Palanka</p>
+                            <p><b>Restoran Rosetto</b>, Novi Sad</p>
+                            <p><b>Dragstor restoran</b>, Ba&#269;ka Palanka</p>
+                            <p><b>Caffe&amp;Pizzeria Galerija</b>, Od&#382;aci</p>
+                            <p><b>Restoran Knin</b>, Novi Sad</p>
+                            <p><b>Caffe&amp;Restoran Macchiato Fax</b>, Novi Sad</p>
+                            <p><b>Restoran Siki</b>, Novi Sad</p>
+                            <p><b>Piatto Caffe</b>, Novi Sad</p>
+                            <p><b>Poljoprivredni fakultet</b>, Novi Sad</p>
+                            <p><b>Ekonomski fakultet</b>, Novi Sad</p>
+                            <p>Privatna O&#352; <b>&quot;Sveti Kirilo i Metodije&quot;</b>, Novi Sad</p>
+                            <p>Edukativno sportski centar <b>&quot;Mediana&quot;</b>, Novi Sad</p>
+                            <p><b>Univerexport</b> (upravna zgrada), Novi Sad</p>
+                            <p><b>Manual</b>, Novi Sad</p>
+                            <p><b>Medpro-Jan</b>, Novi Sad</p>
+                            <p>Posl.obj. <b>Ma&#353;inska obrada CUBIKA</b>, Novi Sad</p>
+                            <p><b>Galerija porcelana</b>, Novi Sad</p>
+                            <p><b>Fasek engineering</b>, Novi Sad</p>
+                            <p><b>Agrotehna</b>, Sremski Karlovci</p>
+                            <p><b>Fabus</b>, Sremska Kamenica</p>
+                            <p><b>Cosmoland-Big Igraonica&amp;ro&#273;endaonica</b>, Novi Sad</p>
+                            <p><b>Hair Studio DD</b>, Novi Sad</p>
+                            <p><b>Zic Zac boutique</b>, Novi Sad</p>
+                            <p><b>Fashion by Sa&#353;ka boutique</b>, Novi Sad</p>
+                            <p>Ekskluzivni boutique <b>&quot;Elm Room&quot;</b>, Novi Pazar</p>
+                            <p><b>Aluna salon lepote</b>, Novi Sad</p>
+                            <p><b>Valika salon lepote</b>, Novi Sad</p>
+                            <p><b>Frizerski salon Studio</b>, Novi Sad</p>
+                            <p><b>Bella salon ven&#269;anica</b>, Subotica</p>
+                            <p><b>Plastma</b>, Ba&#269;ka Palanka</p>
+                            <p><b>Paro&#353;ki</b>, Srbobran</p>
+                            <p><b>Agro - Ing</b>, Novi Sad</p>
+                            <p><b>Mol (benzinska pumpa)</b>, Veternik</p>
+                            <p><b>Mar&#353;al slot club</b>, Subotica</p>
+                            <p><b>Mar&#353;al slot club</b>, Novi Sad</p>
+                            <p><b>Meridian kladionica</b> (kancelarije uprave), Beograd</p>
+                            <p><b>Max Bet VIP Salon</b>, Novi Sad</p>
+                            <p><b>Max Bet slot club</b>, Novi Sad</p>
+                            <p>kao i veliki broj privatnih vila i ku&#263;a...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- ====== Modal Section End -->
+    </body>
+</html>
