@@ -40,55 +40,8 @@
 </head>
 
 <body class="min-h-screen bg-neutral-200 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300">
-    <header class="fixed z-50 flex justify-between w-full max-w-full bg-blue-500 border-b border-white"
-        x-data="{ navbarOpen: false }">
-        <!--Logo etc-->
-        <div class="flex items-center px-4 py-2">
-            <p class="text-xl italic font-semibold hover:no-underline">
-                Freelance
-            </p>
-        </div>
-        <!--Toggle button (hidden on medium screens)-->
-        <button class="flex items-center px-4 py-2 md:hidden" @click="navbarOpen = !navbarOpen"
-            :class="navbarOpen && 'navbarTogglerActive' " id="navbarToggler">
-            <svg class="size-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                <path fill-rule="evenodd" fill="currentColor"
-                    d="M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2z" />
-            </svg>
-        </button>
-       
-        <nav class="absolute w-full max-w-full py-3 bg-blue-500 top-full md:py-0 md:static md:block md:mx-auto overflow:hidden"
-            :class="!navbarOpen && 'hidden' " id="navbarCollapse">
-            <!--Menu-->
-            <ul class="inline-block md:inline-flex md:items-center md:justify-between">
-                <li>
-                    <a class="flex px-3 py-2 text-base hover:cursor-pointer" href="#" aria-current="page">
-                        <svg class="size-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z">
-                            </path>
-                        </svg>
-                    </a>
-                </li>
-                <li>
-                    <a class="flex px-3 py-2 text-base hover:underline hover:cursor-pointer" href="#">Menu1</a>
-                </li>
-                <li>
-                    <a class="flex px-3 py-2 text-base hover:underline hover:cursor-pointer" href="#">Menu2</a>
-                </li>
-                <li>
-                    <a class="flex px-3 py-2 text-base hover:underline hover:cursor-pointer" href="#">Menu3</a>
-                </li>
-                <li>
-                    <a class="flex px-3 py-2 text-base hover:underline hover:cursor-pointer" href="#">Menu4</a>
-                </li>
-                <li>
-                    <a class="flex px-3 py-2 text-base hover:underline hover:cursor-pointer" href="#">Blog</a>
-                </li>
-            </ul>
-        </nav>
-    </header>
-    <section id="slider-4">
+
+    <section id="slider-4" class="container mx-auto">
         <!-- ====== Slider Section Start -->
         <section id="slider-4" class="px-96 py-2"> 
             <div id="carousel-4" data-carousel='{ "loadingClasses": "opacity-0" }' class="relative w-full">
