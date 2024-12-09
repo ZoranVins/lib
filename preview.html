@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="sh">
+    <head>
+        <meta charset="UTF-8" />
+        <!-- Required Meta Tags Always Come First -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="author" content="freelance.in.rs" />
+        <meta name="keywords" content="WEB, design" />
+        <meta name="description" content="WEB design" />
+        <meta name="rating" content="General" />
+        <meta name="distribution" content="Global" />
+        <meta name="robots" content="noindex" />        
+        <!-- Title -->
+        <title>WEB design components using TailwindCSS and AlpineJS</title>
+        <!-- Needed JS -->
+        <script defer src="js/alpine.min.js"></script>
+        <script>
+            // On page load or when changing themes, best to add inline in `head` to avoid FOUC
+            if (
+                localStorage.theme === 'dark' ||
+                (!('theme' in localStorage) &&
+                    window.matchMedia('(prefers-color-scheme: dark)').matches)
+            ) {
+                document.documentElement.classList.add('dark')
+            } else {
+                document.documentElement.classList.remove('dark')
+            }
+        </script>
+        <!-- Needed CSS --> 
+        <link href="css/main.css" rel="stylesheet" preload="" />
+        <!-- Canonical, Icons -->
+        <link rel="shortcut icon" type="image/x-icon" href="images/logo/logo180x180.svg" />
+        <link rel="icon" type="image/x-icon" href="images/logo/favicon.svg" />
+        <link rel="apple-touch-icon" sizes="80x80" href="images/logo/touch-icon-iphone.svg" />
+        <link rel="apple-touch-icon" sizes="152x152" href="images/logo/touch-icon-ipad.svg" />
+        <link rel="apple-touch-icon" sizes="180x180" href="images/logo/touch-icon-iphone-retina.svg" />
+        <link rel="apple-touch-icon" sizes="167x167" href="images/logo/touch-icon-ipad-retina.svg" />
+    </head>
+
+    <body class="min-h-screen bg-neutral-200 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300">
+        <header>
+            <!-- Dark Mode Toggle Start -->
+            <div class="rounded-full fixed z-50 top-6 right-6">
+                <button type="button" title="Toggle dark mode" aria-label="Toggle dark mode" x-data="{ toggle: () => { if (localStorage.theme === 'dark') { localStorage.theme = 'light'; document.documentElement.classList.remove('dark'); } else { localStorage.theme = 'dark'; document.documentElement.classList.add('dark'); } }, }" @click="toggle">
+                    <div class="hidden transform dark:inline-block text-neutral-500 duration:100 hover:scale-105 hover:cursor-pointer hover:text-neutral-600">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="size-8">
+                            <path d="M8 1a.75.75 0 0 1 .75.75v1.5a.75.75 0 0 1-1.5 0v-1.5A.75.75 0 0 1 8 1ZM10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0ZM12.95 4.11a.75.75 0 1 0-1.06-1.06l-1.062 1.06a.75.75 0 0 0 1.061 1.062l1.06-1.061ZM15 8a.75.75 0 0 1-.75.75h-1.5a.75.75 0 0 1 0-1.5h1.5A.75.75 0 0 1 15 8ZM11.89 12.95a.75.75 0 0 0 1.06-1.06l-1.06-1.062a.75.75 0 0 0-1.062 1.061l1.061 1.06ZM8 12a.75.75 0 0 1 .75.75v1.5a.75.75 0 0 1-1.5 0v-1.5A.75.75 0 0 1 8 12ZM5.172 11.89a.75.75 0 0 0-1.061-1.062L3.05 11.89a.75.75 0 1 0 1.06 1.06l1.06-1.06ZM4 8a.75.75 0 0 1-.75.75h-1.5a.75.75 0 0 1 0-1.5h1.5A.75.75 0 0 1 4 8ZM4.11 5.172A.75.75 0 0 0 5.173 4.11L4.11 3.05a.75.75 0 1 0-1.06 1.06l1.06 1.06Z" />
+                        </svg>
+                    </div>
+                    <div class="transform dark:hidden text-neutral-500 duration:100 hover:scale-105 hover:cursor-pointer hover:text-neutral-600">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="size-8">
+                            <path d="M14.438 10.148c.19-.425-.321-.787-.748-.601A5.5 5.5 0 0 1 6.453 2.31c.186-.427-.176-.938-.6-.748a6.501 6.501 0 1 0 8.585 8.586Z" />
+                        </svg>
+                    </div>
+                </button>
+            </div>
+            <!-- Dark Mode Toggle End -->
+        </header>
+        <main>
+            <!-- Preview Section Start -->
+            <section id="preview" class=""> 
+                <div class="mt-8 container max-w-7xl mx-auto">
+                    <ul class="bg-neutral-300 dark:bg-neutral-700 max-w-7xl mx-auto border border-gray-200 rounded-xl" x-data="{selected:1}">
+                        <li class="shadow-box">
+                            <div class="relative border-b border-gray-200">
+                                <button type="button" class="w-full px-4 py-6 text-left group" @click="selected !== 1 ? selected = 1 : selected = null">
+                                    <div class="flex items-center justify-between text-red-500">
+                                        <span class="[&::-webkit-details-marker]:hidden relative pr-8 font-medium list-none cursor-pointer text-start italic uppercase text-base sm:text-lg md:text-xl lg:text-2xl focus-visible:outline-none transition-colors duration-300 group-hover:text-red-600">
+                                            Šta danas možemo učiniti za Vas?
+                                        </span>
+                                    </div>
+                                </button>
+                                <div class="relative overflow-hidden transition-all max-h-0 duration-500" x-ref="container1" x-bind:style="selected == 1 ? 'max-height: ' + $refs.container1.scrollHeight + 'px' : ''">
+                                    <div class="p-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+                                        <a href="#" title="Zavese, draperije, pozamanterija">
+                                            <img src="images/start/izavesedraperije.webp" class="flex-shrink rounded-lg transform hover:scale-105 duration-300" alt="ZAVESE, DRAPERIJE, POZAMANTERIJA">
+                                            <div class="hover-overlay"></div>
+                                        </a>
+                                        <div class="flex flex-col justify-center">
+                                            <h2 class="font-semibold italic text-lg md:text-xl lg:text-2xl">ZAVESE, DRAPERIJE, POZAMANTERIJA</h2>
+                                            <p class="font-normal text-base md:text-lg lg:text-xl">Prozor bez zavesa je poput cveta bez latica, ne dozvolite da Vaš životni prostor bude hladan i prazan. Nudimo savetovanje i stručnu pomoć u okviru našeg prodajnog asortimana.</p>
+                                        </div>
+                                    </div>
+                                    <div class="p-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+                                        <div class="flex flex-col justify-center">
+                                            <h2 class="font-semibold italic text-lg md:text-xl lg:text-2xl">TAPETE, ZIDNE OBLOGE, ZIDNI PANELI</h2>
+                                            <p class="font-normal text-base md:text-lg lg:text-xl">Današnji trendovi podrazumevaju visoke estetske normative uređenja životnog i poslovnog enterijera, samim tim je teško zamisliti jedno moderno okruženje bez dobre tapete. Naš asortiman tapeta broji preko 20.000 artikala prestižnih brendova, najrazličitijih pravaca.</p>
+                                        </div>
+                                        <a href="#" title="Tapete, zidne obloge, zidni paneli">
+                                            <img src="images/start/itapete.webp" class="flex-shrink rounded-lg transform hover:scale-105 duration-300" alt="TAPETE, ZIDNE OBLOGE, ZIDNI PANELI">
+                                        </a>
+                                    </div>
+                                    <div class="p-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+                                        <a href="#" title="Fototapete, stikeri, nalepnice">
+                                            <img src="images/start/ifoto.webp" class="flex-shrink rounded-lg transform hover:scale-105 duration-300" alt="FOTOTAPETE, STIKERI, NALEPNICE">
+                                        </a>
+                                        <div class="flex flex-col justify-center">
+                                            <h2 class="font-semibold italic text-lg md:text-xl lg:text-2xl">FOTOTAPETE, STIKERI, NALEPNICE</h2>
+                                            <p class="font-normal text-base md:text-lg lg:text-xl">Ljubitelj ste prirode, pustolov, romantik, fan stripova? Ne tražite dalje, fototapete će pretvoriti svaku Vašu pasiju u pravu malu iluziju Vašeg doma.</p>
+                                        </div>
+                                    </div>
+                                    <div class="p-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+                                        <div class="flex flex-col justify-center">
+                                            <h2 class="font-semibold italic text-lg md:text-xl lg:text-2xl">MEBL I OUTDOOR ŠTOFOVI</h2>
+                                            <p class="font-normal text-base md:text-lg lg:text-xl">U našoj ponudi imamo brojne kolekcije mebl i OUTDOOR štofova i materijala prestižnih brendova. Ističemo OUTDOOR materijale kao posebno pogodne za pokrivanje spoljnih prostora i oblaganje izloženih površina.</p>
+                                        </div>
+                                        <a href="#" title="Mebl i outdoor štofovi">
+                                            <img src="images/start/imebl.webp" class="flex-shrink rounded-lg transform hover:scale-105 duration-300" alt="MEBL I OUTDOOR ŠTOFOVI">
+                                        </a>
+                                    </div>
+                                    <div class="p-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+                                        <a href="#" title="Rolo/screen zavese i sistemi">
+                                            <img src="images/start/irolozavese.webp" class="flex-shrink rounded-lg transform hover:scale-105 duration-300" alt="ROLO SCREEN ZAVESE I SISTEMI">
+                                        </a>
+                                        <div class="flex flex-col justify-center">
+                                            <h2 class="font-semibold italic text-lg md:text-xl lg:text-2xl">ROLO/SCREEN ZAVESE I SISTEMI</h2>
+                                            <p class="font-normal text-base md:text-lg lg:text-xl">Rolo/screen zavese možemo nazvati i minimalističkim konceptom zavese, koji osim dekorativne funkcije glavni akcenat stavlja na zaštitu od sunca. Nudimo savetovanje i stručnu pomoć u okviru našeg prodajnog asortimana.</p>
+                                        </div>
+                                    </div>
+                                    <div class="p-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+                                        <div class="flex flex-col justify-center">
+                                            <h2 class="font-semibold italic text-lg md:text-xl lg:text-2xl">ZEBRA ZAVESE I SISTEMI</h2>
+                                            <p class="font-normal text-base md:text-lg lg:text-xl">Zebra zavese, poznate i kao &quot;Noć i dan&quot;, koncipirane su tako da se tačno može dozirati količina svetlosti koju zavesa treba da propusti, zahvaljujući naizmenično raspoređenim prozirnim i neprozirnim poljima materijala rolo mehanizma.</p>
+                                        </div>
+                                        <a href="#" title="Zebra zavese i sistemi">
+                                            <img src="images/start/izebrazavese.webp" class="flex-shrink rounded-lg transform hover:scale-105 duration-300" alt="ZEBRA ZAVESE I SISTEMI">
+                                        </a>
+                                    </div>
+                                    <div class="p-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+                                        <a href="#" title="Panel zavese i sistemi">
+                                            <img src="images/start/ipanelzavese.webp" class="flex-shrink rounded-lg transform hover:scale-105 duration-300" alt="PANEL ZAVESE I SISTEMI">
+                                        </a>
+                                        <div class="flex flex-col justify-center">
+                                            <h2 class="font-semibold italic text-lg md:text-xl lg:text-2xl">PANEL ZAVESE I SISTEMI</h2>
+                                            <p class="font-normal text-base md:text-lg lg:text-xl">Pločasta forma i pomeranje preko sistema šina, čine panel zavese skoro idealnim za isticanjem nekog motiva ili svedene forme modernog izgleda. Nudimo savetovanje i stručnu pomoć u okviru našeg prodajnog asortimana.</p>
+                                        </div>
+                                    </div>
+                                    <div class="p-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+                                        <div class="flex flex-col justify-center">
+                                            <h2 class="font-semibold italic text-lg md:text-xl lg:text-2xl">VELUX PROZORI I ROLETNE</h2>
+                                            <p class="font-normal text-base md:text-lg lg:text-xl">VELUX nudi veliki broj proizvoda (unutrašnje i spoljne roletne, krovni prozori), koji odgovaraju potrebama i zahtevima kupaca.</p>
+                                        </div>
+                                        <a href="#" title="Velux prozori i roletne">
+                                            <img src="images/start/iveluxprozoriroletne.webp" class="flex-shrink rounded-lg transform hover:scale-105 duration-300" alt="VELUX PROZORI I ROLETNE">
+                                        </a>
+                                    </div>
+                                    <div class="p-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+                                        <a href="#" title="Klub stolovi">
+                                            <img src="images/start/iklubstolovi.webp" class="flex-shrink rounded-lg transform hover:scale-105 duration-300" alt="KLUB STOLOVI">
+                                        </a>
+                                        <div class="flex flex-col justify-center">
+                                            <h2 class="font-semibold italic text-lg md:text-xl lg:text-2xl">KLUB STOLOVI</h2>
+                                            <p class="font-normal text-base md:text-lg lg:text-xl">Predstavljamo Vam našu bogatu ponudu modernih, luksuznih, modularnih klub stolova izrađenih od kombinacije drveta, stakla i metala u premium kvalitetu.</p>
+                                        </div>
+                                    </div>
+                                    <div class="p-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+                                        <div class="flex flex-col justify-center">
+                                            <h2 class="font-semibold italic text-lg md:text-xl lg:text-2xl">TEPISI</h2>
+                                            <p class="font-normal text-base md:text-lg lg:text-xl">Tepisi su važan elemenat dekora koji uz kreativan odabir boja i dezena može sa lakoćom da promeni ukupan koncept jednog enterijera. Osim funkcionalne uloge bitan je takođe i estetski dojam koji tepih može imati u celokupnoj kompoziciji uređenja. Iskusni dizajneri imali su običaj da kažu da nameštaj &quot;lebdi&quot; bez tepiha ili da je &quot;previše hladan&quot;.</p>
+                                        </div>
+                                        <a href="#" title="Tepisi i itisoni">
+                                            <img src="images/start/itepisitisoni.webp" class="flex-shrink rounded-lg transform hover:scale-105 duration-300" alt="TEPISI">
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>                
+            </section>
+            <!-- Preview Section End -->
+        </main>
+        <footer>
+
+        </footer>
+    </body>
+</html>

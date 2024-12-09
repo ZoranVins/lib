@@ -1,0 +1,456 @@
+<!doctype html>
+<html lang="sh">
+    <head>
+        <meta charset="UTF-8" />
+        <!-- Required Meta Tags Always Come First -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="author" content="freelance.in.rs" />
+        <meta name="keywords" content="WEB, design" />
+        <meta name="description" content="WEB design" />
+        <meta name="rating" content="General" />
+        <meta name="distribution" content="Global" />
+        <meta name="robots" content="index, follow" />
+        <meta name="revisit-after" content="7 days" />
+        <!-- Title -->
+        <title>WEB design components using TailwindCSS and AlpineJS</title>
+        <!-- Needed JS -->
+        <script defer src="js/alpine.min.js"></script>
+        <script>
+            // On page load or when changing themes, best to add inline in `head` to avoid FOUC
+            if (
+                localStorage.theme === 'dark' ||
+                (!('theme' in localStorage) &&
+                    window.matchMedia('(prefers-color-scheme: dark)').matches)
+            ) {
+                document.documentElement.classList.add('dark')
+            } else {
+                document.documentElement.classList.remove('dark')
+            }
+        </script>
+        <!-- Needed CSS --> 
+        <link href="css/main.css" rel="stylesheet" preload="" />
+        <!-- Canonical, Icons -->
+        <link rel="shortcut icon" type="image/x-icon" href="img/logo/logo180x180.svg" />
+        <link rel="icon" type="image/x-icon" href="favicon.svg" />
+        <link rel="apple-touch-icon" sizes="80x80" href="img/logo/touch-icon-iphone.svg" />
+        <link rel="apple-touch-icon" sizes="152x152" href="img/logo/touch-icon-ipad.svg" />
+        <link rel="apple-touch-icon" sizes="180x180" href="img/logo/touch-icon-iphone-retina.svg" />
+        <link rel="apple-touch-icon" sizes="167x167" href="img/logo/touch-icon-ipad-retina.svg" />
+    </head>
+
+    <body class="min-h-screen bg-neutral-200 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300">
+        <header>
+            <!-- Dark Mode Toggle Start -->
+            <div class="rounded-full fixed z-50 top-6 right-6">
+                <button type="button" title="Toggle dark mode" aria-label="Toggle dark mode" x-data="{ toggle: () => { if (localStorage.theme === 'dark') { localStorage.theme = 'light'; document.documentElement.classList.remove('dark'); } else { localStorage.theme = 'dark'; document.documentElement.classList.add('dark'); } }, }" @click="toggle">
+                    <div class="hidden transform dark:inline-block text-neutral-500 duration:100 hover:scale-105 hover:cursor-pointer hover:text-neutral-600">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="size-8">
+                            <path d="M8 1a.75.75 0 0 1 .75.75v1.5a.75.75 0 0 1-1.5 0v-1.5A.75.75 0 0 1 8 1ZM10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0ZM12.95 4.11a.75.75 0 1 0-1.06-1.06l-1.062 1.06a.75.75 0 0 0 1.061 1.062l1.06-1.061ZM15 8a.75.75 0 0 1-.75.75h-1.5a.75.75 0 0 1 0-1.5h1.5A.75.75 0 0 1 15 8ZM11.89 12.95a.75.75 0 0 0 1.06-1.06l-1.06-1.062a.75.75 0 0 0-1.062 1.061l1.061 1.06ZM8 12a.75.75 0 0 1 .75.75v1.5a.75.75 0 0 1-1.5 0v-1.5A.75.75 0 0 1 8 12ZM5.172 11.89a.75.75 0 0 0-1.061-1.062L3.05 11.89a.75.75 0 1 0 1.06 1.06l1.06-1.06ZM4 8a.75.75 0 0 1-.75.75h-1.5a.75.75 0 0 1 0-1.5h1.5A.75.75 0 0 1 4 8ZM4.11 5.172A.75.75 0 0 0 5.173 4.11L4.11 3.05a.75.75 0 1 0-1.06 1.06l1.06 1.06Z" />
+                        </svg>
+                    </div>
+                    <div class="transform dark:hidden text-neutral-500 duration:100 hover:scale-105 hover:cursor-pointer hover:text-neutral-600">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="size-8">
+                            <path d="M14.438 10.148c.19-.425-.321-.787-.748-.601A5.5 5.5 0 0 1 6.453 2.31c.186-.427-.176-.938-.6-.748a6.501 6.501 0 1 0 8.585 8.586Z" />
+                        </svg>
+                    </div>
+                </button>
+            </div>
+            <!-- Dark Mode Toggle End -->
+        </header>
+        <main>       
+            <!-- Component: Elevated accordion -->
+            <section class="container max-w-7xl mx-auto">
+                <div class="w-full bg-white divide-y rounded shadow-md divide-slate-200 shadow-slate-200">
+                    <details class="p-4 group" open>
+                        <summary class="[&::-webkit-details-marker]:hidden relative pr-8 font-medium list-none cursor-pointer text-start text-purple-500 italic uppercase text-base sm:text-lg md:text-xl lg:text-2xl focus-visible:outline-none transition-colors duration-300 group-hover:text-purple-600 ">
+                            Biografija
+                            <svg xmlns="http://www.w3.org/2000/svg" class="absolute right-0 w-6 h-6 transition duration-300 top-1 stroke-purple-500 shrink-0 group-open:rotate-45" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+                            </svg>
+                        </summary>
+                        <div class="mt-4 text-base-content/80 font-normal text-neutral-700 dark:text-neutral-300">
+                            <p class="py-2 italic">
+                                Diplomirani psiholog i TA praktičar
+                            </p>
+                            <p class="font-bold text-lg">    
+                                Dunja Topalski
+                            </p>
+                            <p class="py-4">
+                                Dunja Topalski je diplomirani psiholog i TA praktičar. 
+                                Psihologiju je diplomirala na Filozofskom fakultetu u Novom Sadu. 
+                                Od 2017. godine radi u Centru za rehabilitaciju i resocijalizaciju od bolesti zavisnosti – &quot;ZEMLJA ŽIVIH&quot;.  
+                                Sa klijentima radi grupno i individualno savetovanje, a podršku pruža zavisnicima od alkohola, droge i kocke. 
+                                Pored bolesti zavisnosti, psihološku podršku pruža klijentima u okviru &quot;Novosadskog humanitarnog centra&quot; gde radi sa adolescentima koji imaju krizu identiteta, probleme u porodici ili probleme sa zakonom. 
+                                Psihološko savetovanje obavlja i u humanitarnoj organizaciji &quot;Vladika PLATON Atanacković&quot; koja se bavi brigom i negom starih i bolesnih osoba.
+                            </p>
+                            <div class="flex items-center justify-center flex-grow shadow-xl rounded-xl max-w-80">
+                                <img class="w-48 rounded-xl h-60 lg:h-96 lg:w-80 max-h-96 max-w-80 transition-transform duration-300 ease-in-out hover:scale-105" src="img/dunja-topalski-psiholog-novi-sad-biografija.webp" alt="Dunja Topalski, psiholog, Novi Sad" />
+                            </div>
+                            <p class="py-4">
+                                Savetodavni rad je usmeren na sve uzraste.
+                            </p>
+                            <p class="py-2">
+                                Bavi se adolescentskim problemima kao što su samopovređivanje, suicidalne ideacije, delikvencija, asocijalno ponašanje, &quot; iskrivljena&quot; slika o sebi, &quot; eksperimentisanje&quot; sa narkoticima.
+                            </p>
+                            <p class="py-2">
+                                U dvadesetim godinama najčešće se javljaju klijenti sa anksioznim poteškoćama, socijalnom anksioznošću, problemima sa regulacijom besa, ili problemima separacije od primarne porodice.
+                            </p>
+                            <p class="py-2">
+                                U tridesetim su problemi vezani za usklađivanje porodičnog života, vaspitanje dece uz poslovno angažovanje, nemogućnost pronalaženja adekvatnog partnera, usamljenost, anksioznost, "funkcionalna" zavisnost od psihoaktivnih supstanci.
+                            </p>
+                            <p class="py-2">
+                                U četrdesetim je akcenat ili na poboljšanju kvaliteta života, ili konačno poražavajuće otkriće da se nismo adekvatno uklopili u svet odraslih, problem sazrevanja.
+                            </p>
+                            <p class="py-2">
+                                U pedesetim godinama, često i ranije, javljaju se problemi oko brige o zdravlju članova porodice, naročito roditelja.
+                            </p>
+                        </div>
+                    </details>
+                    <details class="p-4 group">
+                        <summary class="[&::-webkit-details-marker]:hidden relative pr-8 font-medium list-none cursor-pointer text-start text-purple-500 italic uppercase text-base sm:text-lg md:text-xl lg:text-2xl focus-visible:outline-none transition-colors duration-300 group-hover:text-purple-600 ">
+                            Razlozi zbog kojih tražimo psihološku podršku
+                            <svg xmlns="http://www.w3.org/2000/svg" class="absolute right-0 w-6 h-6 transition duration-300 top-1 stroke-purple-500 shrink-0 group-open:rotate-45" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+                            </svg>
+                        </summary>
+                        <div class="mt-4 text-base-content/80 font-normal text-neutral-700 dark:text-neutral-300">
+                            <p>
+                                Nažalost se još uvek susrećemo sa predrasudom da se na psihoterapiju ili psihološko savetovanje odlazi samo onda kada smo etiketirani kao &quot;ludi&quot;.<br><br>
+                                I nažalost nas ova predrasuda često sprečava u prevazilaženju datih problema za koje sami ne iznalazimo rešenje. 
+                                Već smo svesni svi da kad nas boli zub idemo kod zubara, kada zaboli želudac idemo kod lekara, dakle brinemo o svom fizičkom zdravlju. 
+                                Takav pristup treba da imamo i kada pristupamo temi mentalnog zdravlja ili psihičkog blagostanja. 
+                                Takođe, brinemo i o svojoj duhovnoj dimenziji, molimo se, svako na svoj način, ili odlazimo kod duhovnika na ispovest.
+                                U redu je potražiti pomoć kada nešto ne umemo da uradimo sami, a niko od nas nije svemoguć, niti je realno očekivati od sebe da sve sami radimo. 
+                                Mi smo suštinski društvena, socijalna i altruistička bića i učimo jedni od drugih.
+                                Na savetovanje odlazimo kada:<br><br>
+                            </p>
+                            <ol>
+                                <li class="py-1 px-4">&diams;&nbsp;Kada imamo konflikt sa partnerom</li>
+                                <li class="py-1 px-4">&diams;&nbsp;Kada ne spavamo mirno</li>
+                                <li class="py-1 px-4">&diams;&nbsp;Kada imamo problem sa regulacijom besa</li>
+                                <li class="py-1 px-4">&diams;&nbsp;Kada osećamo usamljenost</li>
+                                <li class="py-1 px-4">&diams;&nbsp;Kada se mnogo bojimo</li>
+                                <li class="py-1 px-4">&diams;&nbsp;Kada imamo problema na poslu sa šefom</li>
+                                <li class="py-1 px-4">&diams;&nbsp;Kada ne umemo da donesemo valjane odluke</li>
+                                <li class="py-1 px-4">&diams;&nbsp;Kada imamo strah od gužve</li>
+                                <li class="py-1 px-4">&diams;&nbsp;Kada doživimo fizičko nasilje</li>
+                                <li class="py-1 px-4">&diams;&nbsp;Kada doživimo seksualno nasilje</li>
+                                <li class="py-1 px-4">&diams;&nbsp;Kada smo doživeli gubitak bliske osobe da adekvatno odtugujemo gubitak</li>
+                                <li class="py-1 px-4">&diams;&nbsp;Kada neumereno jedemo ili pijemo</li>
+                                <li class="py-1 px-4">&diams;&nbsp;Kada osećamo kao da smo u zastoju</li>
+                                <li class="py-1 px-4">&diams;&nbsp;Kada želimo da naučimo veštine zdrave komunikacije</li>
+                                <li class="py-1 px-4">&diams;&nbsp;Kada želimo da naučimo socijalne veštine</li>
+                                <li class="py-1 px-4">&diams;&nbsp;Kada želimo da naučimo da budemo asertivni</li>
+                                <li class="py-1 px-4">&diams;&nbsp;Kada želimo da naučimo kako da regulišemo emocije</li>
+                            </ol>
+                            <p class="mt-4">
+                                Niti jedan od ovih pobrojanih razloga ne čini nas &quot;ludima&quot;, ali nas nažalost iracionalno uverenje da psihološku podršku traže samo slabe i &quot;lude&quot; osobe kontinuirano sprečava da na adekvatan način rešimo date nam životne situacije ili da poboljšamo kvalitet života.<br>
+                            </p>
+                            <p class="mt-1">
+                                I mi psiholozi, koji profesionalno pristupamo našoj profesiji, takođe imamo psihologe kod kojih odlazimo kada imamo ličnih ili poslovnih poteškoća. To je naša lična i profesionalna odgovornost.<br>
+                            </p>
+                            <p class="mt-1 italic">
+                                Malo ćemo se našaliti kako bi smo zaokružili temu: Onda su i psiholozi &quot;ludi&quot; jer redovno idu kod psihologa!
+                            </p>
+                        </div>
+                    </details>
+                    <details class="p-4 group">
+                        <summary class="[&::-webkit-details-marker]:hidden relative pr-8 font-medium list-none cursor-pointer text-start text-purple-500 italic uppercase text-base sm:text-lg md:text-xl lg:text-2xl focus-visible:outline-none transition-colors duration-300 group-hover:text-purple-600 ">
+                            Individualno savetovanje
+                            <svg xmlns="http://www.w3.org/2000/svg" class="absolute right-0 w-6 h-6 transition duration-300 top-1 stroke-purple-500 shrink-0 group-open:rotate-45" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+                            </svg>
+                        </summary>
+                        <div class="mt-4 text-base-content/80 font-normal text-neutral-700 dark:text-neutral-300">
+                            <p>
+                                Individualni rad počinje stvaranjem poverenja i uzajamne saradnje između Vas i savetnika. 
+                                Do postizanja cilja dolazimo zajedničkim radom tokom kojeg su savetnik i klijent u ravnopravnoj poziciji - &quot;Ja sam Ok, ti si Ok&quot;. 
+                                Savetnik Vam na raspolaganje stavlja svoje znanje i veštine kako biste razbudili motivaciju i svoje potencijale. 
+                                Osvešćivanje vlastitih snaga je osnovni preduslov za postizanje promene u ličnom razvoju.
+                            </p>
+                        </div>
+                    </details>
+                    <details class="p-4 group">
+                        <summary class="[&::-webkit-details-marker]:hidden relative pr-8 font-medium list-none cursor-pointer text-start text-purple-500 italic uppercase text-base sm:text-lg md:text-xl lg:text-2xl focus-visible:outline-none transition-colors duration-300 group-hover:text-purple-600 ">
+                            Grupno savetovanje
+                            <svg xmlns="http://www.w3.org/2000/svg" class="absolute right-0 w-6 h-6 transition duration-300 top-1 stroke-purple-500 shrink-0 group-open:rotate-45" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+                            </svg>
+                        </summary>
+                        <div class="mt-4 text-base-content/80 font-normal text-neutral-700 dark:text-neutral-300">
+                            <p>
+                                Grupno savetovanje podrazumeva skup više klijenata koji imaju priliku da sagledaju sebe kroz iskustva drugih ljudi. 
+                                Tada otkrivamo da i drugi imaju iste probleme kao i mi, i da nismo sami. 
+                                U ovom procesu se jačaju saosećanje i empatija, a glavna prednost u odnosu na individualno savetovanje je ovladavanje veštinom zdrave komunikacije u međuljudskim odnosima i socijalna kontrola.
+                            </p>
+                        </div>
+                    </details>
+                    <details class="p-4 group">
+                        <summary class="[&::-webkit-details-marker]:hidden relative pr-8 font-medium list-none cursor-pointer text-start text-purple-500 italic uppercase text-base sm:text-lg md:text-xl lg:text-2xl focus-visible:outline-none transition-colors duration-300 group-hover:text-purple-600 ">
+                            Rečnik psiholoških pojmova
+                            <svg xmlns="http://www.w3.org/2000/svg" class="absolute right-0 w-6 h-6 transition duration-300 top-1 stroke-purple-500 shrink-0 group-open:rotate-45" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+                            </svg>
+                        </summary>
+                        <div class="mt-4 text-base-content/80 font-normal text-neutral-700 dark:text-neutral-300">
+                            <p class="font-bold">
+                                AGRESIVNI KARAKTER
+                            </p>
+                            <p class="py-1">
+                                1 . U A. Adlerovoj (Adler) teoriji, tip ljudi koji, budući da mu nedostaje osećanje za zajednicu, direktno, neuvijeno stremi nadmoći nad drugim ljudima. Odlikuje se sledećim crtama karaktera: sujeta (častoljublje), ljubomora, zavist, mržnja i tvrdičluk. 
+                            </p>
+                            <p class="py-1">
+                                2 . U teoriji Karen Hornaj (Horney), pojedinac koji je kao svoju osnovnu životnu strategiju usvojio obrazac kretanja protiv ljudi. Njegove osnovne potrebe su potreba za uspehom, za moći i za iskorištavanjem drugih. On prihvata zakon džungle i njegov osnovni životni moto je: &quot;Moć daje pravo.&quot; Zato a.k. odbacuje s prezirom svaku humanost, dobrotu i osećajnost kao slabost. U svakoj borbi on mora po svaku cenu da pobedi. Njegova opsesija, životni san je uspeh i neograničena moć, a njegova ličnost predstavlja puko sredstvo da se taj cilj ostvari. Najlakše se prepoznaje u interpersonalnim odnosima. Svako upoznavanje s drugim čovekom on doživljava kao odmeravanje snaga i u sebi se pita: &quot;Koliko je jak?&quot; A.k . odgovara analno-sadistički karakter u Frojdovoj (Freud), a izrabljivački karakter u Fromovoj (Fromm) teoriji.
+                            </p>    
+                            <p class="py-2 font-bold">
+                                DELIKVENCIJA
+                            </p>
+                            <p class="py-1">
+                                (od lat. delinquere = omanuti, pogrešiti, prestupiti) Prestupničko ponašanje, vršenje krivičnih dela. D. ima svoje socijalne, socijalno psihološke i individualno psihološke uzroke i činioce. Neke antisocijalne, emocionalno nestabilne i nesocijalizovane ličnosti sklonije su vršenju prestupničkih dela, nego druge, dobro socijalizovane ličnosti. U kliničkoj i forenzičkoj psihologiji posebno se proučava problem maloletničke delinkvencije.
+                            </p>
+                            <p class="py-2 font-bold">
+                                ASERTIVNOST
+                            </p>
+                            <p class="py-1">
+                                (od lat. asertorius; engl. assert = potvrdan, afirmativan) Odlika samopotvrdnog, prodornog, borbenog ponašanja. A. se ispoljava u odlučnoj i aktivnoj samoodbrani sopstvenih prava i vitalnih potreba, kao i u odvažnom aktivnom stremljenju ka cilju. Engleski termin a. podrazumeva ne samo izrazitu samosvest, samopouzdanje nego i preduzimljivost i prodornost u ostvarivanju svojih planova i namera. U našoj kulturi a. je tipična odlika muškog ponašanja. Suprotno povučenost, nesigurnost. Nesigurnim , isuviše obazrivim i obzirnim ljudima preporučuje se asertivni trening.
+                            </p>
+                            <p class="py-2 font-bold">
+                                CRTE LIČNOSTI
+                            </p>
+                            <p class="py-1">
+                                Osnovne gradivne jedinice strukture ličnosti. Crte su relativno trajne i relativno opšte osobine ličnosti, odgovorne za doslednost ponašanja u sličnim situacijama. To su obično dimenzije duž koje se pojedine ličnosti mogu svrstati po stepenu zastupljenosti određene osobine (npr. dominantnost – submisivnost, sebičnost – nesebičnost itd.) i koje su veoma korisne za opis i objašnjenje ličnosti. Do koncepta i psihološke sadržine crte dolazi se bilo kliničkim ispitivanjem i posmatranjem pojedinaca (Frojd/Freud/, Adler/Adler/, Olport/Allport/) ili tehnikom faktorske analize podataka dobijenih na upitniku kod velike grupe pojedinaca (Katel/Cattell/, Ajzenk/Eysenk/, Gilford/Guilford/). Prema nekim psiholozima c.l. su samo nazivi, skraćeni opisi izvesnog tipičnog načina ponašanja. Suprotno ovom nominalističkom gledištu Gordon Olport zastupa realističko stanovište, po kojem crte stvarno postoje &quot;ispod kože&quot; u pojedincu i imaju uticaj na njegovo ponašanje. One, poput navika i stavova, predstavljaju determinišuće tendencije, ali su u odnosu na navike opštije, a u odnosu na stavove razlikuju se po tome što nisu usmerene na neki objekt i što ne impliciraju njegovu procenu (pozitivnu ili negativnu). Po Olportovoj definiciji, crta (lična dispozicija) je &quot;uopštena neuropsihička struktura (svojstvena individui), sposobna da mnoge draži učini funkcionalno ekvivalentnim i da uvede i vodi dosledne (ekvivalentne) oblike prilagodljivog i stilskog ponašanja&quot;. Crte , prema Olportu, mogu biti opšte i lične (morfogenetske) dispozicije. Opšte crte su korisne jer omogućavaju poređenje pojedinca s drugima, ali su manje stvarne u odnosu na lične. Ličnost, smatra Olport, ima svega nekoliko centralnih crta (5 – 10) i samo jednu kardinalnu. Prema vrsti, crte mogu biti crte karaktera (objašnjavaju zašto neko nešto čini, posebno u interpersonalnim odnosima), crte temperamenta (objašnjavaju kako neko nešto čini) i sposobnosti (koliko uspešno nešto čini). Katel razlikuje površinske i izvorne crte (neko nešto čini) i sposobnosti (koliko uspešno nešto čini).
+                            </p>
+                            <p class="py-2 font-bold">
+                                IGRANJE IGARA
+                            </p>
+                            <p class="py-1">
+                                U transakcionoj analizi E. Berna (Berne), prinudna, iracionalna, često nesvesna, ali planirana aktivnost koja uključuje niz sukcesivnih, komplementarnih, &quot;kvarnih&quot; transakcija (&quot;mamac&quot;, &quot;riba &quot;, &quot;obrt&quot; i najzad &quot;zez&quot;) koji vodi skrivenoj &quot;dobiti&quot;. I . i. predstavlja dramatizovanu demonstraciju neke važne teze životne filozofije igrača (&quot;ja sam baksuz&quot;; &quot;svi ljudi su prevaranti&quot; i sl.), koji u svoju igru uvlači makar još jednog saigrača. Sama &quot;dobit&quot; od igre je dvosmislena, protivrečna, jer pobeda (potvrda sopstvene životne filozofije, zadovoljenje patološkoh potreba, sekundarna dobit itd.) u igri znači, zapravo, istovremeno i poraz, gubitak, katkada i katastrofalan. Fasada igre, ponašanje na manifestnom planu može izgledati vrlo racionalno, ali je ona, po svojoj prirodi, duboko iracionalna, destruktivna ili samodestruktivna, s obzirom da Dete programira ceo njen tok i upravlja skrivenim transakcijama u njoj. I . i. je neizbežno u gotovo svim interpersonalnim odnosima, između šefa i službenika, muža i žene, prijatelja, roditelja i dece, prodavca i kupca, terapeuta i klijenta itd.
+                            </p>
+                            <p class="py-2 font-bold">
+                                ADIKCIJA
+                            </p>
+                            <p class="py-1">
+                                Adikcija (lat. addictio = dosuđivanje, žrtvovanje; engl. addiction = sklonost, privrženost). Podložnost nekoj štetnoj navici, najčešće, psihofiziološka zavisnost od droge ili alkohola (toksikomanija, alkoholizam).
+                            </p>
+                            <p class="py-2 font-bold">
+                                ADOLESCENCIJA
+                            </p>
+                            <p class="py-1">
+                                Adolescencija – (lat. adolescentia = mladost, mladićko doba; od adolescere = rasti) Period čovekovog intenzivnog razvoja, od kraja puberteta do zrelog doba, a po nekim autorima, od kraja detinjstva (početak puberteta) pa do sticanja zrelosti (od 12-14. pa do 18-21. godine). Dok je pubertet pretežno biološki određeno razvojno doba, a. je prevashodno socijalno, kulturno i istorijski određena. U našoj kulturi period a. je prelazno doba praćeno izrazito burnim psihičkim, naročito emocionalnim i moralnim krizama, previranjima i lutanjima. U nekim slučajevima, normalna adolescentska kriza može dovesti do manjih ili većih psihičkih poremećaja, a u retkim slučajevima završava se nastankom psihičke bolesti (npr. histreija, fobija, shizofrenija ). U a. dolazi do intenzivnog traganja za samim sobom i do formiranja identiteta. Adolescenti su veoma zaokupljeni sobom, svojim sposobnostima, vlastitim moćima i talentima, vrednostima, isprobavanjem jačine volje i izdržljivosti. U a. slabi uticaj porodice i roditeljskog autoriteta, a postaju veoma značajne grupe vršnjaka tj. adolescentske grupe koje imaju svoju specifičnu subkulturu.
+                            </p>
+                            <p class="py-2 font-bold">
+                                ALKOHOLIZAM
+                            </p>
+                            <p class="py-1">
+                                Alkoholizam – (od arap. Al-kohol = antimon u prahu, destilisana tečnost) Jedna od najrasprostranjenijih toksikomanija, ispoljava se kao gubitak sposobnosti uzdržavanja od prekomerne upotrebe alkohola, dovodi do narušavanja psihičkog (poremećaji opažanja, pamćenja, mišljenja, ličnosti) i fizičkog zdravlja (avitaminoza, ciroza jetre, oštećenje CNS) i socijalnih odnosa (porodični, profesionalni, prijateljski). 
+                                Po rasprostranjenosti i štetnim posledicama po zdravlje, a. je odmah posle bolesti kardiovaskularnog sistema i malignih oboljenja (karcinom). 
+                                A . se javlja iz različitih psiholoških razloga, kao što su neuspeh u braku, na poslu, usled psihičke nezrelosti, nesigurnosti, anksioznosti, depresivnosti i osećanja manje vrednosti, s obzirom da se osećanje osujećenosti, tuge i inferiornosti gubi pod dejstvom alkohola. 
+                                Valja , međutim, imati u vidu da alkohol samo privremeno i prividno vraća pojedincu izgubljeno osećanje sigurnosti, kuraži i stvara iluziju o vlastitoj omnipotenciji. 
+                                Sa mamurlukom, vraća se u još većoj meri osećanje niže vrednosti, anksioznost i osećanje krivice. 
+                                Na nastanak a. utiču i društvene prilike, kao što su ekonomska beda, gušenje političkih sloboda, gubitak socijalnog statusa, kao i društvene navike učestalog konzumiranja alkohola. 
+                                Dugotrajno i prekomerno konzumiranje alkohola može dovesti do alkoholičke psihoze.
+                            </p>
+                            <p class="py-2 font-bold">
+                                ALKOHOLIČKA DEMENCIJA
+                            </p>
+                            <p class="py-1">
+                                Vrsta demencije nastala usled duže i obilne zloupotrebe alkohola. Poznata je pod nazivom Korsakovljev sindrom/psihoza.
+                            </p>
+                            <p class="py-2 font-bold">
+                                ANKSIOZNA REAKCIJA
+                            </p>
+                            <p class="py-1">
+                                Funkcionalni poremećaj, neurotični odgovor na stresnu situaciju ili na dugotrajne patogene konflikte. 
+                                Sastoji se od difuznog osećanja straha, zebnje, bojazni praćenom napetošću, uznemirenošću, osećanjem ugroženosti, hronične zabrinutosti i bespomoćnosti pred nekom u budućnosti očekivanom nesrećom. 
+                                A.r. je relativno često povezana sa izvesnim telesnim simptomima (srčana aritmija, drhtanje, vrtoglavica, želudačne smetnje itd.)
+                            </p>
+                            <p class="py-2 font-bold">
+                                BEKSTVO OD SLOBODE
+                            </p>
+                            <p class="py-1">
+                                Prema Erihu Fromu (Fromm) mehanizmi b.o.s.su iracionalni, neadekvatni pokušaji da se izbegne ili umanji nepodnošljivo osećanje usamljenosti savremenog čoveka, a koji, zapravo, samo još više pojačavaju osećanje izgubljenosti. 
+                                From izdvaja tri glavna mehanizma bekstva: 1. Autoritarnost (simboličko sjedinjavanje pojedinca s moćnim autoritetom), 2. Destruktivnost (razaranje kao posledica osujećenja zdravog razvoja) i 3. Konformizam (potpuno saobražavanje pojedinca društvenim normama). 
+                                Prva dva mehanizma su karakteristična za totalitarnu, a treći za savremeno demokratsko društvo.
+                            </p>
+                            <p class="py-2 font-bold">
+                                BES
+                            </p>
+                            <p class="py-1">
+                                Neprijatni afekt koji se sastoji od snažnog i burnog izliva nekontrolisane mržnje, ljutnje, jarosti i gneva prema nekoj osobi ili predmetu. 
+                                Na unutrašnjem, fiziološkom planu b. karakteriše aktiviranje simpatičkog nervnog sistema, te otud ubrzan rad srca, povišen krvni pritisak, ubrzano disanje, pojačano lučenje glukoze iz jetre i adrenalina iz srži nadbubrežne žlezde, kao i povećanje snage skeletnih mišića, a na spoljašnjem, telesnom planu ispoljava se u živoj gestikulaciji, vikanju, lupanju nogama, stezanju pesnica, crvenilu lica, pretećim pokretima i borbenom stavu celog tela. 
+                                Na subjektivnom planu, b. se doživljava kao stanje neprijatnosti, &quot;suženja&quot; ili &quot;pomračenja&quot; svesti u kojem je osoba &quot;obuzeta&quot; afektom kao nekom demonskom silom. 
+                                Prvi izlivi snažnog i nekontrolisanog b. sreću se kod dece u ranom uzrastu onda kada im se uskrati zadovoljenje neke želje. 
+                                Neke odrasle osobe (autoritarne, histeričke ili sa koleričnim temperamentom) sklonije su ovom afektu nego druge. 
+                                Često reagovanje b. pouzan je znak niskog praga tolerancije na frustraciju. 
+                                Savremena istraživanja ukazuju da se kod osoba koje su relativno često obuzete b. povećavaju šanse da obole od psihosomatskih poremećaja.
+                            </p>
+                            <p class="py-2 font-bold">
+                                BEHAVIOR (BIHEJVIOR) TERAPIJA
+                            </p>
+                            <p class="py-1">
+                                Vrsta terapije abnormalnog ponašanja koja se zasniva na postavkama bihejviorizma. 
+                                B.t. ignoriše mantalističke &quot;uzročnike&quot; bolesti (npr. konflikte i komplekse), i u celini se svodi na otklanjanje &quot;simptoma&quot;. 
+                                B.t. počiva na shvatanju da je poremećeno, &quot;bolesno&quot; ponašanje stečeno učenjem, te se učenjem i može &quot;ugasiti&quot;. 
+                                B.t. predstavlja postepen proces planskog i sistematskog odučavanja pacijenta od starog, nedelotvornog i abnormalnog stečenog ponašanja i učenje novog, uspešnog i normalnog. 
+                                Prema Dž. Dolardu (Dollard) i N. Mileru (Miller), &quot;ukoliko je neurotično ponašanje naučeno ono može da bude i odučeno podesnim korišćenjem istih onih principa koji su učestvovali u procesu učenja… Postupak psihoterapije uspostavlja skup uslova koji omogućavaju odučavanje od neurotičarskih navika i učenja novih, neneurotičarskih navika&quot;.
+                            </p>
+                            <p class="py-2 font-bold">
+                                BRAK
+                            </p>
+                            <p class="py-1">
+                                Društvena, pravno ili verski zasnovana institucija zajedničkog življenja punoletnih osoba različitog pola koja je osnov porodice i podrazumeva uzajamna prava i obaveze supružnika, kao i obaveze prema potomstvu. 
+                                U braku čovek zadovoljava mnoge svoje socijalne, biološke, ekonomske i psihološke potrebe (za sigurnošću, seksom, roditeljstvom itd.). 
+                                Postoji više oblika braka, zasnovanih na običajnom, verskom ili zakonskom pravu. 
+                                To su monogamija, bigamija, poligamija (poliandrija ili poliginija).
+                            </p>
+                            <p class="py-2 font-bold">
+                                DEPRESIVNA REAKCIJA
+                            </p>
+                            <p class="py-1">
+                                Prolazno stanje nastalo usled nekog iznenadnog i teškog gubitka, fizičkog oboljenja ili razočaranja, a karakterišu ga oseđanje bezvoljnosti, malodušnosti, očajanja, kao i samooptuživanje i autoagresivnost.
+                            </p>
+                            <p class="py-2 font-bold">
+                                DEPRESIJA
+                            </p>
+                            <p class="py-1">
+                                DEPRESIJA (lat. depressio = spuštanje, opadanje, snižavanje) 
+                            </p>
+                            <p class="py-1">
+                                1 . U psihijatriji težak psihički (afektivni) poremećaj koji obuhvata opšte sniženje životnog tonusa, gubitak apetita i interesovanja, neprestanu zabrinutost, nesanicu, usporenost mišljenja zatim bezvoljnost, obeshrabrenost, potištenost, umor, osećanje snažne tuge, beznadežnosti, manje vrednosti i osećanje praznine. Smatra se da d. može nastati bez jasnog, vidljivog uzroka, iz hipotetičkih &quot;unutrašnjih &quot ;, konstitutivnih razloga (endogena d.), ali i kao odgovor na nepovoljne traumatske spoljašnje okolnosti (reaktivna d.). Depresija može biti udružena sa hipohondrijom, paranojom i anksioznim stanjima. U starosti se može javiti involutivna d. 
+                            </p>
+                            <p class="py-1">
+                                2 . U psihologiji, kod normalnih ljudi, posebno raspoloženje koje karakteriše osećanje dosade, bezvoljnosti, malodušnosti, bezrazložne tuge, pesimizma i usporeno mišljenje.
+                            </p>
+                            <p class="py-2 font-bold">
+                                DESTRUKTIVNOST
+                            </p>
+                            <p class="py-1">
+                                Dinamička crta ličnosti koja se manifestuje u razornom, rušilačkom ponašanju. 
+                                D . je vid iracionalne, maligne agresivnosti, pošto je njen cilj uništavanje radi uništavanja. 
+                                D . se, po nekim psiholozima, javlja kao direktna posledica aktuelne frustracije važnih ljudskih potreba. 
+                                Prema Erihu Fromu (Fromm), međutim ona je ukorenjena u čovekovom karakteru kao sekundarna mogućnost, koja je posledica patološkog razvoja ličnosti, ometanja razvoja primarnih ljudskih potencijala (potreba za ljubavlju, stvaralaštvom, slobodom itd.). 
+                                Ako nije u stanju da voli i da stvara, čovek ima potrebu da uništava. 
+                                U tom smislu je d. jedan od mehanizama bekstva od slobode i od usamljenosti koju ona donosi. Prema Frojdu, pak, d. je izraz nagona smrti.
+                            </p>
+                            <p class="py-2 font-bold">
+                                DETE (EGO-STANJE)
+                            </p>
+                            <p class="py-1">
+                                U Bernovoj (Berne) transakcionoj analizi, ego – stanje u kojem osoba doživljava, govori, oseća, misli i dela &quot;poput deteta&quot; (oznake &quot;detinjast&quot; ili &quot;nezreo&quot; su neadekvatne jer pripadaju jeziku Roditelja). 
+                                Biti &quot;u stanju D.&quot; znači ponašati se (gestovi, mimika, način govora) i osećati se kao što smo se osećali kada smo bili na uzrastu deteta između 2 i 5 – 6 godina. 
+                                Pojedinac kod koga je aktivno stanje D. šalje poruke čiji je osnovni smisao ŽELIM ili OSEĆAM. Obrasci osećanja i delanja D. su genetski programirani te stoga Bern ovaj deo ličnosti naziva &quot;arheopsihom&quot;. 
+                                U funkcionalnom smislu, u svakom ego – stanju D. postoji Adaptirano (dobro prilagođeno, konvencionalno, poslušno, uspešno u školi itd.) D. Prkosno (neprilagođeno, negativističko) D. i Slobodno (simpatično, nestašno, nesputano, spremno na igru) D. 
+                                Da bi postigao psihički sklad i zrelost, čovek treba da prepozna i da upozna svoje D., a ne da ga odbacuje ili negira. 
+                                Najvredniji deo ličnosti je Slobodno D. sposobno da uživa, spontano, duhovito, kreativno, intuitivno, radosno i imaginativno.
+                            </p>
+                            <p class="py-2 font-bold">
+                                EMOCIJA
+                            </p>
+                            <p class="py-1">
+                                Jedan od osnovnih psihičkih doživljaja koji predstavlja karakteristično uzbuđeno stanje organizma izazvano nekim emocionalnim stimulusom ili situacijom, a manifestuje se na tri različita plana: (1) Subjektivnom, kao mentalni doživljaj (radosti, tuge, prijatnosti i sl.); (2 ) Fiziološkom (npr. ubrzani puls, znojenje itd.) i (3) ponašajnom (npr. stezanje pesnica, mrštenje i sl.). 
+                                Na subjektivnom, doživljajnom planu, e. se razlikuju prema kvalitetu. 
+                                Osnovne , primarne e. su strah, gnev, radost i žalost. 
+                                Prema osnovnom, hedonističkom ili afektivnom tonu koji preovlađuje, e. mogu biti prijatne i neprijatne. 
+                                E . se mogu podeliti na različite načine. Prema svojoj usmerenosti i sadržini mogu biti: e. vezane za čulno draženje, estetske e., moralna osećanja, e. vezane za druge ljude, e. vezane za samoocenu itd. 
+                                Jačina e. može da varira od sasvim slabog intenziteta izvesnog raspoloženja pa do snažnih afekata i neobuzdanih strasti. 
+                                Važnu komponentu e. čine organske, fiziološke promene, od kojih su posebno važne one koje su nastale aktiviranjem simpatičkog dela autonomnog nervnog sistema (širenje zenica, brži i snažniji rad srca, ubrzano disanje, usporen rad creva i organa za varenje, pojačano lučenje adrenalina, povećana količina šećera u krvi, povećanje mišićne napetosti i sl.). 
+                                Sve ove telesne promene imaju ulogu da pripreme organizam za pojačane napore i za hitnu akciju (bežanje ili borba). Neke tipične promene u ponašanju i gestovima predstavljaju spolja vidljivu komponentu e. Emocionalno ponašanje, posebno kod primarnih emocija, u najvećoj meri je nasleđeno, gotovo univerzalno i nekada je bilo svrsishodno sa gledišta evolucije, kao što je pokazao još Č. Darvin (Darwin). 
+                                Ti ekspresivni pokreti imaju i važnu komunikativnu funkciju. 
+                                Svu raznovrsnost i složenost e. do sada nije u potpunosti objasnila ni jedna od teorija emocija (npr. evolucionistička teorija, teorija aktivacije, Džejms – Langeova, Kenon – Bardova, Šahterova kognitivna teorija i dr.).
+                            </p>
+                            <p class="py-2 font-bold">
+                                EMOCIONALNA INTELIGENCIJA
+                            </p>
+                            <p class="py-1">
+                                Sposobnost i veština korišćenja inteligencije u poslu, međuličnim odnosima i svakodnevnom životu. E . i. je metasposobnost, osoben složaj dispozicija ličnosti, koji nam omogućava da uspešno koristimo ne samo &quot;hladnu &quot ;, apstraktnu inteligenciju, nego i ostale sposobnosti i veštine koje su neophodne za skladan, uspešan i zdrav život. 
+                                Sklop crta koji sačinjava e. i. čine sposobnost samorazumevanja (sagledavanje svojih sposobnosti, potreba, osećanja i konflikta), sposobnost samokontrole (obuzdavanje &quot;toksičnih&quot; emocija kao što su bes, zavist, strah), samouverenost (samopouzdanje, optimizam), sposobnost empatije (razumevanje osećanja drugih), sposobnost uspostavljanja i održavanja skladnih međuljudskih odnosa, kao i rešavanje interpersonalnih sukoba. 
+                                Ljudi koji imaju razvijeniju e. i. ne samo da su uspešniji u društvu, u profesionalnoj delatnosti i braku, nego su mentalno i fizički zdraviji i otporniji na bolesti. 
+                                Bliska je socijalnoj inteligenciji.
+                            </p>
+                            <p class="py-2 font-bold">
+                                JUNGOVA TIPOLOGIJA
+                            </p>
+                            <p class="py-1">
+                                Učenje Junga (Jung) o tipovima ličnosti i njegova klasifikacija ljudi prema dominantnom stavu ili orjentaciji libida na ekstravertni ili introvertni tip, kao i prema dominantnoj psihičkoj funkciji na intuitivni, misaoni, osećajni i senzitivni (perceptivni) tip. Kada se uzme psihička funkcija kao kriterijum podele, ljudi se mogu podeliti na racionalni i iracionalni tip. Najzad , kada se ukrste ova dva kriterijuma podele (prema funkciji i prema tipu orjentacije), dobija se tipologija koja ima osam tipova (npr. ekstravertni misaoni, introvertni misaoni, ekstravertni intuitivni, introvertni intuitivni, ekstravertni osećajni itd.)
+                            </p>
+                            <p class="py-2 font-bold">
+                                KOMPLEKSI
+                            </p>
+                            <p class="py-1">
+                                U teoriji L.S. Vigotskog misaone tvorevine funkcionalno ekvivalentne pojmovima, koje predstavljaju drugi stadijum u razvoju pojma, a nastupaju posle sinkreta. 
+                                K . predstavljaju čest način grupisanja srodnih predmeta i pojava kod dece starijeg predškolskog i školskog uzrasta, sve do perioda adolescencije. 
+                                Dok su kod sinkreta grupisanja nastala na osnovu subjektivnih veza među predmetima, kod k. se grupišu prema objektivnim, stvarnim, ali konkretnim, faktičkim, često irelevantnim vezama, a ne suštinskim. 
+                                U slučaju obrazovanja k., za razliku od pojmova, ne postoji jedinstven kriterijum grupisanja. U k. ulaze srodni predmeti koji su povezani na osnovu različitih faktičkih veza. 
+                                Vigotski je otkrio i opisao pet različitih podgrupa k.: asocijativni kompleks, kolekcija, difuzni k., lančani k. i pseudopojmovi.
+                            </p>
+                            <p class="py-2 font-bold">
+                                KONFLIKT
+                            </p>
+                            <p class="py-1">
+                                Konflikt – (lat. conflictus = sukob, sudar, borba; spor, svađa) Sukob oprečnih stavova, impulsa, interesa ili težnji. 
+                                On je često teško rešiv i otuda je izvor mentalne neravnoteže. 
+                                K . može biti spoljašnji, između dva ili više lica (interpersonalni konflikt), ili društvenih grupa (socijalni konflikt), ali psihologija poglavito proučava unutrašnji (intrapersonalni k.). 
+                                Unutrašnji konflikt je vrsta frustracije kod koje ometanje potrebe ili želje dolazi iznutra. 
+                                Konflikt je unutrašnji sukob dvaju različitih, po intenzitetu približno istih, ali po smeru delovanja suprotnih motiva ili nespojivih ciljeva.
+                            </p>
+                            <p class="py-2 font-bold">
+                                KONFORMIZAM
+                            </p>
+                            <p class="py-1">
+                                Pojava promene stava, uverenja i/ili ponašanja pojedinca u pravcu saobražavanja sa važećim, opšteprihvaćenim grupnim normama i vrednostima, posebno pod grupnim pritiskom (stvarnim ili zamišljenim), a ne iz vlastitog ubeđenja. 
+                                Svojim čuvenim eksperimentima socijalni psiholog S. Aš (Asch) je ubedljivo pokazao da su neki ljudi skloni da čak i svoje perceptivne sudove menjaju pod uticajem mišljenja većine (tobožnji ispitanici koji u dogovoru sa eksperimentatorom daju pogrešne procene). 
+                                K . se može posmatrati kao jedno mogućno rešenje konflikta između potrebe za pripadanjem i potrebe za nezavisnošću. 
+                                U razmatranju pojave k. valja razlikovati javni, pragmatični, spoljašnji k. (kada osoba iz pragmatičnih razloga menja svoje ponašanje i priklanja se obrascima ponašanja većine) i pravi, unutrašnji k. (kada osoba ne menja samo svoje ponašanje, nego i intimna uverenja, stavove i vrednosti). 
+                                U istraživanjima je otkriveno više činilaca koji doprinose javljanju i veličini k. 
+                                Društveni i situacioni činioci su: vrsta političke kulture, dominantni sistem vrednosti, stepen autoritarnosti i otvorenosti društvene zajednice, stepen grupne kohezivnosti, jačina grupnog pritiska, stepen jasnosti situacije i sl. Lični činioci su: sugestibilnost, samopouzdanje, inteligencija, konzervativnost, autoritarnost itd. Najzad, k. zavisi i od pola i od uzrasta (k. su podložniji žene i deca). 
+                                Jedan od mehanizama bekstva od slobode. Sinonim saobražavanje.
+                            </p>
+                            <p class="py-2 font-bold">
+                                KRIZA IDENTITETA
+                            </p>
+                            <p class="py-1">
+                                Po Eriku H. Eriksonu (Erikson),psihičko stanje u jednom prekretnom periodu (pubertet, venčanje i sl.) u kojem usled narušavanja osećanja kontinuiteta i istovetnosti ja nastaju teškoće u osećanju identiteta. 
+                                K .i . prvo je proučavana prilikom rehabilitacije američkih ratnih veterana koji su &quot;izgubili osećanje ličnog identiteta i istorijskog kontinuiteta&quot;, kao i kod mladih delinkventnih osoba koje su imale probleme sa samoodređenjem. 
+                                Tako je Erikson preko abnormalnih pojava, došao do otkrića normalne krize u razvoju identiteta. 
+                                Nije svaka k. i nezdrava, ona je često plodan momenat za preokret u razvoju, šansa za uspešno odrastanje. 
+                                Patološke krize dovode do uzaludnog trošenja energije, do ireverzibilnih promena i do psihosocijalne izolacije, dok normalne, razvojne krize vode višem stupnju psiho – socijalne integracije, reverzibilne su i otvaraju nove mogućnosti sazrevanja. 
+                                Na svakom od stupnjeva razvoja identiteta dolazi do određenih teškoća u formiranju stabilnog identiteta. Novi stadijum uvek je izazov i &quot;potencijalna kriza usled radikalne promene perspektive&quot;, kaže Erikson. 
+                                Traganje za ličnim identitetom je neizvestan i težak put ispunjen sumnjama, lutanjem, krizama i eksperimentisanjem sa različitim ulogama.
+                            </p>
+                            <p class="py-2 font-bold">
+                                Izvori:
+                            </p>
+                            <p class="py-1">
+                                Trebješanin Ž. (2008): Rečnik psihologije; Stubovi kulture, Beograd
+                            </p>
+                            <p class="py-1">
+                                Krstić D. (1991): Psihološki rečnik; Drugo dopunjeno izdanje; Savremena administracija, Beograd
+                            </p>
+                        </div>
+                    </details>
+                    <details class="p-4 group">
+                        <summary class="[&::-webkit-details-marker]:hidden relative pr-8 font-medium list-none cursor-pointer text-start text-purple-500 italic uppercase text-base sm:text-lg md:text-xl lg:text-2xl focus-visible:outline-none transition-colors duration-300 group-hover:text-purple-600 ">
+                            Tu smo za Vas ako pretražujete sledeće pojmove
+                            <svg xmlns="http://www.w3.org/2000/svg" class="absolute right-0 w-6 h-6 transition duration-300 top-1 stroke-purple-500 shrink-0 group-open:rotate-45" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+                            </svg>
+                        </summary>
+                        <div class="mt-4 text-base-content/80 font-normal text-neutral-700 dark:text-neutral-300">
+                            <p>
+                                Psihologija, psiholog Novi Sad, savetovanje, psihološko savetovanje, psihološka podrška, psihološka pomoć, psihoterapeut, psihoterapija, psihički problemi, problemi sa psihom, 
+                                duševni problemi, patnja, ljubav, ljubavni problemi, problemi na poslu, stres, psihička patnja, strah, strahovi, napad panike, napadi panike, panični napad, anksioznost, 
+                                anksiozni poremećaj, poremećaji ponašanja, poremećaji ličnosti, mladi, omladina, adolescenti, kriza, kriza identiteta, psihička kriza, fizička kriza, duševni mir, lični razvoj, 
+                                motivacija, emocije, bes, dosada, usamljenost, samoća, samoubistvo, suicid, suicidalne misli, zavisnost, bolesti zavisnosti, alkohol, kocka, kockanje, igre na sreću, video igre, 
+                                internet, mobilni telefon, problemi u porodici, problemi u vezi, problemi u braku, problemi u školi, emotivni problemi, emotivna nestabilnost, nesigurnost u sebe, 
+                                slika o sebi, fizički izgled, rešavanje konflikta, nasilje, vršnjačko nasilje, nasilje u porodici, seksualno nasilje, nasilje u vezi, nasilni partner, nasilni muž, preljuba, 
+                                bračna prevara, varanje u vezi, homoseksualnost, gej veze, homoseksualne veze, homoseksualci, problemi u seksu, seksualni problemi, …
+                            </p>
+                        </div>
+                    </details>
+            </section>
+            <!-- End Elevated accordion -->            
+        </main>
+        <footer></footer>
+    </body>
+</html>

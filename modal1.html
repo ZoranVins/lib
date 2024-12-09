@@ -29,70 +29,31 @@
             }
         </script>
 
-        <link
-            rel="shortcut icon"
-            type="image/x-icon"
-            href="img/logo/logo180x180.svg"
-        />
+        <link rel="shortcut icon" type="image/x-icon" href="img/logo/logo180x180.svg" />
         <link rel="icon" type="image/x-icon" href="favicon.svg" />
-        <link
-            rel="apple-touch-icon"
-            sizes="80x80"
-            href="img/logo/touch-icon-iphone.svg"
-        />
-        <link
-            rel="apple-touch-icon"
-            sizes="152x152"
-            href="img/logo/touch-icon-ipad.svg"
-        />
-        <link
-            rel="apple-touch-icon"
-            sizes="180x180"
-            href="img/logo/touch-icon-iphone-retina.svg"
-        />
-        <link
-            rel="apple-touch-icon"
-            sizes="167x167"
-            href="img/logo/touch-icon-ipad-retina.svg"
-        />
+        <link rel="apple-touch-icon" sizes="80x80" href="img/logo/touch-icon-iphone.svg" />
+        <link rel="apple-touch-icon" sizes="152x152" href="img/logo/touch-icon-ipad.svg" />
+        <link rel="apple-touch-icon" sizes="180x180" href="img/logo/touch-icon-iphone-retina.svg" />
+        <link rel="apple-touch-icon" sizes="167x167" href="img/logo/touch-icon-ipad-retina.svg" />
     </head>
 
-    <body
-        class="min-h-screen bg-neutral-200 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300"
-    >
+    <body class="min-h-screen bg-neutral-200 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300">
         <!-- ====== Modal Section Start -->
-        <section
-            x-data="{modalOpen: false}"
-            @keydown.escape="modalOpen = false"
-            id="referenceModal"
-            aria-label="referenceModal"
-        >
+        <section x-data="{modalOpen: false}" @keydown.escape="modalOpen = false" id="referenceModal" aria-label="referenceModal">
             <div class="container py-20 mx-auto">
-                <button
-                    @click="modalOpen = true"
-                    class="px-6 py-3 text-base font-medium text-white rounded-full bg-neutral-500"
-                >
+                <button type="button" @click="modalOpen = true" class="px-6 py-3 text-base font-medium text-white rounded-full bg-neutral-500">
                     Reference
                 </button>
             </div>
-            <div
-                x-show="modalOpen"
-                x-transition
-                class="fixed top-0 left-0 flex items-center justify-center w-full h-full px-4 py-0"
-            >
-                <div
-                    @click.outside="modalOpen = false"
-                    class="container w-full h-full min-h-screen px-8 py-4 overflow-y-scroll text-center shadow-md bg-neutral-100 rounded-5 dark:bg-neutral-900 lg:py-8 lg:px-20 lg:overflow-y-auto"
-                >
+            <div x-show="modalOpen" x-transition class="fixed top-0 left-0 flex items-center justify-center w-full h-full px-4 py-0">
+                <div @click.outside="modalOpen = false" class="container w-full h-full min-h-screen px-8 py-4 overflow-y-scroll text-center shadow-md bg-neutral-100 rounded-5 dark:bg-neutral-900 lg:py-8 lg:px-20 lg:overflow-y-auto">
                     <div class="flex items-center justify-between border-b-2 border-b-black dark:border-b-white">
                         <h3 class="flex pb-4 text-xl font-bold text-black dark:text-white sm:text-2xl">
                             REFERENTNA LISTA
                         </h3>
-                        <button @click="modalOpen = false" class="block px-4 pb-4 rounded-md text-neutral-900 dark:text-neutral-100">
+                        <button @click="modalOpen = false" class="block px-4 pb-4 rounded-md text-neutral-900 dark:text-neutral-100" title="Close" type="button">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 50 50" fill="currentColor">
-                                <path
-                                    d="M 9.15625 6.3125 L 6.3125 9.15625 L 22.15625 25 L 6.21875 40.96875 L 9.03125 43.78125 L 25 27.84375 L 40.9375 43.78125 L 43.78125 40.9375 L 27.84375 25 L 43.6875 9.15625 L 40.84375 6.3125 L 25 22.15625 Z">
-                                </path>
+                                <path d="M 9.15625 6.3125 L 6.3125 9.15625 L 22.15625 25 L 6.21875 40.96875 L 9.03125 43.78125 L 25 27.84375 L 40.9375 43.78125 L 43.78125 40.9375 L 27.84375 25 L 43.6875 9.15625 L 40.84375 6.3125 L 25 22.15625 Z"></path>
                             </svg>
                         </button>
                     </div>
