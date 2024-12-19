@@ -38,126 +38,510 @@
         <link rel="apple-touch-icon" sizes="167x167" href="images/logo/touch-icon-ipad-retina.svg" />
     </head>
 
-    <body class="min-h-screen bg-neutral-200 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300">
-        <header>
-            <!-- Dark Mode Toggle Start -->
-            <div class="rounded-full fixed z-50 top-6 right-6">
-                <button type="button" title="Toggle dark mode" aria-label="Toggle dark mode" x-data="{ toggle: () => { if (localStorage.theme === 'dark') { localStorage.theme = 'light'; document.documentElement.classList.remove('dark'); } else { localStorage.theme = 'dark'; document.documentElement.classList.add('dark'); } }, }" @click="toggle">
-                    <div class="hidden transform dark:inline-block text-neutral-500 duration:100 hover:scale-105 hover:cursor-pointer hover:text-neutral-600">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="size-8">
-                            <path d="M8 1a.75.75 0 0 1 .75.75v1.5a.75.75 0 0 1-1.5 0v-1.5A.75.75 0 0 1 8 1ZM10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0ZM12.95 4.11a.75.75 0 1 0-1.06-1.06l-1.062 1.06a.75.75 0 0 0 1.061 1.062l1.06-1.061ZM15 8a.75.75 0 0 1-.75.75h-1.5a.75.75 0 0 1 0-1.5h1.5A.75.75 0 0 1 15 8ZM11.89 12.95a.75.75 0 0 0 1.06-1.06l-1.06-1.062a.75.75 0 0 0-1.062 1.061l1.061 1.06ZM8 12a.75.75 0 0 1 .75.75v1.5a.75.75 0 0 1-1.5 0v-1.5A.75.75 0 0 1 8 12ZM5.172 11.89a.75.75 0 0 0-1.061-1.062L3.05 11.89a.75.75 0 1 0 1.06 1.06l1.06-1.06ZM4 8a.75.75 0 0 1-.75.75h-1.5a.75.75 0 0 1 0-1.5h1.5A.75.75 0 0 1 4 8ZM4.11 5.172A.75.75 0 0 0 5.173 4.11L4.11 3.05a.75.75 0 1 0-1.06 1.06l1.06 1.06Z" />
+    <body class="min-h-screen bg-repeat bg-[url('../images/backgr.webp')] text-neutral-700 dark:text-neutral-300" x-data="{modalOpen: false}">
+        <header class="md:block md:w-full md:h-20 bg-gray-900"> 
+            <!-- Show Logo Text -->
+            <div class="hidden relative xl:inline-block xl:top-4 xl:left-4">
+                <img class="h-12 max-h-12 w-48 max-w-48" title="Logo Text" alt="logo text" src="images/logotext.webp">
+            </div>  
+            
+            <div class="fixed inset-x-0 top-0 z-50 max-w-screen-lg max-h-screen py-1 shadow-md md:mx-auto md:top-2 md:rounded-3xl bg-gray-900 text-gray-100" x-data="{ navbarOpen: false }">
+                <!-- Starts component Scroll Up -->
+                <div x-data="{ isVisible: false }" x-init="window.addEventListener('scroll', () => { isVisible = window.scrollY > 100; })" class="fixed z-50 bottom-20 right-4" x-show="isVisible" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 transform translate-y-2" x-transition:enter-end="opacity-100 transform translate-y-0" x-transition:leave="transition ease-in duration-300" x-transition:leave-start="opacity-100 transform translate-y-0" x-transition:leave-end="opacity-0 transform translate-y-2">
+                    <button type="button" title="Scroll to top" aria-label="Scroll to top" @click="window.scrollTo({ top: 0, behavior: 'smooth' })" class="inline-flex items-center gap-x-2 rounded-full bg-neutral-600 px-4 py-2.5 text-sm font-bold text-white shadow-sm hover:bg-neutral-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-400 w-full">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+                            <path fill-rule="evenodd" d="M11.47 2.47a.75.75 0 0 1 1.06 0l7.5 7.5a.75.75 0 1 1-1.06 1.06l-6.22-6.22V21a.75.75 0 0 1-1.5 0V4.81l-6.22 6.22a.75.75 0 1 1-1.06-1.06l7.5-7.5Z" clip-rule="evenodd" />
                         </svg>
-                    </div>
-                    <div class="transform dark:hidden text-neutral-500 duration:100 hover:scale-105 hover:cursor-pointer hover:text-neutral-600">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="size-8">
-                            <path d="M14.438 10.148c.19-.425-.321-.787-.748-.601A5.5 5.5 0 0 1 6.453 2.31c.186-.427-.176-.938-.6-.748a6.501 6.501 0 1 0 8.585 8.586Z" />
+                    </button>
+                </div>
+                <!-- Ends component Scroll Up -->
+                <!-- Floating Menu Start -->
+                <div class="container flex items-center justify-between md:px-4">
+                    <!--Toggle button (hidden on medium screens)-->
+                    <button type="button" class="flex items-center px-4 md:hidden" @click="navbarOpen = !navbarOpen" :class="navbarOpen && 'navbarTogglerActive' " id="navbarToggler" title="Menu Toggle">
+                        <svg class="size-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path fill-rule="evenodd" fill="currentColor" d="M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2z" />
                         </svg>
+                    </button>
+                    <div>
+                        <p class="mx-4 text-xl md:hidden font-bold text-center">HALOGEN DECOR</p>
                     </div>
-                </button>
+                    <nav class="absolute z-50 w-full max-w-full top-full md:py-0 md:static md:block md:mx-auto overflow:hidden bg-gray-900 text-gray-100" :class="!navbarOpen && 'hidden' " id="navbarCollapse">
+                        <ul class="inline-block md:inline-flex md:items-center md:justify-center text-md lg:text-lg">
+                            <li class="px-3 py-4 md:py-0 transform hover:scale-105 duration-300">
+                                <a aria-current="page" href="#" title="Početna">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="size-8" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z">
+                                        </path>
+                                    </svg>
+                                </a>
+                            </li>
+                            <li class="px-2 py-4 lg:px-4 md:py-0">
+                                <a class="hover:underline hover:cursor-pointer" href="#" title="Zavese">ZAVESE</a>
+                            </li>
+                            <li class="px-2 py-4 lg:px-4 md:py-0">
+                                <a class="hover:underline hover:cursor-pointer" href="#" title="Tapete">TAPETE</a>
+                            </li>
+                            <li class="px-2 py-4 lg:px-4 md:py-0">
+                                <a class="hover:underline hover:cursor-pointer" href="#" title="Mebl">MEBL</a>
+                            </li>
+                            <li class="px-2 py-4 lg:px-4 md:py-0">
+                                <a class="hover:underline hover:cursor-pointer" href="#" title="Tepisi">TEPISI</a>
+                            </li>
+                            <li class="px-2 py-4 lg:px-4 md:py-0">
+                                <a class="hover:underline hover:cursor-pointer" href="#" title="Nameštaj">NAMEŠTAJ</a>
+                            </li>
+                            <li class="px-2 py-4 lg:px-4 md:py-0">
+                                <a class="hover:underline hover:cursor-pointer" href="#" title="Velux">VELUX&reg;</a>
+                            </li>
+                            <li class="px-2 py-4 lg:px-4 md:py-0 transform hover:scale-105 duration-300">
+                                <a title="Prodavnica" rel="noopener" class="" href="https://www.halogendecorshop.com/" target="_blank">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="size-8" viewBox="0,0,16,16" fill="currentColor">
+                                        <path d="M2.97 1.35A1 1 0 0 1 3.73 1h8.54a1 1 0 0 1 .76.35l2.609 3.044A1.5 1.5 0 0 1 16 5.37v.255a2.375 2.375 0 0 1-4.25 1.458A2.37 2.37 0 0 1 9.875 8 2.37 2.37 0 0 1 8 7.083 2.37 2.37 0 0 1 6.125 8a2.37 2.37 0 0 1-1.875-.917A2.375 2.375 0 0 1 0 5.625V5.37a1.5 1.5 0 0 1 .361-.976zm1.78 4.275a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 1 0 2.75 0V5.37a.5.5 0 0 0-.12-.325L12.27 2H3.73L1.12 5.045A.5.5 0 0 0 1 5.37v.255a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0M1.5 8.5A.5.5 0 0 1 2 9v6h1v-5a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v5h6V9a.5.5 0 0 1 1 0v6h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1V9a.5.5 0 0 1 .5-.5M4 15h3v-5H4zm5-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1zm3 0h-2v3h2z" />
+                                    </svg>
+                                </a>
+                            </li>
+                            <li class="px-2 py-4 lg:px-4 md:py-0 transform hover:scale-105 duration-300">
+                                <a title="Instagram" rel="noopener" class="" href="https://www.instagram.com/halogendecor/" target="_blank">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="size-8" viewBox="0,0,50,50" stroke="currentColor" fill="currentColor">
+                                        <path d="M 16 3 C 8.83 3 3 8.83 3 16 L 3 34 C 3 41.17 8.83 47 16 47 L 34 47 C 41.17 47 47 41.17 47 34 L 47 16 C 47 8.83 41.17 3 34 3 L 16 3 z M 37 11 C 38.1 11 39 11.9 39 13 C 39 14.1 38.1 15 37 15 C 35.9 15 35 14.1 35 13 C 35 11.9 35.9 11 37 11 z M 25 14 C 31.07 14 36 18.93 36 25 C 36 31.07 31.07 36 25 36 C 18.93 36 14 31.07 14 25 C 14 18.93 18.93 14 25 14 z M 25 16 C 20.04 16 16 20.04 16 25 C 16 29.96 20.04 34 25 34 C 29.96 34 34 29.96 34 25 C 34 20.04 29.96 16 25 16 z">
+                                        </path>
+                                    </svg>
+                                </a>
+                            </li>
+                            <li class="px-2 py-4 lg:px-4 md:py-0 transform hover:scale-105 duration-300">
+                                <a title="Facebook" rel="noopener" class="" href="https://www.facebook.com/Halogen-Decor-zavesetapeteroloi-164039537045317/" target="_blank">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="size-8" viewBox="0,0,50,50" stroke="currentColor" fill="currentColor">
+                                        <path d="M25,2C12.318,2,2,12.317,2,25s10.318,23,23,23c12.683,0,23-10.317,23-23S37.683,2,25,2z M32,16h-3.29 C26.772,16,26,16.455,26,17.806V21h6l-1,5h-5v13h-6V26h-3v-5h3v-2.774C20,14.001,21.686,11,26.581,11C29.203,11,32,12,32,12V16z">
+                                        </path>
+                                    </svg>
+                                </a>
+                            </li>
+                            <li class="px-2 py-4 md:py-0">
+                                <div class="my-2">
+                                    <!-- ====== Modal Section Start -->
+                                    <section id="reference" x-data="{modalOpen: false}" @keydown.escape="modalOpen = false" id="referenceModal" aria-label="referenceModal"></section>
+                                        <button type="button" @click="modalOpen = true" title="Reference" aria-label="Reference" class="lg:hidden inline-flex items-center justify-center h-10 gap-2 px-5 text-sm font-bold tracking-wide text-white transition duration-300 rounded-full shadow-md focus-visible:outline-none whitespace-nowrap bg-gray-500 shadow-gray-200 hover:bg-gray-600 hover:shadow-sm hover:shadow-gray-200 focus:bg-gray-700 focus:shadow-sm focus:shadow-gray-200 disabled:cursor-not-allowed disabled:border-gray-300 disabled:bg-gray-300 disabled:shadow-none">
+                                            Ref.
+                                        </button>
+                                        <button type="button" @click="modalOpen = true" title="Reference" aria-label="Reference" class="hidden lg:inline-flex items-center justify-center h-10 gap-2 px-5 text-sm font-bold tracking-wide text-white transition duration-300 rounded-full shadow-md focus-visible:outline-none whitespace-nowrap bg-gray-500 shadow-gray-200 hover:bg-gray-600 hover:shadow-sm hover:shadow-gray-200 focus:bg-gray-700 focus:shadow-sm focus:shadow-gray-200 disabled:cursor-not-allowed disabled:border-gray-300 disabled:bg-gray-300 disabled:shadow-none">
+                                            Reference
+                                        </button>
+                                        <div x-show="modalOpen" x-transition class="z-50 fixed top-0 left-0 flex items-center justify-center w-full h-full px-4 py-0">
+                                            <div @click.outside="modalOpen = false" class="container w-full h-full min-h-screen px-8 py-4 overflow-y-scroll text-center shadow-md bg-neutral-100 rounded-5 dark:bg-neutral-900 lg:py-8 lg:px-20 lg:overflow-y-auto">
+                                                <div class="flex items-center justify-between border-b-2 border-b-black dark:border-b-white">
+                                                    <h3 class="flex pb-4 text-xl font-bold text-black dark:text-white sm:text-2xl">
+                                                        REFERENTNA LISTA
+                                                    </h3>
+                                                    <button @click="modalOpen = false" class="block px-4 pb-4 rounded-md text-neutral-900 dark:text-neutral-100" title="Close" type="button">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 50 50" fill="currentColor">
+                                                            <path d="M 9.15625 6.3125 L 6.3125 9.15625 L 22.15625 25 L 6.21875 40.96875 L 9.03125 43.78125 L 25 27.84375 L 40.9375 43.78125 L 43.78125 40.9375 L 27.84375 25 L 43.6875 9.15625 L 40.84375 6.3125 L 25 22.15625 Z"></path>
+                                                        </svg>
+                                                    </button>
+                                                </div>
+                                                <div class="grid grid-cols-1 text-base leading-relaxed text-left lg:text-xl lg:grid-cols-2 lg:gap-4 text-neutral-900 dark:text-neutral-100">
+                                                    <div class="mt-2 mb-10">
+                                                        <p>Hotel <b>Prag</b>, Beograd</p>
+                                                        <p>Hotel <b>Art Radisson</b>, Beograd</p>
+                                                        <p>Hotel <b>Constantinus Palace</b>, Ni&#353;</p>
+                                                        <p>Hotel <b>Tami Residence</b>, Ni&#353;</p>
+                                                        <p>Hotel <b>Queen</b>, Novi Sad</p>
+                                                        <p>Hotel <b>Element</b>, Novi Sad</p>
+                                                        <p>Hotel <b>Galleria</b>, Subotica</p>
+                                                        <p>Hotel <b>Park</b>, Novi Sad</p>
+                                                        <p>Hotel <b>Stari Krovovi</b>, Veternik</p>
+                                                        <p>Hotel <b>ARTA Boutique</b>, Novi Sad</p>
+                                                        <p>Hotel <b>Moskva (Night club)</b>, Beograd</p>
+                                                        <p>Hotel <b>Zlatiborski Biser</b>, Zlatibor</p>
+                                                        <p>Institut Sremska Kamenica 3</p>
+                                                        <p>Stamb.-posl. objekat <b>Sakura Park</b>, Novi Beograd</p>
+                                                        <p><b>Park Novi Restaurants</b>, Novi Sad</p>
+                                                        <p>&#352;kola za osn. i sred.obraz. <b>Milan Petrovi&#263;</b>, Novi Sad</p>
+                                                        <p>Pokrajinski zavod za za&#353;titu prirode, Novi Sad</p>
+                                                        <p><b>Suess Consulting</b> d.o.o., Novi Sad</p>
+                                                        <p><b>2D Soft</b>, Novi Sad</p>
+                                                        <p><b>EWA Soft</b>, Novi Sad</p>
+                                                        <p><b>Minaqua spa centar</b>, Novi Sad</p>
+                                                        <p><b>Privredna komora Vojvodine</b>, Novi Sad</p>
+                                                        <p><b>Prezident</b> (ekskluz. sala za proslave), Ivanjica</p>
+                                                        <p><b>Galens</b>, Novi Sad</p>
+                                                        <p><b>Europak</b>, Stari Banovci</p>
+                                                        <p><b>Res trade</b>, Novi Sad</p>
+                                                        <p><b>Karin Komerc</b>, Veternik</p>
+                                                        <p><b>Agro &#262;ori&#263;</b>, Ba&#353;aid</p>
+                                                        <p><b>Galenika</b> (upravna zgrada), Zemun</p>
+                                                        <p><b>NESTLE FRONERI</b> (upravna zgrada), Stara Pazova</p>
+                                                        <p><b>Gumatic</b> (poslovno-stambeni objekat), Novi Sad</p>
+                                                        <p><b>Gumatic</b> (poslovni objekat Passent Home), Novi Sad</p>
+                                                        <p><b>Agrorit</b> (upravna zgrada), Melenci</p>
+                                                        <p><b>Ru Metal</b>, Ruma</p>
+                                                        <p><b>Inoba&#269;ka d.o.o.</b>, Novi Sad</p>
+                                                        <p>Vinska ku&#263;a <b>&quot;Kova&#269;evi&#263;&quot;</b>, Irig</p>
+                                                        <p><b>Volpe night club</b>, Kragujevac</p>
+                                                        <p><b>Jardin plus club</b>, Ba&#269;ka Palanka</p>
+                                                        <p><b>Night club Catch</b>, Novi Sad</p>
+                                                        <p><b>Gentleman&apos;s pub</b>, Subotica</p>
+                                                        <p><b>Crveni petao club</b>, Novi Sad</p>
+                                                        <p><b>Mystic club</b>, Novi Sad</p>
+                                                        <p><b>Atelje 212 night club</b>, Novi Sad</p>
+                                                        <p><b>Pashanga club</b>, Novi Sad</p>
+                                                        <p><b>Caffe Square</b>, Novi Sad</p>
+                                                        <p><b>Caffe poslasti&#269;arnica &quot;Slatki Kutak&quot;</b>, Zrenjanin</p>
+                                                        <p><b>Caffe&amp;Bar &quot;Pri&#269;a&quot;</b>, Novi Sad</p>
+                                                        <p><b>Paprika caffe restoran</b>, Novi Sad</p>
+                                                    </div>
+                                                    <div class="mt-2 mb-10">
+                                                        <p><b>Buda bar caffe</b>, Novi Sad</p>
+                                                        <p><b>Macchiato caffe</b>, Novi Sad</p>
+                                                        <p><b>Fashion caffe</b>, Novi Sad</p>
+                                                        <p><b>Palma caffe</b>, Temerin</p>
+                                                        <p><b>Kafemat Bar&amp;Restaurant</b>, Novi Sad</p>
+                                                        <p><b>Kafemat Bar&amp;Restaurant</b>, Zrenjanin</p>
+                                                        <p><b>Caffe Milanello</b>, Novi Sad</p>
+                                                        <p><b>Dukat pekara</b>, Novi Sad</p>
+                                                        <p><b>Temerinska &#269;arda</b>, Temerin</p>
+                                                        <p><b>Caffe&amp;Pizzeria Olimp</b>, Ba&#269;ka Palanka</p>
+                                                        <p><b>Restoran Rosetto</b>, Novi Sad</p>
+                                                        <p><b>Dragstor restoran</b>, Ba&#269;ka Palanka</p>
+                                                        <p><b>Caffe&amp;Pizzeria Galerija</b>, Od&#382;aci</p>
+                                                        <p><b>Restoran Knin</b>, Novi Sad</p>
+                                                        <p><b>Caffe&amp;Restoran Macchiato Fax</b>, Novi Sad</p>
+                                                        <p><b>Restoran Siki</b>, Novi Sad</p>
+                                                        <p><b>Piatto Caffe</b>, Novi Sad</p>
+                                                        <p><b>Poljoprivredni fakultet</b>, Novi Sad</p>
+                                                        <p><b>Ekonomski fakultet</b>, Novi Sad</p>
+                                                        <p>Privatna O&#352; <b>&quot;Sveti Kirilo i Metodije&quot;</b>, Novi Sad</p>
+                                                        <p>Edukativno sportski centar <b>&quot;Mediana&quot;</b>, Novi Sad</p>
+                                                        <p><b>Univerexport</b> (upravna zgrada), Novi Sad</p>
+                                                        <p><b>Manual</b>, Novi Sad</p>
+                                                        <p><b>Medpro-Jan</b>, Novi Sad</p>
+                                                        <p>Posl.obj. <b>Ma&#353;inska obrada CUBIKA</b>, Novi Sad</p>
+                                                        <p><b>Galerija porcelana</b>, Novi Sad</p>
+                                                        <p><b>Fasek engineering</b>, Novi Sad</p>
+                                                        <p><b>Agrotehna</b>, Sremski Karlovci</p>
+                                                        <p><b>Fabus</b>, Sremska Kamenica</p>
+                                                        <p><b>Cosmoland-Big Igraonica&amp;ro&#273;endaonica</b>, Novi Sad</p>
+                                                        <p><b>Hair Studio DD</b>, Novi Sad</p>
+                                                        <p><b>Zic Zac boutique</b>, Novi Sad</p>
+                                                        <p><b>Fashion by Sa&#353;ka boutique</b>, Novi Sad</p>
+                                                        <p>Ekskluzivni boutique <b>&quot;Elm Room&quot;</b>, Novi Pazar</p>
+                                                        <p><b>Aluna salon lepote</b>, Novi Sad</p>
+                                                        <p><b>Valika salon lepote</b>, Novi Sad</p>
+                                                        <p><b>Frizerski salon Studio</b>, Novi Sad</p>
+                                                        <p><b>Bella salon ven&#269;anica</b>, Subotica</p>
+                                                        <p><b>Plastma</b>, Ba&#269;ka Palanka</p>
+                                                        <p><b>Paro&#353;ki</b>, Srbobran</p>
+                                                        <p><b>Agro - Ing</b>, Novi Sad</p>
+                                                        <p><b>Mol (benzinska pumpa)</b>, Veternik</p>
+                                                        <p><b>Mar&#353;al slot club</b>, Subotica</p>
+                                                        <p><b>Mar&#353;al slot club</b>, Novi Sad</p>
+                                                        <p><b>Meridian kladionica</b> (kancelarije uprave), Beograd</p>
+                                                        <p><b>Max Bet VIP Salon</b>, Novi Sad</p>
+                                                        <p><b>Max Bet slot club</b>, Novi Sad</p>
+                                                        <p>kao i veliki broj privatnih vila i ku&#263;a...</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </section>
+                                    <!-- ====== Modal Section End -->
+                                </div>     
+                            </li>
+                            <li class="px-2 py-4 lg:px-4 md:py-0">
+                                <!-- Dark Mode Toggle Start -->
+                                <div class="rounded-full">
+                                    <button type="button" title="Toggle dark mode" aria-label="Toggle dark mode" x-data="{ toggle: () => { if (localStorage.theme === 'dark') { localStorage.theme = 'light'; document.documentElement.classList.remove('dark'); } else { localStorage.theme = 'dark'; document.documentElement.classList.add('dark'); } }, }" @click="toggle">
+                                        <div class="hidden transform dark:inline-block duration:100 hover:scale-105 hover:cursor-pointer hover:text-neutral-500">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="mt-2 size-8">
+                                                <path d="M8 1a.75.75 0 0 1 .75.75v1.5a.75.75 0 0 1-1.5 0v-1.5A.75.75 0 0 1 8 1ZM10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0ZM12.95 4.11a.75.75 0 1 0-1.06-1.06l-1.062 1.06a.75.75 0 0 0 1.061 1.062l1.06-1.061ZM15 8a.75.75 0 0 1-.75.75h-1.5a.75.75 0 0 1 0-1.5h1.5A.75.75 0 0 1 15 8ZM11.89 12.95a.75.75 0 0 0 1.06-1.06l-1.06-1.062a.75.75 0 0 0-1.062 1.061l1.061 1.06ZM8 12a.75.75 0 0 1 .75.75v1.5a.75.75 0 0 1-1.5 0v-1.5A.75.75 0 0 1 8 12ZM5.172 11.89a.75.75 0 0 0-1.061-1.062L3.05 11.89a.75.75 0 1 0 1.06 1.06l1.06-1.06ZM4 8a.75.75 0 0 1-.75.75h-1.5a.75.75 0 0 1 0-1.5h1.5A.75.75 0 0 1 4 8ZM4.11 5.172A.75.75 0 0 0 5.173 4.11L4.11 3.05a.75.75 0 1 0-1.06 1.06l1.06 1.06Z" />
+                                            </svg>
+                                        </div>
+                                        <div class="transform dark:hidden duration:100 hover:scale-105 hover:cursor-pointer hover:text-neutral-500">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="mt-2 size-8">
+                                                <path d="M14.438 10.148c.19-.425-.321-.787-.748-.601A5.5 5.5 0 0 1 6.453 2.31c.186-.427-.176-.938-.6-.748a6.501 6.501 0 1 0 8.585 8.586Z" />
+                                            </svg>
+                                        </div>
+                                    </button>
+                                </div>
+                                <!-- Dark Mode Toggle End -->
+                            </li>     
+                        </ul>
+                    </nav>
+                </div>
+                <!-- Floating Menu End -->
             </div>
-            <!-- Dark Mode Toggle End -->
         </header>
-        <main>
+        <main class="mt-8 md:mt-0">
+            <!-- Component: Carousel with controls inside -->
+            <section id="carousel1" class="px-4 py-4">
+                <div class="container max-w-full max-h-screen mx-auto shadow-xl">
+                    <div class="relative w-full glide-01">
+                        <!-- Slides -->
+                        <div class="overflow-hidden" data-glide-el="track">
+                            <ul class="relative w-full font-semibold overflow-hidden p-0 whitespace-no-wrap flex flex-no-wrap [backface-visibility: hidden] [transform-style: preserve-3d] [touch-action: pan-Y] [will-change: transform]">
+                                <li class="relative w-full inline-block group">
+                                    <img src="images/slider/draperije1.webp" class="z-10 w-full max-w-full max-h-full m-auto rounded-lg transform duration-300 hover:scale-105 ease-in-out" alt="draperije" title="Draperije po meri" />
+                                    <div class="absolute bottom-full left-1/2 z-20 -mb-8 md:-mb-16 -translate-x-1/2 whitespace-nowrap px-2 text-lg md:text-2xl lg:text-4xl bg-transparent drop-shadow-lg text-white">DRAPERIJE: Bogatstvo svakog prozora</div>
+                                </li>
+                                <li class="relative w-full inline-block group">
+                                    <img src="images/slider/zavese1.webp" class="w-full max-w-full max-h-full m-auto rounded-lg transform duration-300 hover:scale-105 ease-in-out" alt="zavese" title="Zavese po meri" />
+                                    <div class="absolute bottom-full left-1/2 z-20 -mb-8 md:-mb-16 -translate-x-1/2 whitespace-nowrap px-2 text-lg md:text-2xl lg:text-4xl bg-transparent drop-shadow-lg text-white">ZAVESE: Toplina svakog doma počinje ovde</div>
+                                </li>
+                                <li class="relative w-full inline-block group">
+                                    <img src="images/slider/mebl1.webp" class="w-full max-w-full max-h-full m-auto rounded-lg transform duration-300 hover:scale-105 ease-in-out" alt="mebl" title="Mebl štofovi po meri" />
+                                    <div class="absolute bottom-full left-1/2 z-20 -mb-8 md:-mb-16 -translate-x-1/2 whitespace-nowrap px-2 text-xl md:text-2xl lg:text-4xl bg-transparent drop-shadow-lg text-white">MEBL ŠTOFOVI: Nova dimenzija nameštaja</div>
+                                </li>
+                                <li class="relative w-full inline-block group">
+                                    <img src="images/slider/outdoor1.webp" class="w-full max-w-full max-h-full m-auto rounded-lg transform duration-300 hover:scale-105 ease-in-out" alt="outdoor" title="Outdoor štofovi po meri" />
+                                    <div class="absolute bottom-full left-1/2 z-20 -mb-8 md:-mb-16 -translate-x-1/2 whitespace-nowrap px-2 text-lg md:text-2xl lg:text-4xl bg-transparent drop-shadow-lg text-white">OUTDOOR ŠTOFOVI: </div>
+                                </li>
+                                <li class="relative w-full inline-block group">
+                                    <img src="images/slider/dizajnerske1.webp" class="w-full max-w-full max-h-full m-auto rounded-lg transform duration-300 hover:scale-105 ease-in-out" alt="dizajnerske tapete" title="Dizajnerske tapete Marburg" />
+                                    <div class="absolute bottom-full left-1/2 z-20 -mb-8 md:-mb-16 -translate-x-1/2 whitespace-nowrap px-2 text-lg md:text-2xl lg:text-4xl bg-transparent drop-shadow-lg text-white">DIZAJNERSKE TAPETE: Dizajn i stil u jednom</div>
+                                </li>
+                                <li class="relative w-full inline-block group">
+                                    <img src="images/slider/zidnipaneli1.webp" class="w-full max-w-full max-h-full m-auto rounded-lg transform duration-300 hover:scale-105 ease-in-out" alt="zidni paneli" title="Zidni paneli i obloge" />
+                                    <div class="absolute bottom-full left-1/2 z-20 -mb-8 md:-mb-16 -translate-x-1/2 whitespace-nowrap px-2 text-lg md:text-2xl lg:text-4xl bg-transparent drop-shadow-lg text-white">ZIDNI PANELI: </div>
+                                </li>
+                                <li class="relative w-full inline-block group">
+                                    <img src="images/slider/zebre1.webp" class="w-full max-w-full max-h-full m-auto rounded-lg transform duration-300 hover:scale-105 ease-in-out" alt="rolo zebra zavese" title="Rolo zebra zavese" />
+                                    <div class="absolute bottom-full left-1/2 z-20 -mb-8 md:-mb-16 -translate-x-1/2 whitespace-nowrap px-2 text-lg md:text-2xl lg:text-4xl bg-transparent drop-shadow-lg text-white">ZEBRA ZAVESE: Vaša pouzdana zaštita od sunca</div>
+                                </li>
+                                <li class="relative w-full inline-block group">
+                                    <img src="images/slider/tepisi1.webp" class="w-full max-w-full max-h-full m-auto rounded-lg transform duration-300 hover:scale-105 ease-in-out" alt="tepisi" title="Tepisi i itisoni" />
+                                    <div class="absolute bottom-full left-1/2 z-20 -mb-8 md:-mb-16 -translate-x-1/2 whitespace-nowrap px-2 text-lg md:text-2xl lg:text-4xl bg-transparent drop-shadow-lg text-white">TEPISI I ITISONI: </div>
+                                </li>
+                                <li class="relative w-full inline-block group">
+                                    <img src="images/slider/velux1.webp" class="w-full max-w-full max-h-full m-auto rounded-lg transform duration-300 hover:scale-105 ease-in-out" alt="velux" title="Velux roletne i krovni prozori" />
+                                    <div class="absolute bottom-full left-1/2 z-20 -mb-8 md:-mb-16 -translate-x-1/2 whitespace-nowrap px-2 text-lg md:text-2xl lg:text-4xl bg-transparent drop-shadow-lg text-white">VELUX ROLETNE I KROVNI PROZORI: </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- Controls -->
+                        <div class="absolute left-0 flex items-center justify-between w-full h-0 px-4 top-1/2 " data-glide-el="controls">
+                            <button type="button" class="inline-flex items-center justify-center w-8 h-8 transition duration-300 border rounded-full lg:w-12 lg:h-12 text-slate-700 border-slate-700 hover:text-slate-900 hover:border-slate-900 focus-visible:outline-none bg-white/20" data-glide-dir="<" aria-label="prev slide">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                    <title>prev slide</title>
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 15.75L3 12m0 0l3.75-3.75M3 12h18" />
+                                </svg>
+                            </button>
+                            <button type="button" class="inline-flex items-center justify-center w-8 h-8 transition duration-300 border rounded-full lg:w-12 lg:h-12 text-slate-700 border-slate-700 hover:text-slate-900 hover:border-slate-900 focus-visible:outline-none bg-white/20" data-glide-dir=">" aria-label="next slide">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                    <title>next slide</title>
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div> 
+            </section>       
             <!-- Preview Section Start -->
-            <section id="preview" class=""> 
-                <div class="mt-8 container max-w-7xl mx-auto">
-                    <h2 class="p-4 font-bold text-neutral-600 dark:text-neutral-400">Halogen Decor: Ostvarite sa nama Vaše stambene snove</h2>
-                    <ul class="bg-neutral-300 dark:bg-neutral-700 max-w-7xl mx-auto border border-gray-200 rounded-xl" x-data="{selected:1}">
-                        <li class="shadow-box">
-                            <div class="relative">
+            <section id="preview" class="py-2 md:py-0 xl:py-8 -mt-8 md:-mt-12 xl:mt-20"> 
+                <div class="container max-w-7xl mx-auto md:mt-8">
+                    <h1 class="hover:text-gray-500 focus:text-gray-500 bg-transparent shadow-black drop-shadow-xl p-4 py-8 font-bold uppercase text-center first-letter:text-5xl md:first-letter:text-6xl lg:first-letter:text-7xl text-4xl md:text-5xl lg:text-6xl text-neutral-600 transform scale-105 duration-300">Halogen Decor</h1>
+                    <ul class="bg-neutral-300 dark:bg-neutral-700 max-w-7xl mx-auto border border-gray-400 dark:border-gray-600 shadow-lg rounded-xl" x-data="{selected:11}">
+                        <li class="">
+                            <div class="relative border-b border-gray-400 dark:border-gray-600">
                                 <button type="button" class="w-full px-4 py-6 text-left group" @click="selected !== 1 ? selected = 1 : selected = null">
-                                    <div class="flex items-center justify-between text-red-500">
-                                        <span class="[&::-webkit-details-marker]:hidden relative pr-8 font-medium list-none cursor-pointer text-start italic uppercase text-base sm:text-lg md:text-xl lg:text-2xl focus-visible:outline-none transition-colors duration-300 group-hover:text-red-600">
-                                            Šta danas možemo učiniti za Vas?
+                                    <div class="flex items-center justify-between">
+                                        <span class="[&::-webkit-details-marker]:hidden relative pr-8 font-medium list-none cursor-pointer text-start italic uppercase text-base sm:text-lg md:text-xl lg:text-2xl focus-visible:outline-none transition-colors duration-300 group-hover:text-gray-400">
+                                            ZAVESE, DRAPERIJE, POZAMANTERIJA
                                         </span>
                                     </div>
                                 </button>
                                 <div class="relative overflow-hidden transition-all max-h-0 duration-500" x-ref="container1" x-bind:style="selected == 1 ? 'max-height: ' + $refs.container1.scrollHeight + 'px' : ''">
-                                    <div class="p-4 grid grid-cols-1 md:grid-cols-2 gap-4 border-b">
+                                    <div class="p-4 grid grid-cols-1 md:grid-cols-2 gap-4 border-b border-gray-400 dark:border-gray-600">
                                         <a href="#" title="Zavese, draperije, pozamanterija">
                                             <img src="images/start/izavesedraperije.webp" class="flex-shrink rounded-lg transform hover:scale-105 duration-300" alt="ZAVESE, DRAPERIJE, POZAMANTERIJA">
-                                            <div class="hover-overlay"></div>
                                         </a>
                                         <div class="flex flex-col justify-center">
-                                            <h2 class="font-semibold italic text-lg md:text-xl lg:text-2xl text-red-500">ZAVESE, DRAPERIJE, POZAMANTERIJA</h2>
                                             <p class="font-normal text-base md:text-lg lg:text-xl">Prozor bez zavesa je poput cveta bez latica, ne dozvolite da Vaš životni prostor bude hladan i prazan. Nudimo savetovanje i stručnu pomoć u okviru našeg prodajnog asortimana.</p>
                                         </div>
                                     </div>
-                                    <div class="p-4 grid grid-cols-1 md:grid-cols-2 gap-4 border-b">
+                                </div>
+                            </div>
+                        </li>
+                        <li class="">
+                            <div class="relative border-b border-gray-400 dark:border-gray-600">
+                                <button type="button" class="w-full px-4 py-6 text-left group" @click="selected !== 2 ? selected = 2 : selected = null">
+                                    <div class="flex items-center justify-between">
+                                        <span class="[&::-webkit-details-marker]:hidden relative pr-8 font-medium list-none cursor-pointer text-start italic uppercase text-base sm:text-lg md:text-xl lg:text-2xl focus-visible:outline-none transition-colors duration-300 group-hover:text-gray-400">
+                                            TAPETE, ZIDNE OBLOGE, ZIDNI PANELI
+                                        </span>
+                                    </div>
+                                </button>
+                                <div class="relative overflow-hidden transition-all max-h-0 duration-500" x-ref="container2" x-bind:style="selected == 2 ? 'max-height: ' + $refs.container2.scrollHeight + 'px' : ''">
+                                    <div class="p-4 grid grid-cols-1 md:grid-cols-2 gap-4 border-b border-gray-400 dark:border-gray-600">
                                         <div class="flex flex-col justify-center">
-                                            <h2 class="font-semibold italic text-lg md:text-xl lg:text-2xl text-red-500">TAPETE, ZIDNE OBLOGE, ZIDNI PANELI</h2>
                                             <p class="font-normal text-base md:text-lg lg:text-xl">Današnji trendovi podrazumevaju visoke estetske normative uređenja životnog i poslovnog enterijera, samim tim je teško zamisliti jedno moderno okruženje bez dobre tapete. Naš asortiman tapeta broji preko 20.000 artikala prestižnih brendova, najrazličitijih pravaca.</p>
                                         </div>
                                         <a href="#" title="Tapete, zidne obloge, zidni paneli">
                                             <img src="images/start/itapete.webp" class="flex-shrink rounded-lg transform hover:scale-105 duration-300" alt="TAPETE, ZIDNE OBLOGE, ZIDNI PANELI">
                                         </a>
                                     </div>
-                                    <div class="p-4 grid grid-cols-1 md:grid-cols-2 gap-4 border-b">
+                                </div>
+                            </div>
+                        </li>
+                        <li class="">
+                            <div class="relative border-b border-gray-400 dark:border-gray-600">
+                                <button type="button" class="w-full px-4 py-6 text-left group" @click="selected !== 3 ? selected = 3 : selected = null">
+                                    <div class="flex items-center justify-between">
+                                        <span class="[&::-webkit-details-marker]:hidden relative pr-8 font-medium list-none cursor-pointer text-start italic uppercase text-base sm:text-lg md:text-xl lg:text-2xl focus-visible:outline-none transition-colors duration-300 group-hover:text-gray-400">
+                                            FOTOTAPETE, STIKERI, NALEPNICE
+                                        </span>
+                                    </div>
+                                </button>
+                                <div class="relative overflow-hidden transition-all max-h-0 duration-500" x-ref="container3" x-bind:style="selected == 3 ? 'max-height: ' + $refs.container3.scrollHeight + 'px' : ''">
+                                    <div class="p-4 grid grid-cols-1 md:grid-cols-2 gap-4 border-b border-gray-400 dark:border-gray-600">
                                         <a href="#" title="Fototapete, stikeri, nalepnice">
                                             <img src="images/start/ifoto.webp" class="flex-shrink rounded-lg transform hover:scale-105 duration-300" alt="FOTOTAPETE, STIKERI, NALEPNICE">
                                         </a>
                                         <div class="flex flex-col justify-center">
-                                            <h2 class="font-semibold italic text-lg md:text-xl lg:text-2xl text-red-500">FOTOTAPETE, STIKERI, NALEPNICE</h2>
                                             <p class="font-normal text-base md:text-lg lg:text-xl">Ljubitelj ste prirode, pustolov, romantik, fan stripova? Ne tražite dalje, fototapete će pretvoriti svaku Vašu pasiju u pravu malu iluziju Vašeg doma.</p>
                                         </div>
                                     </div>
-                                    <div class="p-4 grid grid-cols-1 md:grid-cols-2 gap-4 border-b">
+                                </div>
+                            </div>
+                        </li>
+                        <li class="">
+                            <div class="relative border-b border-gray-400 dark:border-gray-600">
+                                <button type="button" class="w-full px-4 py-6 text-left group" @click="selected !== 4 ? selected = 4 : selected = null">
+                                    <div class="flex items-center justify-between">
+                                        <span class="[&::-webkit-details-marker]:hidden relative pr-8 font-medium list-none cursor-pointer text-start italic uppercase text-base sm:text-lg md:text-xl lg:text-2xl focus-visible:outline-none transition-colors duration-300 group-hover:text-gray-400">
+                                            MEBL I OUTDOOR ŠTOFOVI
+                                        </span>
+                                    </div>
+                                </button>
+                                <div class="relative overflow-hidden transition-all max-h-0 duration-500" x-ref="container4" x-bind:style="selected == 4 ? 'max-height: ' + $refs.container4.scrollHeight + 'px' : ''">
+                                    <div class="p-4 grid grid-cols-1 md:grid-cols-2 gap-4 border-b border-gray-400 dark:border-gray-600">
                                         <div class="flex flex-col justify-center">
-                                            <h2 class="font-semibold italic text-lg md:text-xl lg:text-2xl text-red-500">MEBL I OUTDOOR ŠTOFOVI</h2>
                                             <p class="font-normal text-base md:text-lg lg:text-xl">U našoj ponudi imamo brojne kolekcije mebl i OUTDOOR štofova i materijala prestižnih brendova. Ističemo OUTDOOR materijale kao posebno pogodne za pokrivanje spoljnih prostora i oblaganje izloženih površina.</p>
                                         </div>
                                         <a href="#" title="Mebl i outdoor štofovi">
                                             <img src="images/start/imebl.webp" class="flex-shrink rounded-lg transform hover:scale-105 duration-300" alt="MEBL I OUTDOOR ŠTOFOVI">
                                         </a>
                                     </div>
-                                    <div class="p-4 grid grid-cols-1 md:grid-cols-2 gap-4 border-b">
+                                </div>
+                            </div>
+                        </li>
+                        <li class="">
+                            <div class="relative border-b border-gray-400 dark:border-gray-600">
+                                <button type="button" class="w-full px-4 py-6 text-left group" @click="selected !== 5 ? selected = 5 : selected = null">
+                                    <div class="flex items-center justify-between">
+                                        <span class="[&::-webkit-details-marker]:hidden relative pr-8 font-medium list-none cursor-pointer text-start italic uppercase text-base sm:text-lg md:text-xl lg:text-2xl focus-visible:outline-none transition-colors duration-300 group-hover:text-gray-400">
+                                            ROLO/SCREEN ZAVESE I SISTEMI
+                                        </span>
+                                    </div>
+                                </button>
+                                <div class="relative overflow-hidden transition-all max-h-0 duration-500" x-ref="container5" x-bind:style="selected == 5 ? 'max-height: ' + $refs.container5.scrollHeight + 'px' : ''">
+                                    <div class="p-4 grid grid-cols-1 md:grid-cols-2 gap-4 border-b border-gray-400 dark:border-gray-600">
                                         <a href="#" title="Rolo/screen zavese i sistemi">
                                             <img src="images/start/irolozavese.webp" class="flex-shrink rounded-lg transform hover:scale-105 duration-300" alt="ROLO SCREEN ZAVESE I SISTEMI">
                                         </a>
                                         <div class="flex flex-col justify-center">
-                                            <h2 class="font-semibold italic text-lg md:text-xl lg:text-2xl text-red-500">ROLO/SCREEN ZAVESE I SISTEMI</h2>
                                             <p class="font-normal text-base md:text-lg lg:text-xl">Rolo/screen zavese možemo nazvati i minimalističkim konceptom zavese, koji osim dekorativne funkcije glavni akcenat stavlja na zaštitu od sunca. Nudimo savetovanje i stručnu pomoć u okviru našeg prodajnog asortimana.</p>
                                         </div>
                                     </div>
-                                    <div class="p-4 grid grid-cols-1 md:grid-cols-2 gap-4 border-b">
+                                </div>
+                            </div>
+                        </li>
+                        <li class="">
+                            <div class="relative border-b border-gray-400 dark:border-gray-600">
+                                <button type="button" class="w-full px-4 py-6 text-left group" @click="selected !== 6 ? selected = 6 : selected = null">
+                                    <div class="flex items-center justify-between">
+                                        <span class="[&::-webkit-details-marker]:hidden relative pr-8 font-medium list-none cursor-pointer text-start italic uppercase text-base sm:text-lg md:text-xl lg:text-2xl focus-visible:outline-none transition-colors duration-300 group-hover:text-gray-400">
+                                            ZEBRA ZAVESE I SISTEMI
+                                        </span>
+                                    </div>
+                                </button>
+                                <div class="relative overflow-hidden transition-all max-h-0 duration-500" x-ref="container6" x-bind:style="selected == 6 ? 'max-height: ' + $refs.container6.scrollHeight + 'px' : ''">
+                                    <div class="p-4 grid grid-cols-1 md:grid-cols-2 gap-4 border-b border-gray-400 dark:border-gray-600">
                                         <div class="flex flex-col justify-center">
-                                            <h2 class="font-semibold italic text-lg md:text-xl lg:text-2xl text-red-500">ZEBRA ZAVESE I SISTEMI</h2>
+                                            <h2 class="font-semibold italic text-lg md:text-xl lg:text-2xl"></h2>
                                             <p class="font-normal text-base md:text-lg lg:text-xl">Zebra zavese, poznate i kao &quot;Noć i dan&quot;, koncipirane su tako da se tačno može dozirati količina svetlosti koju zavesa treba da propusti, zahvaljujući naizmenično raspoređenim prozirnim i neprozirnim poljima materijala rolo mehanizma.</p>
                                         </div>
                                         <a href="#" title="Zebra zavese i sistemi">
                                             <img src="images/start/izebrazavese.webp" class="flex-shrink rounded-lg transform hover:scale-105 duration-300" alt="ZEBRA ZAVESE I SISTEMI">
                                         </a>
                                     </div>
-                                    <div class="p-4 grid grid-cols-1 md:grid-cols-2 gap-4 border-b">
+                                </div>
+                            </div>
+                        </li>
+                        <li class="">
+                            <div class="relative border-b border-gray-400 dark:border-gray-600">
+                                <button type="button" class="w-full px-4 py-6 text-left group" @click="selected !== 7 ? selected = 7 : selected = null">
+                                    <div class="flex items-center justify-between">
+                                        <span class="[&::-webkit-details-marker]:hidden relative pr-8 font-medium list-none cursor-pointer text-start italic uppercase text-base sm:text-lg md:text-xl lg:text-2xl focus-visible:outline-none transition-colors duration-300 group-hover:text-gray-400">
+                                            PANEL ZAVESE I SISTEMI
+                                        </span>
+                                    </div>
+                                </button>
+                                <div class="relative overflow-hidden transition-all max-h-0 duration-500" x-ref="container7" x-bind:style="selected == 7 ? 'max-height: ' + $refs.container7.scrollHeight + 'px' : ''">
+                                    <div class="p-4 grid grid-cols-1 md:grid-cols-2 gap-4 border-b border-gray-400 dark:border-gray-600">
                                         <a href="#" title="Panel zavese i sistemi">
                                             <img src="images/start/ipanelzavese.webp" class="flex-shrink rounded-lg transform hover:scale-105 duration-300" alt="PANEL ZAVESE I SISTEMI">
                                         </a>
                                         <div class="flex flex-col justify-center">
-                                            <h2 class="font-semibold italic text-lg md:text-xl lg:text-2xl text-red-500">PANEL ZAVESE I SISTEMI</h2>
                                             <p class="font-normal text-base md:text-lg lg:text-xl">Pločasta forma i pomeranje preko sistema šina, čine panel zavese skoro idealnim za isticanjem nekog motiva ili svedene forme modernog izgleda. Nudimo savetovanje i stručnu pomoć u okviru našeg prodajnog asortimana.</p>
                                         </div>
                                     </div>
-                                    <div class="p-4 grid grid-cols-1 md:grid-cols-2 gap-4 border-b">
+                                </div>
+                            </div>
+                        </li>
+                        <li class="">
+                            <div class="relative border-b border-gray-400 dark:border-gray-600">
+                                <button type="button" class="w-full px-4 py-6 text-left group" @click="selected !== 8 ? selected = 8 : selected = null">
+                                    <div class="flex items-center justify-between">
+                                        <span class="[&::-webkit-details-marker]:hidden relative pr-8 font-medium list-none cursor-pointer text-start italic uppercase text-base sm:text-lg md:text-xl lg:text-2xl focus-visible:outline-none transition-colors duration-300 group-hover:text-gray-400">
+                                            VELUX PROZORI I ROLETNE
+                                        </span>
+                                    </div>
+                                </button>
+                                <div class="relative overflow-hidden transition-all max-h-0 duration-500" x-ref="container8" x-bind:style="selected == 8 ? 'max-height: ' + $refs.container8.scrollHeight + 'px' : ''">
+                                    <div class="p-4 grid grid-cols-1 md:grid-cols-2 gap-4 border-b border-gray-400 dark:border-gray-600">
                                         <div class="flex flex-col justify-center">
-                                            <h2 class="font-semibold italic text-lg md:text-xl lg:text-2xl text-red-500">VELUX PROZORI I ROLETNE</h2>
                                             <p class="font-normal text-base md:text-lg lg:text-xl">VELUX nudi veliki broj proizvoda (unutrašnje i spoljne roletne, krovni prozori), koji odgovaraju potrebama i zahtevima kupaca.</p>
                                         </div>
                                         <a href="#" title="Velux prozori i roletne">
                                             <img src="images/start/iveluxprozoriroletne.webp" class="flex-shrink rounded-lg transform hover:scale-105 duration-300" alt="VELUX PROZORI I ROLETNE">
                                         </a>
                                     </div>
-                                    <div class="p-4 grid grid-cols-1 md:grid-cols-2 gap-4 border-b">
+                                </div>
+                            </div>
+                        </li>
+                        <li class="">
+                            <div class="relative border-b border-gray-400 dark:border-gray-600">
+                                <button type="button" class="w-full px-4 py-6 text-left group" @click="selected !== 9 ? selected = 9 : selected = null">
+                                    <div class="flex items-center justify-between">
+                                        <span class="[&::-webkit-details-marker]:hidden relative pr-8 font-medium list-none cursor-pointer text-start italic uppercase text-base sm:text-lg md:text-xl lg:text-2xl focus-visible:outline-none transition-colors duration-300 group-hover:text-gray-400">
+                                            KLUB STOLOVI
+                                        </span>
+                                    </div>
+                                </button>
+                                <div class="relative overflow-hidden transition-all max-h-0 duration-500" x-ref="container9" x-bind:style="selected == 9 ? 'max-height: ' + $refs.container9.scrollHeight + 'px' : ''">
+                                    <div class="p-4 grid grid-cols-1 md:grid-cols-2 gap-4 border-b border-gray-400 dark:border-gray-600">
                                         <a href="#" title="Klub stolovi">
                                             <img src="images/start/iklubstolovi.webp" class="flex-shrink rounded-lg transform hover:scale-105 duration-300" alt="KLUB STOLOVI">
                                         </a>
                                         <div class="flex flex-col justify-center">
-                                            <h2 class="font-semibold italic text-lg md:text-xl lg:text-2xl text-red-500">KLUB STOLOVI</h2>
                                             <p class="font-normal text-base md:text-lg lg:text-xl">Predstavljamo Vam našu bogatu ponudu modernih, luksuznih, modularnih klub stolova izrađenih od kombinacije drveta, stakla i metala u premium kvalitetu.</p>
                                         </div>
                                     </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="">
+                            <div class="relative border-b border-gray-400 dark:border-gray-600">
+                                <button type="button" class="w-full px-4 py-6 text-left group" @click="selected !== 10 ? selected = 10 : selected = null">
+                                    <div class="flex items-center justify-between">
+                                        <span class="[&::-webkit-details-marker]:hidden relative pr-8 font-medium list-none cursor-pointer text-start italic uppercase text-base sm:text-lg md:text-xl lg:text-2xl focus-visible:outline-none transition-colors duration-300 group-hover:text-gray-400">
+                                            TEPISI, ITISONI
+                                        </span>
+                                    </div>
+                                </button>
+                                <div class="relative overflow-hidden transition-all max-h-0 duration-500" x-ref="container10" x-bind:style="selected == 10 ? 'max-height: ' + $refs.container10.scrollHeight + 'px' : ''">
                                     <div class="p-4 grid grid-cols-1 md:grid-cols-2 gap-4">
                                         <div class="flex flex-col justify-center">
-                                            <h2 class="font-semibold italic text-lg md:text-xl lg:text-2xl">TEPISI</h2>
                                             <p class="font-normal text-base md:text-lg lg:text-xl">Tepisi su važan elemenat dekora koji uz kreativan odabir boja i dezena može sa lakoćom da promeni ukupan koncept jednog enterijera. Osim funkcionalne uloge bitan je takođe i estetski dojam koji tepih može imati u celokupnoj kompoziciji uređenja. Iskusni dizajneri imali su običaj da kažu da nameštaj &quot;lebdi&quot; bez tepiha ili da je &quot;previše hladan&quot;.</p>
                                         </div>
                                         <a href="#" title="Tepisi i itisoni">
@@ -166,6 +550,106 @@
                                     </div>
                                 </div>
                             </div>
+                        </li> 
+                        <li class="">
+                            <div class="relative border-b border-gray-400 dark:border-gray-600">
+                                <button title="kvalitet" type="button" class="w-full px-4 py-6 text-left group" @click="selected !== 11 ? selected = 11 : selected = null">
+                                    <div class="flex items-center justify-between">
+                                        <span class="[&::-webkit-details-marker]:hidden relative pr-8 font-medium list-none cursor-pointer text-start italic uppercase text-base sm:text-lg md:text-xl lg:text-2xl focus-visible:outline-none transition-colors duration-300 group-hover:text-gray-400">
+                                            Kvalitet ne mora uvek biti skup
+                                        </span>
+                                    </div>
+                                </button>
+                                <div class="relative px-4 overflow-hidden transition-all max-h-0 duration-500" x-ref="container11" x-bind:style="selected == 11 ? 'max-height: ' + $refs.container11.scrollHeight + 'px' : ''">
+                                    <div class="pt-4 font-semibold text-lg md:text-xl lg:text-2xl flex flex-row">
+                                        <p>Povoljne cene za tapete sa lagera.&nbsp;</p>
+                                        <a title="google maps" rel="noopener" class="flex flex-row" href="https://www.google.rs/maps/place/Zavese,tapete:+Halogen+Decor/@45.2414753,19.8115624,15z/data=!4m5!3m4!1s0x0:0x5cb4cdf1927889ce!8m2!3d45.2414753!4d19.8115624" target="_blank">
+                                            <p>Dođite i uverite se.&nbsp;</p>
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="size-8" viewBox="0,0,24,24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                <path d="M12 18.5l-3 -1.5l-6 3v-13l6 -3l6 3l6 -3v7.5" />
+                                                <path d="M9 4v13" />
+                                                <path d="M15 7v5.5" />
+                                                <path d="M21.121 20.121a3 3 0 1 0 -4.242 0c.418 .419 1.125 1.045 2.121 1.879c1.051 -.89 1.759 -1.516 2.121 -1.879z" />
+                                                <path d="M19 18v.01" />
+                                            </svg>
+                                        </a>
+                                    </div>
+                                    <div class="relative py-4 w-full glide-02">
+                                        <!-- Slides -->
+                                        <div class="overflow-hidden" data-glide-el="track">
+                                            <ul class="relative w-full overflow-hidden p-0 whitespace-no-wrap flex flex-no-wrap [backface-visibility: hidden] [transform-style: preserve-3d] [touch-action: pan-Y] [will-change: transform]">
+                                                <li><img src="images/naslovna-tapete/baby.webp" class="w-full max-w-full max-h-full m-auto rounded-lg transform duration-300 hover:scale-105 ease-in-out" alt="decjetapete" title="Tapete: Dečje tapete" /></li>
+                                                <li><img src="images/naslovna-tapete/marburg.webp" class="w-full max-w-full max-h-full m-auto rounded-lg transform duration-300 hover:scale-105 ease-in-out" alt="tapetemarburg" title="Tapete: Tapete Marburg" /></li>
+                                                <li><img src="images/naslovna-tapete/caselio.webp" class="w-full max-w-full max-h-full m-auto rounded-lg transform duration-300 hover:scale-105 ease-in-out" alt="tapetecaselio" title="Tapete: Tapete Caselio" /></li>
+                                                <li><img src="images/naslovna-tapete/casadeco.webp" class="w-full max-w-full max-h-full m-auto rounded-lg transform duration-300 hover:scale-105 ease-in-out" alt="tapetecasadeco" title="Tapete: Tapete Casadeco" /></li>
+                                                <li><img src="images/naslovna-tapete/casamance.webp" class="w-full max-w-full max-h-full m-auto rounded-lg transform duration-300 hover:scale-105 ease-in-out" alt="tapetecasamance" title="Tapete: Tapete Casamance" /></li>
+                                                <li><img src="images/naslovna-tapete/chivasso.webp" class="w-full max-w-full max-h-full m-auto rounded-lg transform duration-300 hover:scale-105 ease-in-out" alt="tapetechivasso" title="Tapete: Tapete Chivasso" /></li>
+                                                <li><img src="images/naslovna-tapete/jab.webp" class="w-full max-w-full max-h-full m-auto rounded-lg transform duration-300 hover:scale-105 ease-in-out" alt="tapetejab" title="Tapete: JAB" /></li>
+                                                <li><img src="images/naslovna-tapete/texdecor.webp" class="w-full max-w-full max-h-full m-auto rounded-lg transform duration-300 hover:scale-105 ease-in-out" alt="tapetetexdecor" title="Tapete: Texdecor" /></li>
+                                            </ul>
+                                        </div>
+                                        <!-- Controls -->
+                                        <div class="absolute left-0 flex items-center justify-between w-full h-0 px-4 top-1/2 " data-glide-el="controls">
+                                            <button type="button" class="inline-flex items-center justify-center w-8 h-8 transition duration-300 border rounded-full lg:w-12 lg:h-12 text-slate-700 border-slate-700 hover:text-slate-900 hover:border-slate-900 focus-visible:outline-none bg-white/20" data-glide-dir="<" aria-label="prev slide">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                                    <title>prev slide</title>
+                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 15.75L3 12m0 0l3.75-3.75M3 12h18" />
+                                                </svg>
+                                            </button>
+                                            <button type="button" class="inline-flex items-center justify-center w-8 h-8 transition duration-300 border rounded-full lg:w-12 lg:h-12 text-slate-700 border-slate-700 hover:text-slate-900 hover:border-slate-900 focus-visible:outline-none bg-white/20" data-glide-dir=">" aria-label="next slide">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                                    <title>next slide</title>
+                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>   
+                            </div>
+                        </li>
+                        <li class="">
+                            <div class="relative">
+                                <button type="button" class="w-full px-4 py-6 text-left group" @click="selected !== 12 ? selected = 12 : selected = null">
+                                    <div class="flex items-center justify-between">
+                                        <span class="[&::-webkit-details-marker]:hidden relative pr-8 font-medium list-none cursor-pointer text-start italic uppercase text-base sm:text-lg md:text-xl lg:text-2xl focus-visible:outline-none transition-colors duration-300 group-hover:text-gray-400">
+                                            Ostvarite sa nama Vaše stambene snove
+                                        </span>
+                                    </div>
+                                </button>
+                                <div class="relative px-4 overflow-hidden transition-all max-h-0 duration-500" x-ref="container12" x-bind:style="selected == 12 ? 'max-height: ' + $refs.container12.scrollHeight + 'px' : ''">
+                                    <p class="pt-4 font-semibold text-lg md:text-xl lg:text-2xl">Kako kaže naš slogan &quot;Stambeni snovi&quot;, misija naše kompanije je da želje naših kupaca uz naše višegodišnje iskustvo i saradnju sa arhitektama pretočimo u &quot;realnost iz snova&quot;. Hvala Vam na poverenju!</p>
+                                    <div class="relative py-4 w-full glide-03">
+                                        <!-- Slides -->
+                                        <div class="overflow-hidden" data-glide-el="track">
+                                            <ul class="relative w-full overflow-hidden p-0 whitespace-no-wrap flex flex-no-wrap [backface-visibility: hidden] [transform-style: preserve-3d] [touch-action: pan-Y] [will-change: transform]">
+                                                <li><img src="images/radovi/venecijaneri1.webp" class="w-full max-w-full max-h-full m-auto rounded-lg transform duration-300 hover:scale-105 ease-in-out" alt="venecijaneri1" title="Radovi: Venecijaneri 01" /></li>
+                                                <li><img src="images/radovi/venecijaneri2.webp" class="w-full max-w-full max-h-full m-auto rounded-lg transform duration-300 hover:scale-105 ease-in-out" alt="venecijaneri2" title="Radovi: Venecijaneri 02" /></li>
+                                                <li><img src="images/radovi/stolnjaci1.webp" class="w-full max-w-full max-h-full m-auto rounded-lg transform duration-300 hover:scale-105 ease-in-out" alt="stolnjaci1" title="Radovi: Stolnjaci 01" /></li>
+                                                <li><img src="images/radovi/stolnjaci2.webp" class="w-full max-w-full max-h-full m-auto rounded-lg transform duration-300 hover:scale-105 ease-in-out" alt="stolnjaci2" title="Radovi: Stolnjaci 02" /></li>
+                                                <li><img src="images/radovi/zavese1.webp" class="w-full max-w-full max-h-full m-auto rounded-lg transform duration-300 hover:scale-105 ease-in-out" alt="stolnjaci1" title="Radovi: Zavese i draperije 01" /></li>
+                                                <li><img src="images/radovi/zavese2.webp" class="w-full max-w-full max-h-full m-auto rounded-lg transform duration-300 hover:scale-105 ease-in-out" alt="stolnjaci2" title="Radovi: Zavese i draperije 02" /></li>
+                                                <li><img src="images/radovi/zavese3.webp" class="w-full max-w-full max-h-full m-auto rounded-lg transform duration-300 hover:scale-105 ease-in-out" alt="stolnjaci1" title="Radovi: Zavese i draperije 03" /></li>
+                                            </ul>
+                                        </div>
+                                        <!-- Controls -->
+                                        <div class="absolute left-0 flex items-center justify-between w-full h-0 px-4 top-1/2 " data-glide-el="controls">
+                                            <button type="button" class="inline-flex items-center justify-center w-8 h-8 transition duration-300 border rounded-full lg:w-12 lg:h-12 text-slate-700 border-slate-700 hover:text-slate-900 hover:border-slate-900 focus-visible:outline-none bg-white/20" data-glide-dir="<" aria-label="prev slide">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                                    <title>prev slide</title>
+                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 15.75L3 12m0 0l3.75-3.75M3 12h18" />
+                                                </svg>
+                                            </button>
+                                            <button type="button" class="inline-flex items-center justify-center w-8 h-8 transition duration-300 border rounded-full lg:w-12 lg:h-12 text-slate-700 border-slate-700 hover:text-slate-900 hover:border-slate-900 focus-visible:outline-none bg-white/20" data-glide-dir=">" aria-label="next slide">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                                    <title>next slide</title>
+                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>   
+                            </div>
                         </li>
                     </ul>
                 </div>                
@@ -173,14 +657,14 @@
             <!-- Preview Section End -->
             <!-- Contact Section Start -->
             <section id="contact" class="">
-                <div class="mt-8 container mx-auto max-w-7xl">
-                    <h2 class="p-4 font-bold text-neutral-600 dark:text-neutral-400">Kontakt</h2>
-                    <ul class="bg-neutral-300 dark:bg-neutral-700 max-w-7xl mx-auto border border-gray-200 rounded-xl" x-data="{selected2:1}">
-                        <li class="shadow-box">
-                            <div class="relative border-b border-gray-200">
+                <div class="container mx-auto max-w-7xl">
+                    <h2 class="hover:text-gray-500 focus:text-gray-500 bg-transparent shadow-black drop-shadow-xl p-4 py-8 font-bold uppercase text-center first-letter:text-4xl md:first-letter:text-5xl lg:first-letter:text-6xl text-3xl md:text-4xl lg:text-5xl text-neutral-600 transform scale-105 duration-300">Kontakt</h2>
+                    <ul class="bg-neutral-300 dark:bg-neutral-700 max-w-7xl mx-auto border border-gray-400 dark:border-gray-600 rounded-xl" x-data="{selected2:null}">
+                        <li class="box-shadow">
+                            <div class="relative border-b border-gray-400 dark:border-gray-600">
                                 <button type="button" class="w-full px-4 py-6 text-left group" @click="selected2 !== 1 ? selected2 = 1 : selected2 = null">
-                                    <div class="flex items-center justify-between text-red-500">
-                                        <span class="[&::-webkit-details-marker]:hidden relative pr-8 font-medium list-none cursor-pointer text-start italic uppercase text-base sm:text-lg md:text-xl lg:text-2xl focus-visible:outline-none transition-colors duration-300 group-hover:text-red-600">
+                                    <div class="flex items-center justify-between">
+                                        <span class="[&::-webkit-details-marker]:hidden relative pr-8 font-medium list-none cursor-pointer text-start italic uppercase text-base sm:text-lg md:text-xl lg:text-2xl focus-visible:outline-none transition-colors duration-300 group-hover:text-gray-500">
                                             Pronađite nas na internetu:
                                         </span>
                                     </div>
@@ -209,21 +693,21 @@
                                 </div>
                             </div> 
                         </li>
-                        <li class="shadow-box">
-                            <div class="relative border-b border-gray-200">
+                        <li class="box-shadow">
+                            <div class="relative">
                                 <button type="button" class="w-full px-4 py-6 text-left group" @click="selected2 !== 2 ? selected2 = 2 : selected2 = null">
-                                    <div class="flex items-center justify-between text-red-500">
-                                        <span class="[&::-webkit-details-marker]:hidden relative pr-8 font-medium list-none cursor-pointer text-start italic uppercase text-base sm:text-lg md:text-xl lg:text-2xl focus-visible:outline-none transition-colors duration-300 group-hover:text-red-600">
+                                    <div class="flex items-center justify-between">
+                                        <span class="[&::-webkit-details-marker]:hidden relative pr-8 font-medium list-none cursor-pointer text-start italic uppercase text-base sm:text-lg md:text-xl lg:text-2xl focus-visible:outline-none transition-colors duration-300 group-hover:text-gray-500">
                                             Uspostavimo kontakt
                                         </span>
                                     </div>
                                 </button>
                                 <div class="relative overflow-hidden transition-all max-h-0 duration-500" x-ref="container12" x-bind:style="selected2 == 2 ? 'max-height: ' + $refs.container12.scrollHeight + 'px' : ''">
                                     <div class="p-4 grid grid-cols-1 md:grid-cols-2 gap-4">
-                                        <div class="flex flex-col justify-center text-base md:text-lg lg:text-xl">
-                                            <p class="font-bold text-lg md:text-xl lg:text-2xl italic">HALOGEN DECOR d.o.o.</p>
-                                            <div class="flex flex-row items-center mt-4">
-                                                <p class="font-semibold mr-2">Adresa:</p>
+                                        <div class="flex flex-col justify-center text-base md:text-lg lg:text-xl font-normal">
+                                            <p class="font-semibold text-lg md:text-xl lg:text-2xl italic">HALOGEN DECOR d.o.o.</p>
+                                            <div class="flex flex-row items-center mt-2">
+                                                <p class="mr-2">Adresa:</p>
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                                     <path d="M12 18.5l-3 -1.5l-6 3v-13l6 -3l6 3l6 -3v7.5" />
@@ -232,50 +716,50 @@
                                                     <path d="M21.121 20.121a3 3 0 1 0 -4.242 0c.418 .419 1.125 1.045 2.121 1.879c1.051 -.89 1.759 -1.516 2.121 -1.879z" />
                                                     <path d="M19 18v.01" />
                                                 </svg>
-                                                <a class="ml-2" rel="noopener" href="https://www.google.rs/maps/place/Zavese,tapete:+Halogen+Decor/@45.2414753,19.8115624,15z/data=!4m5!3m4!1s0x0:0x5cb4cdf1927889ce!8m2!3d45.2414753!4d19.8115624" target="_blank">Adi&nbsp;Endrea&nbsp;27.,&nbsp;Novi&nbsp;Sad,&nbsp;Srbija</a><br><br>
+                                                <a class="ml-2 hover:text-gray-500" rel="noopener" href="https://www.google.rs/maps/place/Zavese,tapete:+Halogen+Decor/@45.2414753,19.8115624,15z/data=!4m5!3m4!1s0x0:0x5cb4cdf1927889ce!8m2!3d45.2414753!4d19.8115624" target="_blank">Adi&nbsp;Endrea&nbsp;27.,&nbsp;Novi&nbsp;Sad,&nbsp;Srbija</a><br><br>
                                             </div>
                                             <div class="flex flex-col items-left lg:items-center lg:flex-row mt-2">
-                                                <p class="font-semibold mr-2">Telefoni:</p>
+                                                <p class="mr-2">Telefoni:</p>
                                                 <div class="flex flex-row">
-                                                    <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="size-6 mt-1.5" fill="currentColor" viewBox="0 0 48 48">
                                                         <path d="M32 2h-16c-3.31 0-6 2.69-6 6v32c0 3.31 2.69 6 6 6h16c3.31 0 6-2.69 6-6v-32c0-3.31-2.69-6-6-6zm-4 40h-8v-2h8v2zm6.5-6h-21v-28h21v28z" />
                                                         <path d="M0 0h48v48h-48z" fill="none" />
                                                     </svg>
-                                                    <a href="tel:+381695047188">+381-69-5047188</a>
+                                                    <a class="hover:text-gray-500" href="tel:+381695047188">+381-69-5047188</a>
                                                     <p class="">&nbsp;|&nbsp;</p>
                                                 </div>
                                                 <div class="flex flex-row">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 1000 1000">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="size-6 mt-1.5" fill="currentColor" viewBox="0 0 1000 1000">
                                                         <path d="M857.3 559.6c-112.5-32.89999999999998-203.69999999999993-92.10000000000002-203.0999999999999-206.10000000000002 0.09999999999990905-18-11.100000000000023-32.5-28.100000000000023-32.5s-30.600000000000023 12.800000000000011-30.600000000000023 28.600000000000023-14.600000000000023 28.69999999999999-32.799999999999955 28.69999999999999h-126.70000000000005c-18.100000000000023 0-32.80000000000001-12.900000000000034-32.80000000000001-28.69999999999999s-13.399999999999977-28.600000000000023-30-28.600000000000023-26.5 14.300000000000011-25.80000000000001 32.30000000000001c2.400000000000034 56.39999999999998-16.799999999999955 169.90000000000003-199.79999999999998 208.90000000000003-17.69999999999999 3.699999999999932-33.099999999999994 6.599999999999909-34.3 7.199999999999932-1.2000000000000028 0.7000000000000455-2.299999999999997 15.800000000000068-2.299999999999997 34v191.60000000000002c0 18 14.700000000000003 32.799999999999955 32.80000000000001 32.799999999999955h712.3c18.000000000000114 0 32.80000000000007-14.699999999999932 32.80000000000007-32.799999999999955v-224.39999999999998s-0.10000000000002274-0.7000000000000455-0.10000000000002274-1.3000000000000682c0-0.6999999999999318-14.199999999999932-4.699999999999932-31.5-9.699999999999932z m-310-28.300000000000068l35.40000000000009-37.599999999999966c5.699999999999932-5.899999999999977 14.599999999999909-5.899999999999977 20.199999999999932 0s5.600000000000023 15.5 0 21.30000000000001l-35.5 37.700000000000045c-5.600000000000023 5.899999999999977-14.5 5.899999999999977-20.100000000000023 0-5.5-5.900000000000091-5.5-15.400000000000091 0-21.40000000000009z m-62.69999999999993-67.99999999999994c0-8.300000000000011 6.2999999999999545-15.100000000000023 14.199999999999989-15.100000000000023 0.19999999999998863 0 0.39999999999997726 0 0.5999999999999659 0.10000000000002274 0.20000000000004547-0.10000000000002274 0.4000000000000341-0.10000000000002274 0.6000000000000227-0.10000000000002274 7.800000000000011 0 14.200000000000045 6.800000000000011 14.200000000000045 15.100000000000023v53.30000000000001c0 8.399999999999977-6.300000000000068 15.100000000000023-14.200000000000045 15.100000000000023-0.19999999999998863 0-0.39999999999997726 0-0.6000000000000227-0.10000000000002274-0.19999999999998863 0.10000000000002274-0.39999999999997726 0.10000000000002274-0.5999999999999659 0.10000000000002274-7.800000000000011 0-14.199999999999989-6.7000000000000455-14.199999999999989-15.100000000000023v-53.30000000000001z m-131.5 140.2c0-8.299999999999955 6.2999999999999545-15.100000000000023 14.199999999999989-15.100000000000023h50.19999999999999c7.800000000000011 0.10000000000002274 14.199999999999989 6.800000000000068 14.199999999999989 15.100000000000023 0 8.399999999999977-6.300000000000011 15.200000000000045-14.199999999999989 15.200000000000045h-50.19999999999999c-7.900000000000034 0-14.199999999999989-6.800000000000068-14.199999999999989-15.200000000000045z m98.39999999999998 72.20000000000005l-35.39999999999998 37.69999999999993c-5.7000000000000455 5.899999999999977-14.600000000000023 5.899999999999977-20.200000000000045 0s-5.599999999999966-15.399999999999977 0-21.299999999999955l35.5-37.700000000000045c5.600000000000023-5.899999999999977 14.5-5.899999999999977 20.100000000000023 0 5.5 5.899999999999977 5.5 15.5 0 21.300000000000068z m0-123c-5.600000000000023 5.899999999999977-14.5 5.899999999999977-20.100000000000023 0l-35.5-37.700000000000045c-5.599999999999966-5.800000000000011-5.599999999999966-15.399999999999977 0-21.30000000000001s14.5-5.899999999999977 20.200000000000045 0l35.39999999999998 37.599999999999966c5.5 6 5.5 15.5 0 21.40000000000009z m62.700000000000045 191.0999999999999c0 8.400000000000091-6.300000000000068 15.100000000000023-14.200000000000045 15.100000000000023-0.19999999999998863 0-0.39999999999997726 0-0.6000000000000227-0.10000000000002274-0.19999999999998863 0.10000000000002274-0.39999999999997726 0.10000000000002274-0.5999999999999659 0.10000000000002274-7.800000000000011 0-14.199999999999989-6.699999999999932-14.199999999999989-15.100000000000023v-53.299999999999955c-0.10000000000002274-8.399999999999977 6.2999999999999545-15.100000000000023 14.199999999999989-15.100000000000023 0.19999999999998863 0 0.39999999999997726 0 0.5999999999999659 0.10000000000002274 0.20000000000004547-0.10000000000002274 0.4000000000000341-0.10000000000002274 0.6000000000000227-0.10000000000002274 7.800000000000011 0 14.299999999999955 6.7000000000000455 14.200000000000045 15.100000000000023v53.299999999999955z m-14.200000000000045-104.69999999999993h-1.3000000000000114c-18.5 0-33.39999999999998-16-33.39999999999998-35.60000000000002 0-19.5 15-35.5 33.39999999999998-35.5h1.3000000000000114c18.5 0 33.39999999999998 16 33.39999999999998 35.5 0.10000000000002274 19.600000000000023-14.899999999999977 35.60000000000002-33.39999999999998 35.60000000000002z m102.79999999999995 74.29999999999995c-5.599999999999909 5.899999999999977-14.5 5.899999999999977-20.199999999999932 0l-35.39999999999998-37.69999999999993c-5.600000000000023-5.800000000000068-5.600000000000023-15.400000000000091 0-21.300000000000068s14.5-5.899999999999977 20.09999999999991 0l35.5 37.700000000000045c5.600000000000023 5.899999999999977 5.600000000000023 15.399999999999977 0 21.299999999999955z m28.700000000000045-94.69999999999993h-50.200000000000045c-7.7999999999999545 0-14.199999999999932-6.800000000000068-14.199999999999932-15.200000000000045 0-8.299999999999955 6.2999999999999545-15 14.199999999999932-15.100000000000023h50.200000000000045c7.7999999999999545 0 14.200000000000045 6.800000000000068 14.200000000000045 15.100000000000023 0 8.399999999999977-6.400000000000091 15.200000000000045-14.200000000000045 15.200000000000045z m-209.5-327.90000000000003c50.89999999999998-4 113.79999999999995-5.199999999999989 176.20000000000005 0 43.89999999999998 4 95.19999999999993 3.6999999999999886 95.19999999999993 32.69999999999999h242.70000000000005c-4.7000000000000455-33.10000000000002-73-147.6-425.1-151.2-370.7-3.6000000000000227-449.2 117.80000000000001-448.5 151.2h242.7c0.19999999999998863-27.5 40.10000000000002-26.19999999999999 116.80000000000001-32.69999999999999z m-141 133.59999999999997c15.300000000000011 0 24.100000000000023-12.899999999999977 24.100000000000023-25.19999999999999v-50.39999999999998h-242.60000000000002s0.10000000000000142 53.39999999999998 0 53.39999999999998c0.20000000000000284 13 9.700000000000003 22.19999999999999 27.799999999999997 22.19999999999999h-2.8999999999999915 193.6z m656.5-75.59999999999997h-242.70000000000005v50.39999999999998c0.10000000000002274 12.199999999999989 8.800000000000068 25.19999999999999 24.100000000000023 25.19999999999999h193.70000000000005-2.8999999999999773c18 0 27.59999999999991-9.199999999999989 27.699999999999932-22.19999999999999 0-0.0999999999999659 0.10000000000002274-53.39999999999998 0.10000000000002274-53.39999999999998z" />
                                                     </svg>
-                                                    <a class="ml-2" href="tel:+38121504718">+381-21-504718</a>
+                                                    <a class="ml-2 hover:text-gray-500" href="tel:+38121504718">+381-21-504718</a>
                                                 </div>
                                             </div>
                                             <div class="flex flex-col items-left lg:items-center lg:flex-row mt-2">    
-                                                <p class="font-semibold mr-2">Radno vreme:</p>
+                                                <p class="mr-2">Radno vreme:</p>
                                                 <p class="">09:00 - 19:30 pon-pet&nbsp;|&nbsp;</p>
                                                 <p class="">09:00 - 14:30 sub</p>
                                             </div>
                                             <div class="flex flex-row items-center mt-2">    
-                                                <p class="font-semibold mr-2">Webshop:</p>
+                                                <p class="mr-2">Webshop:</p>
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 16 16">
                                                     <path d="M2.97 1.35A1 1 0 0 1 3.73 1h8.54a1 1 0 0 1 .76.35l2.609 3.044A1.5 1.5 0 0 1 16 5.37v.255a2.375 2.375 0 0 1-4.25 1.458A2.37 2.37 0 0 1 9.875 8 2.37 2.37 0 0 1 8 7.083 2.37 2.37 0 0 1 6.125 8a2.37 2.37 0 0 1-1.875-.917A2.375 2.375 0 0 1 0 5.625V5.37a1.5 1.5 0 0 1 .361-.976zm1.78 4.275a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 1 0 2.75 0V5.37a.5.5 0 0 0-.12-.325L12.27 2H3.73L1.12 5.045A.5.5 0 0 0 1 5.37v.255a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0M1.5 8.5A.5.5 0 0 1 2 9v6h1v-5a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v5h6V9a.5.5 0 0 1 1 0v6h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1V9a.5.5 0 0 1 .5-.5M4 15h3v-5H4zm5-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1zm3 0h-2v3h2z" />
                                                 </svg>
-                                                <a class="ml-2" href="https://www.halogendecorshop.com/">www.halogendecorshop.com</a>
+                                                <a class="ml-2 hover:text-gray-500" href="https://www.halogendecorshop.com/">www.halogendecorshop.com</a>
                                             </div>                                                
                                             <div class="flex flex-row items-center mt-2">
-                                                <p class="font-semibold mr-2">Pi&#353;ite nam:</p>
+                                                <p class="mr-2">Pi&#353;ite nam:</p>
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                                     <path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z" />
                                                     <path d="M3 7l9 6l9 -6" />
                                                 </svg>
-                                                <a class="ml-2" href="mailto:&#105;&#110;&#102;&#111;&#064;&#104;&#097;&#108;&#111;&#103;&#101;&#110;&#100;&#101;&#099;&#111;&#114;&#046;&#099;&#111;&#109;">&#105;&#110;&#102;&#111;&#064;&#104;&#097;&#108;&#111;&#103;&#101;&#110;&#100;&#101;&#099;&#111;&#114;&#046;&#099;&#111;&#109;</a>
+                                                <a class="ml-2 hover:text-gray-500" href="mailto:&#105;&#110;&#102;&#111;&#064;&#104;&#097;&#108;&#111;&#103;&#101;&#110;&#100;&#101;&#099;&#111;&#114;&#046;&#099;&#111;&#109;">&#105;&#110;&#102;&#111;&#064;&#104;&#097;&#108;&#111;&#103;&#101;&#110;&#100;&#101;&#099;&#111;&#114;&#046;&#099;&#111;&#109;</a>
                                             </div>
                                         </div>
                                         <div class="flex flex-col items-center justify-center">
                                             <a rel="noopener" href="https://www.google.rs/maps/place/Zavese,tapete:+Halogen+Decor/@45.2414753,19.8115624,15z/data=!4m5!3m4!1s0x0:0x5cb4cdf1927889ce!8m2!3d45.2414753!4d19.8115624" target="_blank">
-                                                <img src="images/mapabus.webp" class="flex-shrink rounded-lg transform hover:scale-105 duration-300" alt="Pronađite nas na mapi">
+                                                <img src="images/mapabus.webp" class="flex-shrink w-96 rounded-lg transform hover:scale-105 duration-300" alt="Pronađite nas na mapi">
                                             </a>                
                                             <p class="mt-2">Pronađite nas na mapi</p>
                                         </div>
@@ -287,10 +771,125 @@
                 </div>
             </section>
             <!-- Contact Section End -->
-
         </main>
-        <footer>
-
+        <footer class="px-4 py-8 mt-8 text-neutral-100 border-t-2 border-gray-100 bg-gradient-to-b from-neutral-900 to-gray-600">
+            <div class="container max-w-7xl mx-auto">
+                <div class="flex items-center justify-center text-semibold text-lg md:text-xl lg:text-2xl">                    
+                    <p class="mr-2">Halogen Decor &copy; 2005-2025.</p> 
+                    <p class="">Sva prava zadržana.</p>
+                </div>
+                <ul class="flex items-center justify-center mt-8">
+                    <li class="mr-8 transform hover:scale-105 duration-300">
+                        <a title="webshop" rel="noopener" class="" href="https://www.halogendecorshop.com/" target="_blank">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="size-8" viewBox="0,0,16,16" fill="currentColor">
+                                <path d="M2.97 1.35A1 1 0 0 1 3.73 1h8.54a1 1 0 0 1 .76.35l2.609 3.044A1.5 1.5 0 0 1 16 5.37v.255a2.375 2.375 0 0 1-4.25 1.458A2.37 2.37 0 0 1 9.875 8 2.37 2.37 0 0 1 8 7.083 2.37 2.37 0 0 1 6.125 8a2.37 2.37 0 0 1-1.875-.917A2.375 2.375 0 0 1 0 5.625V5.37a1.5 1.5 0 0 1 .361-.976zm1.78 4.275a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 1 0 2.75 0V5.37a.5.5 0 0 0-.12-.325L12.27 2H3.73L1.12 5.045A.5.5 0 0 0 1 5.37v.255a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0M1.5 8.5A.5.5 0 0 1 2 9v6h1v-5a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v5h6V9a.5.5 0 0 1 1 0v6h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1V9a.5.5 0 0 1 .5-.5M4 15h3v-5H4zm5-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1zm3 0h-2v3h2z" />
+                            </svg>
+                        </a>
+                    </li>
+                    <li class="mr-8 transform hover:scale-105 duration-300">
+                        <a title="instagram" rel="noopener" class="" href="https://www.instagram.com/halogendecor/" target="_blank">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="size-8" viewBox="0,0,50,50" stroke="currentColor" fill="currentColor">
+                                <path d="M 16 3 C 8.83 3 3 8.83 3 16 L 3 34 C 3 41.17 8.83 47 16 47 L 34 47 C 41.17 47 47 41.17 47 34 L 47 16 C 47 8.83 41.17 3 34 3 L 16 3 z M 37 11 C 38.1 11 39 11.9 39 13 C 39 14.1 38.1 15 37 15 C 35.9 15 35 14.1 35 13 C 35 11.9 35.9 11 37 11 z M 25 14 C 31.07 14 36 18.93 36 25 C 36 31.07 31.07 36 25 36 C 18.93 36 14 31.07 14 25 C 14 18.93 18.93 14 25 14 z M 25 16 C 20.04 16 16 20.04 16 25 C 16 29.96 20.04 34 25 34 C 29.96 34 34 29.96 34 25 C 34 20.04 29.96 16 25 16 z">
+                                </path>
+                            </svg>
+                        </a>
+                    </li>
+                    <li class="mr-8 transform hover:scale-105 duration-300">
+                        <a title="facebook" rel="noopener" class="" href="https://www.facebook.com/Halogen-Decor-zavesetapeteroloi-164039537045317/" target="_blank">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="size-8" viewBox="0,0,50,50" stroke="currentColor" fill="currentColor">
+                                <path d="M25,2C12.318,2,2,12.317,2,25s10.318,23,23,23c12.683,0,23-10.317,23-23S37.683,2,25,2z M32,16h-3.29 C26.772,16,26,16.455,26,17.806V21h6l-1,5h-5v13h-6V26h-3v-5h3v-2.774C20,14.001,21.686,11,26.581,11C29.203,11,32,12,32,12V16z">
+                                </path>
+                            </svg>
+                        </a>
+                    </li>
+                    <li class="mr-8 transform hover:scale-105 duration-300">
+                        <a title="google maps" rel="noopener" class="" href="https://www.google.rs/maps/place/Zavese,tapete:+Halogen+Decor/@45.2414753,19.8115624,15z/data=!4m5!3m4!1s0x0:0x5cb4cdf1927889ce!8m2!3d45.2414753!4d19.8115624" target="_blank">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="size-8" viewBox="0,0,24,24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path d="M12 18.5l-3 -1.5l-6 3v-13l6 -3l6 3l6 -3v7.5" />
+                                <path d="M9 4v13" />
+                                <path d="M15 7v5.5" />
+                                <path d="M21.121 20.121a3 3 0 1 0 -4.242 0c.418 .419 1.125 1.045 2.121 1.879c1.051 -.89 1.759 -1.516 2.121 -1.879z" />
+                                <path d="M19 18v.01" />
+                            </svg>
+                        </a>
+                    </li>
+                    <li class="mr-8 transform hover:scale-105 duration-300">
+                        <a title="mobile" class="" href="tel:+381695047188">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="size-8" viewBox="0,0,50,50" fill="currentColor">
+                                <path d="M32 2h-16c-3.31 0-6 2.69-6 6v32c0 3.31 2.69 6 6 6h16c3.31 0 6-2.69 6-6v-32c0-3.31-2.69-6-6-6zm-4 40h-8v-2h8v2zm6.5-6h-21v-28h21v28z" />
+                                <path d="M0 0h48v48h-48z" fill="none" />
+                            </svg>
+                        </a>
+                    </li>
+                    <li class="mr-8 transform hover:scale-105 duration-300">
+                        <a title="phone" class="" href="tel:+38121504718">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="size-8" viewBox="0,0,1000,1000" fill="currentColor">
+                                <path d="M857.3 559.6c-112.5-32.89999999999998-203.69999999999993-92.10000000000002-203.0999999999999-206.10000000000002 0.09999999999990905-18-11.100000000000023-32.5-28.100000000000023-32.5s-30.600000000000023 12.800000000000011-30.600000000000023 28.600000000000023-14.600000000000023 28.69999999999999-32.799999999999955 28.69999999999999h-126.70000000000005c-18.100000000000023 0-32.80000000000001-12.900000000000034-32.80000000000001-28.69999999999999s-13.399999999999977-28.600000000000023-30-28.600000000000023-26.5 14.300000000000011-25.80000000000001 32.30000000000001c2.400000000000034 56.39999999999998-16.799999999999955 169.90000000000003-199.79999999999998 208.90000000000003-17.69999999999999 3.699999999999932-33.099999999999994 6.599999999999909-34.3 7.199999999999932-1.2000000000000028 0.7000000000000455-2.299999999999997 15.800000000000068-2.299999999999997 34v191.60000000000002c0 18 14.700000000000003 32.799999999999955 32.80000000000001 32.799999999999955h712.3c18.000000000000114 0 32.80000000000007-14.699999999999932 32.80000000000007-32.799999999999955v-224.39999999999998s-0.10000000000002274-0.7000000000000455-0.10000000000002274-1.3000000000000682c0-0.6999999999999318-14.199999999999932-4.699999999999932-31.5-9.699999999999932z m-310-28.300000000000068l35.40000000000009-37.599999999999966c5.699999999999932-5.899999999999977 14.599999999999909-5.899999999999977 20.199999999999932 0s5.600000000000023 15.5 0 21.30000000000001l-35.5 37.700000000000045c-5.600000000000023 5.899999999999977-14.5 5.899999999999977-20.100000000000023 0-5.5-5.900000000000091-5.5-15.400000000000091 0-21.40000000000009z m-62.69999999999993-67.99999999999994c0-8.300000000000011 6.2999999999999545-15.100000000000023 14.199999999999989-15.100000000000023 0.19999999999998863 0 0.39999999999997726 0 0.5999999999999659 0.10000000000002274 0.20000000000004547-0.10000000000002274 0.4000000000000341-0.10000000000002274 0.6000000000000227-0.10000000000002274 7.800000000000011 0 14.200000000000045 6.800000000000011 14.200000000000045 15.100000000000023v53.30000000000001c0 8.399999999999977-6.300000000000068 15.100000000000023-14.200000000000045 15.100000000000023-0.19999999999998863 0-0.39999999999997726 0-0.6000000000000227-0.10000000000002274-0.19999999999998863 0.10000000000002274-0.39999999999997726 0.10000000000002274-0.5999999999999659 0.10000000000002274-7.800000000000011 0-14.199999999999989-6.7000000000000455-14.199999999999989-15.100000000000023v-53.30000000000001z m-131.5 140.2c0-8.299999999999955 6.2999999999999545-15.100000000000023 14.199999999999989-15.100000000000023h50.19999999999999c7.800000000000011 0.10000000000002274 14.199999999999989 6.800000000000068 14.199999999999989 15.100000000000023 0 8.399999999999977-6.300000000000011 15.200000000000045-14.199999999999989 15.200000000000045h-50.19999999999999c-7.900000000000034 0-14.199999999999989-6.800000000000068-14.199999999999989-15.200000000000045z m98.39999999999998 72.20000000000005l-35.39999999999998 37.69999999999993c-5.7000000000000455 5.899999999999977-14.600000000000023 5.899999999999977-20.200000000000045 0s-5.599999999999966-15.399999999999977 0-21.299999999999955l35.5-37.700000000000045c5.600000000000023-5.899999999999977 14.5-5.899999999999977 20.100000000000023 0 5.5 5.899999999999977 5.5 15.5 0 21.300000000000068z m0-123c-5.600000000000023 5.899999999999977-14.5 5.899999999999977-20.100000000000023 0l-35.5-37.700000000000045c-5.599999999999966-5.800000000000011-5.599999999999966-15.399999999999977 0-21.30000000000001s14.5-5.899999999999977 20.200000000000045 0l35.39999999999998 37.599999999999966c5.5 6 5.5 15.5 0 21.40000000000009z m62.700000000000045 191.0999999999999c0 8.400000000000091-6.300000000000068 15.100000000000023-14.200000000000045 15.100000000000023-0.19999999999998863 0-0.39999999999997726 0-0.6000000000000227-0.10000000000002274-0.19999999999998863 0.10000000000002274-0.39999999999997726 0.10000000000002274-0.5999999999999659 0.10000000000002274-7.800000000000011 0-14.199999999999989-6.699999999999932-14.199999999999989-15.100000000000023v-53.299999999999955c-0.10000000000002274-8.399999999999977 6.2999999999999545-15.100000000000023 14.199999999999989-15.100000000000023 0.19999999999998863 0 0.39999999999997726 0 0.5999999999999659 0.10000000000002274 0.20000000000004547-0.10000000000002274 0.4000000000000341-0.10000000000002274 0.6000000000000227-0.10000000000002274 7.800000000000011 0 14.299999999999955 6.7000000000000455 14.200000000000045 15.100000000000023v53.299999999999955z m-14.200000000000045-104.69999999999993h-1.3000000000000114c-18.5 0-33.39999999999998-16-33.39999999999998-35.60000000000002 0-19.5 15-35.5 33.39999999999998-35.5h1.3000000000000114c18.5 0 33.39999999999998 16 33.39999999999998 35.5 0.10000000000002274 19.600000000000023-14.899999999999977 35.60000000000002-33.39999999999998 35.60000000000002z m102.79999999999995 74.29999999999995c-5.599999999999909 5.899999999999977-14.5 5.899999999999977-20.199999999999932 0l-35.39999999999998-37.69999999999993c-5.600000000000023-5.800000000000068-5.600000000000023-15.400000000000091 0-21.300000000000068s14.5-5.899999999999977 20.09999999999991 0l35.5 37.700000000000045c5.600000000000023 5.899999999999977 5.600000000000023 15.399999999999977 0 21.299999999999955z m28.700000000000045-94.69999999999993h-50.200000000000045c-7.7999999999999545 0-14.199999999999932-6.800000000000068-14.199999999999932-15.200000000000045 0-8.299999999999955 6.2999999999999545-15 14.199999999999932-15.100000000000023h50.200000000000045c7.7999999999999545 0 14.200000000000045 6.800000000000068 14.200000000000045 15.100000000000023 0 8.399999999999977-6.400000000000091 15.200000000000045-14.200000000000045 15.200000000000045z m-209.5-327.90000000000003c50.89999999999998-4 113.79999999999995-5.199999999999989 176.20000000000005 0 43.89999999999998 4 95.19999999999993 3.6999999999999886 95.19999999999993 32.69999999999999h242.70000000000005c-4.7000000000000455-33.10000000000002-73-147.6-425.1-151.2-370.7-3.6000000000000227-449.2 117.80000000000001-448.5 151.2h242.7c0.19999999999998863-27.5 40.10000000000002-26.19999999999999 116.80000000000001-32.69999999999999z m-141 133.59999999999997c15.300000000000011 0 24.100000000000023-12.899999999999977 24.100000000000023-25.19999999999999v-50.39999999999998h-242.60000000000002s0.10000000000000142 53.39999999999998 0 53.39999999999998c0.20000000000000284 13 9.700000000000003 22.19999999999999 27.799999999999997 22.19999999999999h-2.8999999999999915 193.6z m656.5-75.59999999999997h-242.70000000000005v50.39999999999998c0.10000000000002274 12.199999999999989 8.800000000000068 25.19999999999999 24.100000000000023 25.19999999999999h193.70000000000005-2.8999999999999773c18 0 27.59999999999991-9.199999999999989 27.699999999999932-22.19999999999999 0-0.0999999999999659 0.10000000000002274-53.39999999999998 0.10000000000002274-53.39999999999998z" />
+                            </svg>
+                        </a>
+                    </li>
+                    <li class="transform hover:scale-105 duration-300">
+                        <a title="e-mail" class="" href="mailto:&#105;&#110;&#102;&#111;&#064;&#104;&#097;&#108;&#111;&#103;&#101;&#110;&#100;&#101;&#099;&#111;&#114;&#046;&#099;&#111;&#109;">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="size-8" viewBox="0,0,24,24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z" />
+                                <path d="M3 7l9 6l9 -6" />
+                            </svg>
+                        </a>
+                    </li>
+                </ul>
+            </div>    
         </footer>
+        <script src="js/glide-371.min.js"></script>
+        <script>
+            var glide01 = new Glide('.glide-01', {
+                type: 'carousel',
+                focusAt: 'center',
+                perView: 1,
+                autoplay: 4000,
+                animationDuration: 1500,
+                gap: 2,
+            });
+            glide01.mount();
+        </script>
+        <script>
+            var glide02 = new Glide('.glide-02', {
+                type: 'carousel',
+                focusAt: 'center',
+                perView: 3,
+                autoplay: 4500,
+                animationDuration: 1500,
+                gap: 2,
+                breakpoints: {
+                    1536: {
+                    perView: 2
+                    },
+                    960: {
+                    perView: 1
+                    },
+                },
+            });
+            glide02.mount();
+        </script>
+        <script>
+            var glide03 = new Glide('.glide-03', {
+                type: 'carousel',
+                focusAt: 'center',
+                perView: 3,
+                autoplay: 4500,
+                animationDuration: 1500,
+                gap: 2,
+                breakpoints: {
+                    1536: {
+                    perView: 2
+                    },
+                    960: {
+                    perView: 1
+                    },
+                },
+            });
+            glide03.mount();
+        </script>
     </body>
 </html>
