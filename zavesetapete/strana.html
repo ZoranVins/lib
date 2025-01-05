@@ -28,14 +28,14 @@
         <meta property="twitter:image" content="../images/logo/logo180x180.png" />
         <!-- Canonical, Icons -->
         <link href="https://www.vtans-webdesign.in.rs/" rel="canonical" />
-        <link rel="shortcut icon" type="image/x-icon" href="images/logo/logo180x180.png" />
-        <link rel="icon" type="image/x-icon" href="images/logo/favicon.ico" />
-        <link rel="apple-touch-icon" sizes="80x80" href="images/logo/touch-icon-iphone.png" />
-        <link rel="apple-touch-icon" sizes="152x152" href="images/logo/touch-icon-ipad.png" />
-        <link rel="apple-touch-icon" sizes="180x180" href="images/logo/touch-icon-iphone-retina.png" />
-        <link rel="apple-touch-icon" sizes="167x167" href="images/logo/touch-icon-ipad-retina.png" />
+        <link rel="shortcut icon" type="image/x-icon" href="../images/logo/logo180x180.png" />
+        <link rel="icon" type="image/x-icon" href="../images/logo/favicon.ico" />
+        <link rel="apple-touch-icon" sizes="80x80" href="../images/logo/touch-icon-iphone.png" />
+        <link rel="apple-touch-icon" sizes="152x152" href="../images/logo/touch-icon-ipad.png" />
+        <link rel="apple-touch-icon" sizes="180x180" href="../images/logo/touch-icon-iphone-retina.png" />
+        <link rel="apple-touch-icon" sizes="167x167" href="../images/logo/touch-icon-ipad-retina.png" />
         <!-- Needed JS -->
-        <script defer src="js/alpine.min.js"></script>
+        <script defer src="../js/alpine.min.js"></script>
         <script>
             // On page load or when changing themes, best to add inline in `head` to avoid FOUC
             if (
@@ -49,14 +49,14 @@
             }
         </script>
         <!-- Needed CSS --> 
-        <link href="css/main.css" rel="stylesheet" preload="" />
+        <link href="../css/main.css" rel="stylesheet" preload="" />
     </head>
 
-    <body class="min-h-screen max-w-screen bg-repeat dark:bg-repeat bg-[url('../images/lbackgr.webp')] dark:bg-[url('../images/dbackgr.webp')] text-neutral-700 dark:text-neutral-300" x-data="{modalOpen: false, sidebarOpen: false, ContactBar: false}">
+    <body class="min-h-screen min-w-screen max-w-screen bg-repeat dark:bg-repeat bg-[url('../images/lbackgr.webp')] dark:bg-[url('../images/dbackgr.webp')] text-neutral-700 dark:text-neutral-300" x-data="{modalOpen: false, sidebarOpen: false, ContactBar: false}">
         <header class="md:block md:w-full md:h-20 bg-gray-900 border-b-2 border-gray-100"> 
             <!-- Show Logo Text -->
             <div class="hidden absolute lg:inline-block lg:top-4 lg:right-4">
-                <img class="h-12 max-h-12 w-48 max-w-48" title="Logo Text" alt="logo text" src="images/logotext.webp">
+                <img class="h-12 max-h-12 w-48 max-w-48" title="Logo Text" alt="logo text" src="../images/logotext.webp">
             </div>
             <!-- Starts component Contact Bar -->
             <div class="fixed z-50 bottom-1/2">
@@ -157,7 +157,7 @@
                     <nav class="absolute z-50 w-full max-w-full top-full md:py-0 md:static md:block md:mx-auto overflow:hidden bg-gray-900 text-gray-100" :class="!navbarOpen && 'hidden' " id="navbarCollapse">
                         <ul class="inline-block md:inline-flex md:items-center md:justify-center text-md lg:text-lg">
                             <li class="px-4 py-4 md:py-0 transform hover:scale-105 duration-300">
-                                <a aria-current="page" href="#" title="Početna">
+                                <a aria-current="page" href="../index.html" title="Početna">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="size-8" fill="currentColor" viewBox="0 0 20 20">
                                         <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z">
                                         </path>
@@ -165,22 +165,22 @@
                                 </a>
                             </li>
                             <li class="px-2 py-4 md:py-0">
-                                <a class="hover:underline hover:cursor-pointer" href="#" title="Zavese">ZAVESE</a>
+                                <a class="hover:underline hover:cursor-pointer" href="zavesesr.html" title="Zavese">ZAVESE</a>
                             </li>
                             <li class="px-2 py-4 md:py-0">
-                                <a class="hover:underline hover:cursor-pointer" href="#" title="Tapete">TAPETE</a>
+                                <a class="hover:underline hover:cursor-pointer" href="tapetesr.html" title="Tapete">TAPETE</a>
                             </li>
                             <li class="px-2 py-4 md:py-0">
-                                <a class="hover:underline hover:cursor-pointer" href="#" title="Mebl">MEBL</a>
+                                <a class="hover:underline hover:cursor-pointer" href="meblsr.html" title="Mebl">MEBL</a>
                             </li>
                             <li class="px-2 py-4 md:py-0">
-                                <a class="hover:underline hover:cursor-pointer" href="#" title="Tepisi">TEPISI</a>
+                                <a class="hover:underline hover:cursor-pointer" href="tepisisr.html" title="Tepisi">TEPISI</a>
                             </li>
                             <li class="px-2 py-4 md:py-0">
-                                <a class="hover:underline hover:cursor-pointer" href="#" title="Nameštaj">NAMEŠTAJ</a>
+                                <a class="hover:underline hover:cursor-pointer" href="namestajsr.html" title="Nameštaj">NAMEŠTAJ</a>
                             </li>
                             <li class="px-2 py-4 md:py-0">
-                                <a class="hover:underline hover:cursor-pointer" href="#" title="Velux">VELUX&reg;</a>
+                                <a class="hover:underline hover:cursor-pointer" href="veluxsr.html" title="Velux">VELUX&reg;</a>
                             </li>
                             <li class="px-4 py-4 md:py-0">
                                 <div class="my-2">
@@ -342,39 +342,39 @@
                         <div class="overflow-hidden" data-glide-el="track">
                             <ul class="relative w-full font-semibold overflow-hidden p-0 whitespace-no-wrap flex flex-no-wrap [backface-visibility: hidden] [transform-style: preserve-3d] [touch-action: pan-Y] [will-change: transform]">
                                 <li class="relative w-full inline-block group">
-                                    <img src="images/slider/draperije1.webp" class="z-10 w-full max-w-full max-h-full m-auto rounded-lg" alt="draperije" title="Draperije po meri" />
+                                    <img src="../images/slider/draperije1.webp" class="z-10 w-full max-w-full max-h-full m-auto rounded-lg" alt="draperije" title="Draperije po meri" />
                                     <div class="absolute bottom-full left-1/2 z-20 -mb-8 md:-mb-16 -translate-x-1/2 whitespace-nowrap px-2 text-lg md:text-2xl lg:text-4xl bg-transparent drop-shadow-lg text-white">DRAPERIJE: Bogatstvo svakog prozora</div>
                                 </li>
                                 <li class="relative w-full inline-block group">
-                                    <img src="images/slider/zavese1.webp" class="w-full max-w-full max-h-full m-auto rounded-lg" alt="zavese" title="Zavese po meri" />
+                                    <img src="../images/slider/zavese1.webp" class="w-full max-w-full max-h-full m-auto rounded-lg" alt="zavese" title="Zavese po meri" />
                                     <div class="absolute bottom-full left-1/2 z-20 -mb-8 md:-mb-16 -translate-x-1/2 whitespace-nowrap px-2 text-lg md:text-2xl lg:text-4xl bg-transparent drop-shadow-lg text-white">ZAVESE: Toplina svakog doma počinje ovde</div>
                                 </li>
                                 <li class="relative w-full inline-block group">
-                                    <img src="images/slider/mebl1.webp" class="w-full max-w-full max-h-full m-auto rounded-lg" alt="mebl" title="Mebl štofovi po meri" />
+                                    <img src="../images/slider/mebl1.webp" class="w-full max-w-full max-h-full m-auto rounded-lg" alt="mebl" title="Mebl štofovi po meri" />
                                     <div class="absolute bottom-full left-1/2 z-20 -mb-8 md:-mb-16 -translate-x-1/2 whitespace-nowrap px-2 text-xl md:text-2xl lg:text-4xl bg-transparent drop-shadow-lg text-white">MEBL ŠTOFOVI: Nova dimenzija nameštaja</div>
                                 </li>
                                 <li class="relative w-full inline-block group">
-                                    <img src="images/slider/outdoor1.webp" class="w-full max-w-full max-h-full m-auto rounded-lg" alt="outdoor" title="Outdoor štofovi po meri" />
+                                    <img src="../images/slider/outdoor1.webp" class="w-full max-w-full max-h-full m-auto rounded-lg" alt="outdoor" title="Outdoor štofovi po meri" />
                                     <div class="absolute bottom-full left-1/2 z-20 -mb-8 md:-mb-16 -translate-x-1/2 whitespace-nowrap px-2 text-lg md:text-2xl lg:text-4xl bg-transparent drop-shadow-lg text-white">OUTDOOR ŠTOFOVI: </div>
                                 </li>
                                 <li class="relative w-full inline-block group">
-                                    <img src="images/slider/dizajnerske1.webp" class="w-full max-w-full max-h-full m-auto rounded-lg" alt="dizajnerske tapete" title="Dizajnerske tapete Marburg" />
+                                    <img src="../images/slider/dizajnerske1.webp" class="w-full max-w-full max-h-full m-auto rounded-lg" alt="dizajnerske tapete" title="Dizajnerske tapete Marburg" />
                                     <div class="absolute bottom-full left-1/2 z-20 -mb-8 md:-mb-16 -translate-x-1/2 whitespace-nowrap px-2 text-lg md:text-2xl lg:text-4xl bg-transparent drop-shadow-lg text-white">DIZAJNERSKE TAPETE: Dizajn i stil u jednom</div>
                                 </li>
                                 <li class="relative w-full inline-block group">
-                                    <img src="images/slider/zidnipaneli1.webp" class="w-full max-w-full max-h-full m-auto rounded-lg" alt="zidni paneli" title="Zidni paneli i obloge" />
+                                    <img src="../images/slider/zidnipaneli1.webp" class="w-full max-w-full max-h-full m-auto rounded-lg" alt="zidni paneli" title="Zidni paneli i obloge" />
                                     <div class="absolute bottom-full left-1/2 z-20 -mb-8 md:-mb-16 -translate-x-1/2 whitespace-nowrap px-2 text-lg md:text-2xl lg:text-4xl bg-transparent drop-shadow-lg text-white">ZIDNI PANELI: </div>
                                 </li>
                                 <li class="relative w-full inline-block group">
-                                    <img src="images/slider/zebre1.webp" class="w-full max-w-full max-h-full m-auto rounded-lg" alt="rolo zebra zavese" title="Rolo zebra zavese" />
+                                    <img src="../images/slider/zebre1.webp" class="w-full max-w-full max-h-full m-auto rounded-lg" alt="rolo zebra zavese" title="Rolo zebra zavese" />
                                     <div class="absolute bottom-full left-1/2 z-20 -mb-8 md:-mb-16 -translate-x-1/2 whitespace-nowrap px-2 text-lg md:text-2xl lg:text-4xl bg-transparent drop-shadow-lg text-white">ZEBRA ZAVESE: Vaša pouzdana zaštita od sunca</div>
                                 </li>
                                 <li class="relative w-full inline-block group">
-                                    <img src="images/slider/tepisi1.webp" class="w-full max-w-full max-h-full m-auto rounded-lg" alt="tepisi" title="Tepisi i itisoni" />
+                                    <img src="../images/slider/tepisi1.webp" class="w-full max-w-full max-h-full m-auto rounded-lg" alt="tepisi" title="Tepisi i itisoni" />
                                     <div class="absolute bottom-full left-1/2 z-20 -mb-8 md:-mb-16 -translate-x-1/2 whitespace-nowrap px-2 text-lg md:text-2xl lg:text-4xl bg-transparent drop-shadow-lg text-white">TEPISI I ITISONI: </div>
                                 </li>
                                 <li class="relative w-full inline-block group">
-                                    <img src="images/slider/velux1.webp" class="w-full max-w-full max-h-full m-auto rounded-lg" alt="velux" title="Velux roletne i krovni prozori" />
+                                    <img src="../images/slider/velux1.webp" class="w-full max-w-full max-h-full m-auto rounded-lg" alt="velux" title="Velux roletne i krovni prozori" />
                                     <div class="absolute bottom-full left-1/2 z-20 -mb-8 md:-mb-16 -translate-x-1/2 whitespace-nowrap px-2 text-lg md:text-2xl lg:text-4xl bg-transparent drop-shadow-lg text-white">VELUX ROLETNE I KROVNI PROZORI: </div>
                                 </li>
                             </ul>
@@ -400,138 +400,12 @@
             <!-- Preview Section Start -->
             <section id="preview" class="py-2 md:py-0 xl:py-8 -mt-8 md:-mt-12 xl:mt-20"> 
                 <div class="container max-w-7xl mx-auto md:mt-8">
-                    <h1 class="hover:text-gray-500 focus:text-gray-500 bg-transparent shadow-black drop-shadow-xl p-4 py-8 font-bold uppercase underline text-center first-letter:text-4xl md:first-letter:text-5xl lg:first-letter:text-6xl text-3xl md:text-4xl lg:text-5xl text-neutral-600 dark:text-neutral-400 transform scale-105 duration-300">Halogen Decor</h1>
+                    <h1 class="hover:text-gray-500 focus:text-gray-500 bg-transparent shadow-black drop-shadow-xl p-4 py-8 font-bold uppercase underline text-center first-letter:text-4xl md:first-letter:text-5xl lg:first-letter:text-6xl text-3xl md:text-4xl lg:text-5xl text-neutral-600 dark:text-neutral-400 transform scale-105 duration-300">Zavese i draperije</h1>
+                    <h2 class=""></h2>
                     <ul class="bg-transparent max-w-7xl mx-auto border border-gray-400 dark:border-gray-600 shadow-lg" x-data="{selected:01}">
                         <li class="border-b border-gray-400 dark:border-gray-600 bg-gradient-to-r from-transparent to-white dark:to-black">
-                            <div class="p-4 grid grid-cols-1 md:grid-cols-2 gap-4 border-b border-gray-400 dark:border-gray-600">
-                                <a href="#" title="Zavese, draperije, pozamanterija">
-                                    <img src="images/start/izavesedraperije.webp" class="flex-shrink rounded-lg transform hover:scale-105 duration-300" alt="ZAVESE, DRAPERIJE, POZAMANTERIJA">
-                                </a>
-                                <div class="flex flex-col justify-center">
-                                    <span class="relative pr-8 font-medium list-none cursor-pointer text-start italic uppercase text-base sm:text-lg md:text-xl lg:text-2xl focus-visible:outline-none transition-colors duration-300 group-hover:text-gray-400">
-                                        ZAVESE, DRAPERIJE, POZAMANTERIJA
-                                    </span>                
-                                    <p class="font-normal text-base md:text-lg lg:text-xl">Prozor bez zavesa je poput cveta bez latica, ne dozvolite da Vaš životni prostor bude hladan i prazan. Nudimo savetovanje i stručnu pomoć u okviru našeg prodajnog asortimana.</p>
-                                </div>
-                            </div>
+
                         </li>
-                        <li class="border-b border-gray-400 dark:border-gray-600 bg-gradient-to-r from-white dark:from-black to-transparent">
-                            <div class="p-4 grid grid-cols-1 md:grid-cols-2 gap-4 border-b border-gray-400 dark:border-gray-600">
-                                <div class="flex flex-col justify-center">
-                                    <span class="relative pr-8 font-medium list-none cursor-pointer text-start italic uppercase text-base sm:text-lg md:text-xl lg:text-2xl focus-visible:outline-none transition-colors duration-300 group-hover:text-gray-400">
-                                        TAPETE, ZIDNE OBLOGE, ZIDNI PANELI
-                                    </span>
-                                    <p class="font-normal text-base md:text-lg lg:text-xl">Današnji trendovi podrazumevaju visoke estetske normative uređenja životnog i poslovnog enterijera, samim tim je teško zamisliti jedno moderno okruženje bez dobre tapete. Naš asortiman tapeta broji preko 20.000 artikala prestižnih brendova, najrazličitijih pravaca.</p>
-                                </div>
-                                <a href="#" title="Tapete, zidne obloge, zidni paneli">
-                                    <img src="images/start/itapete.webp" class="flex-shrink rounded-lg transform hover:scale-105 duration-300" alt="TAPETE, ZIDNE OBLOGE, ZIDNI PANELI">
-                                </a>
-                            </div>
-                        </li>
-                        <li class="border-b border-gray-400 dark:border-gray-600 bg-gradient-to-r from-transparent to-white dark:to-black">
-                            <div class="p-4 grid grid-cols-1 md:grid-cols-2 gap-4 border-b border-gray-400 dark:border-gray-600">
-                                <a href="#" title="Fototapete, stikeri, nalepnice">
-                                    <img src="images/start/ifoto.webp" class="flex-shrink rounded-lg transform hover:scale-105 duration-300" alt="FOTOTAPETE, STIKERI, NALEPNICE">
-                                </a>
-                                <div class="flex flex-col justify-center">
-                                    <span class="relative pr-8 font-medium list-none cursor-pointer text-start italic uppercase text-base sm:text-lg md:text-xl lg:text-2xl focus-visible:outline-none transition-colors duration-300 group-hover:text-gray-400">
-                                        FOTOTAPETE, STIKERI, NALEPNICE
-                                    </span>
-                                    <p class="font-normal text-base md:text-lg lg:text-xl">Ljubitelj ste prirode, pustolov, romantik, fan stripova? Ne tražite dalje, fototapete će pretvoriti svaku Vašu pasiju u pravu malu iluziju Vašeg doma.</p>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="border-b border-gray-400 dark:border-gray-600 bg-gradient-to-r from-white dark:from-black to-transparent">
-                            <div class="p-4 grid grid-cols-1 md:grid-cols-2 gap-4 border-b border-gray-400 dark:border-gray-600">
-                                <div class="flex flex-col justify-center">
-                                    <span class="relative pr-8 font-medium list-none cursor-pointer text-start italic uppercase text-base sm:text-lg md:text-xl lg:text-2xl focus-visible:outline-none transition-colors duration-300 group-hover:text-gray-400">
-                                        MEBL I OUTDOOR ŠTOFOVI
-                                    </span>
-                                    <p class="font-normal text-base md:text-lg lg:text-xl">U našoj ponudi imamo brojne kolekcije mebl i OUTDOOR štofova i materijala prestižnih brendova. Ističemo OUTDOOR materijale kao posebno pogodne za pokrivanje spoljnih prostora i oblaganje izloženih površina.</p>
-                                </div>
-                                <a href="#" title="Mebl i outdoor štofovi">
-                                    <img src="images/start/imebl.webp" class="flex-shrink rounded-lg transform hover:scale-105 duration-300" alt="MEBL I OUTDOOR ŠTOFOVI">
-                                </a>
-                            </div>
-                        </li>
-                        <li class="border-b border-gray-400 dark:border-gray-600 bg-gradient-to-r from-transparent to-white dark:to-black">
-                            <div class="p-4 grid grid-cols-1 md:grid-cols-2 gap-4 border-b border-gray-400 dark:border-gray-600">
-                                <a href="#" title="Rolo/screen zavese i sistemi">
-                                    <img src="images/start/irolozavese.webp" class="flex-shrink rounded-lg transform hover:scale-105 duration-300" alt="ROLO SCREEN ZAVESE I SISTEMI">
-                                </a>
-                                <div class="flex flex-col justify-center">
-                                    <span class="relative pr-8 font-medium list-none cursor-pointer text-start italic uppercase text-base sm:text-lg md:text-xl lg:text-2xl focus-visible:outline-none transition-colors duration-300 group-hover:text-gray-400">
-                                        ROLO/SCREEN ZAVESE I SISTEMI
-                                    </span>
-                                    <p class="font-normal text-base md:text-lg lg:text-xl">Rolo/screen zavese možemo nazvati i minimalističkim konceptom zavese, koji osim dekorativne funkcije glavni akcenat stavlja na zaštitu od sunca. Nudimo savetovanje i stručnu pomoć u okviru našeg prodajnog asortimana.</p>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="border-b border-gray-400 dark:border-gray-600 bg-gradient-to-r from-white dark:from-black to-transparent">
-                            <div class="p-4 grid grid-cols-1 md:grid-cols-2 gap-4 border-b border-gray-400 dark:border-gray-600">
-                                <div class="flex flex-col justify-center">
-                                    <span class="relative pr-8 font-medium list-none cursor-pointer text-start italic uppercase text-base sm:text-lg md:text-xl lg:text-2xl focus-visible:outline-none transition-colors duration-300 group-hover:text-gray-400">
-                                        ZEBRA ZAVESE I SISTEMI
-                                    </span>
-                                    <p class="font-normal text-base md:text-lg lg:text-xl">Zebra zavese, poznate i kao &quot;Noć i dan&quot;, koncipirane su tako da se tačno može dozirati količina svetlosti koju zavesa treba da propusti, zahvaljujući naizmenično raspoređenim prozirnim i neprozirnim poljima materijala rolo mehanizma.</p>
-                                </div>
-                                <a href="#" title="Zebra zavese i sistemi">
-                                    <img src="images/start/izebrazavese.webp" class="flex-shrink rounded-lg transform hover:scale-105 duration-300" alt="ZEBRA ZAVESE I SISTEMI">
-                                </a>
-                            </div>
-                        </li>
-                        <li class="border-b border-gray-400 dark:border-gray-600 bg-gradient-to-r from-transparent to-white dark:to-black">
-                            <div class="p-4 grid grid-cols-1 md:grid-cols-2 gap-4 border-b border-gray-400 dark:border-gray-600">
-                                <a href="#" title="Panel zavese i sistemi">
-                                    <img src="images/start/ipanelzavese.webp" class="flex-shrink rounded-lg transform hover:scale-105 duration-300" alt="PANEL ZAVESE I SISTEMI">
-                                </a>
-                                <div class="flex flex-col justify-center">
-                                    <span class="relative pr-8 font-medium list-none cursor-pointer text-start italic uppercase text-base sm:text-lg md:text-xl lg:text-2xl focus-visible:outline-none transition-colors duration-300 group-hover:text-gray-400">
-                                        PANEL ZAVESE I SISTEMI
-                                    </span>
-                                    <p class="font-normal text-base md:text-lg lg:text-xl">Pločasta forma i pomeranje preko sistema šina, čine panel zavese skoro idealnim za isticanjem nekog motiva ili svedene forme modernog izgleda. Nudimo savetovanje i stručnu pomoć u okviru našeg prodajnog asortimana.</p>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="border-b border-gray-400 dark:border-gray-600 bg-gradient-to-r from-white dark:from-black to-transparent">
-                            <div class="p-4 grid grid-cols-1 md:grid-cols-2 gap-4 border-b border-gray-400 dark:border-gray-600">
-                                <div class="flex flex-col justify-center">
-                                    <span class="relative pr-8 font-medium list-none cursor-pointer text-start italic uppercase text-base sm:text-lg md:text-xl lg:text-2xl focus-visible:outline-none transition-colors duration-300 group-hover:text-gray-400">
-                                        VELUX PROZORI I ROLETNE
-                                    </span>
-                                    <p class="font-normal text-base md:text-lg lg:text-xl">VELUX nudi veliki broj proizvoda (unutrašnje i spoljne roletne, krovni prozori), koji odgovaraju potrebama i zahtevima kupaca.</p>
-                                </div>
-                                <a href="#" title="Velux prozori i roletne">
-                                    <img src="images/start/iveluxprozoriroletne.webp" class="flex-shrink rounded-lg transform hover:scale-105 duration-300" alt="VELUX PROZORI I ROLETNE">
-                                </a>
-                            </div>
-                        </li>
-                        <li class="border-b border-gray-400 dark:border-gray-600 bg-gradient-to-r from-transparent to-white dark:to-black">
-                            <div class="p-4 grid grid-cols-1 md:grid-cols-2 gap-4 border-b border-gray-400 dark:border-gray-600">
-                                <a href="#" title="Klub stolovi">
-                                    <img src="images/start/iklubstolovi.webp" class="flex-shrink rounded-lg transform hover:scale-105 duration-300" alt="KLUB STOLOVI">
-                                </a>
-                                <div class="flex flex-col justify-center">
-                                    <span class="[&::-webkit-details-marker]:hidden relative pr-8 font-medium list-none cursor-pointer text-start italic uppercase text-base sm:text-lg md:text-xl lg:text-2xl focus-visible:outline-none transition-colors duration-300 group-hover:text-gray-400">
-                                        KLUB STOLOVI
-                                    </span>
-                                    <p class="font-normal text-base md:text-lg lg:text-xl">Predstavljamo Vam našu bogatu ponudu modernih, luksuznih, modularnih klub stolova izrađenih od kombinacije drveta, stakla i metala u premium kvalitetu.</p>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="border-b border-gray-400 dark:border-gray-600 bg-gradient-to-r from-white dark:from-black to-transparent">
-                            <div class="p-4 grid grid-cols-1 md:grid-cols-2 gap-4">
-                                <div class="flex flex-col justify-center">
-                                    <span class="[&::-webkit-details-marker]:hidden relative pr-8 font-medium list-none cursor-pointer text-start italic uppercase text-base sm:text-lg md:text-xl lg:text-2xl focus-visible:outline-none transition-colors duration-300 group-hover:text-gray-400">
-                                        TEPISI, ITISONI
-                                    </span>
-                                    <p class="font-normal text-base md:text-lg lg:text-xl">Tepisi su važan elemenat dekora koji uz kreativan odabir boja i dezena može sa lakoćom da promeni ukupan koncept jednog enterijera. Osim funkcionalne uloge bitan je takođe i estetski dojam koji tepih može imati u celokupnoj kompoziciji uređenja. Iskusni dizajneri imali su običaj da kažu da nameštaj &quot;lebdi&quot; bez tepiha ili da je &quot;previše hladan&quot;.</p>
-                                </div>
-                                <a href="#" title="Tepisi i itisoni">
-                                    <img src="images/start/itepisitisoni.webp" class="flex-shrink rounded-lg transform hover:scale-105 duration-300" alt="TEPISI">
-                                </a>
-                            </div>
-                        </li> 
                         <li class="border-b border-gray-400 dark:border-gray-600 bg-white dark:bg-black">
                             <div class="relative border-b border-gray-400 dark:border-gray-600">
                                 <button title="kvalitet" type="button" class="w-full px-4 py-6 text-left group" @click="selected !== 01 ? selected = 01 : selected = null">
@@ -559,14 +433,14 @@
                                         <!-- Slides -->
                                         <div class="overflow-hidden" data-glide-el="track">
                                             <ul class="relative w-full overflow-hidden p-0 whitespace-no-wrap flex flex-no-wrap [backface-visibility: hidden] [transform-style: preserve-3d] [touch-action: pan-Y] [will-change: transform]">
-                                                <li><img src="images/naslovna-tapete/baby.webp" class="w-full max-w-full max-h-full m-auto rounded-lg transform duration-300 hover:scale-105 ease-in-out" alt="decjetapete" title="Tapete: Dečje tapete" /></li>
-                                                <li><img src="images/naslovna-tapete/marburg.webp" class="w-full max-w-full max-h-full m-auto rounded-lg transform duration-300 hover:scale-105 ease-in-out" alt="tapetemarburg" title="Tapete: Tapete Marburg" /></li>
-                                                <li><img src="images/naslovna-tapete/caselio.webp" class="w-full max-w-full max-h-full m-auto rounded-lg transform duration-300 hover:scale-105 ease-in-out" alt="tapetecaselio" title="Tapete: Tapete Caselio" /></li>
-                                                <li><img src="images/naslovna-tapete/casadeco.webp" class="w-full max-w-full max-h-full m-auto rounded-lg transform duration-300 hover:scale-105 ease-in-out" alt="tapetecasadeco" title="Tapete: Tapete Casadeco" /></li>
-                                                <li><img src="images/naslovna-tapete/casamance.webp" class="w-full max-w-full max-h-full m-auto rounded-lg transform duration-300 hover:scale-105 ease-in-out" alt="tapetecasamance" title="Tapete: Tapete Casamance" /></li>
-                                                <li><img src="images/naslovna-tapete/chivasso.webp" class="w-full max-w-full max-h-full m-auto rounded-lg transform duration-300 hover:scale-105 ease-in-out" alt="tapetechivasso" title="Tapete: Tapete Chivasso" /></li>
-                                                <li><img src="images/naslovna-tapete/jab.webp" class="w-full max-w-full max-h-full m-auto rounded-lg transform duration-300 hover:scale-105 ease-in-out" alt="tapetejab" title="Tapete: JAB" /></li>
-                                                <li><img src="images/naslovna-tapete/texdecor.webp" class="w-full max-w-full max-h-full m-auto rounded-lg transform duration-300 hover:scale-105 ease-in-out" alt="tapetetexdecor" title="Tapete: Texdecor" /></li>
+                                                <li><img src="../images/naslovna-tapete/baby.webp" class="w-full max-w-full max-h-full m-auto rounded-lg transform duration-300 hover:scale-105 ease-in-out" alt="decjetapete" title="Tapete: Dečje tapete" /></li>
+                                                <li><img src="../images/naslovna-tapete/marburg.webp" class="w-full max-w-full max-h-full m-auto rounded-lg transform duration-300 hover:scale-105 ease-in-out" alt="tapetemarburg" title="Tapete: Tapete Marburg" /></li>
+                                                <li><img src="../images/naslovna-tapete/caselio.webp" class="w-full max-w-full max-h-full m-auto rounded-lg transform duration-300 hover:scale-105 ease-in-out" alt="tapetecaselio" title="Tapete: Tapete Caselio" /></li>
+                                                <li><img src="../images/naslovna-tapete/casadeco.webp" class="w-full max-w-full max-h-full m-auto rounded-lg transform duration-300 hover:scale-105 ease-in-out" alt="tapetecasadeco" title="Tapete: Tapete Casadeco" /></li>
+                                                <li><img src="../images/naslovna-tapete/casamance.webp" class="w-full max-w-full max-h-full m-auto rounded-lg transform duration-300 hover:scale-105 ease-in-out" alt="tapetecasamance" title="Tapete: Tapete Casamance" /></li>
+                                                <li><img src="../images/naslovna-tapete/chivasso.webp" class="w-full max-w-full max-h-full m-auto rounded-lg transform duration-300 hover:scale-105 ease-in-out" alt="tapetechivasso" title="Tapete: Tapete Chivasso" /></li>
+                                                <li><img src="../images/naslovna-tapete/jab.webp" class="w-full max-w-full max-h-full m-auto rounded-lg transform duration-300 hover:scale-105 ease-in-out" alt="tapetejab" title="Tapete: JAB" /></li>
+                                                <li><img src="../images/naslovna-tapete/texdecor.webp" class="w-full max-w-full max-h-full m-auto rounded-lg transform duration-300 hover:scale-105 ease-in-out" alt="tapetetexdecor" title="Tapete: Texdecor" /></li>
                                             </ul>
                                         </div>
                                         <!-- Controls -->
@@ -603,13 +477,13 @@
                                         <!-- Slides -->
                                         <div class="overflow-hidden" data-glide-el="track">
                                             <ul class="relative w-full overflow-hidden p-0 whitespace-no-wrap flex flex-no-wrap [backface-visibility: hidden] [transform-style: preserve-3d] [touch-action: pan-Y] [will-change: transform]">
-                                                <li><img src="images/radovi/venecijaneri1.webp" class="w-full max-w-full max-h-full m-auto rounded-lg transform duration-300 hover:scale-105 ease-in-out" alt="venecijaneri1" title="Radovi: Venecijaneri 01" /></li>
-                                                <li><img src="images/radovi/venecijaneri2.webp" class="w-full max-w-full max-h-full m-auto rounded-lg transform duration-300 hover:scale-105 ease-in-out" alt="venecijaneri2" title="Radovi: Venecijaneri 02" /></li>
-                                                <li><img src="images/radovi/stolnjaci1.webp" class="w-full max-w-full max-h-full m-auto rounded-lg transform duration-300 hover:scale-105 ease-in-out" alt="stolnjaci1" title="Radovi: Stolnjaci 01" /></li>
-                                                <li><img src="images/radovi/stolnjaci2.webp" class="w-full max-w-full max-h-full m-auto rounded-lg transform duration-300 hover:scale-105 ease-in-out" alt="stolnjaci2" title="Radovi: Stolnjaci 02" /></li>
-                                                <li><img src="images/radovi/zavese1.webp" class="w-full max-w-full max-h-full m-auto rounded-lg transform duration-300 hover:scale-105 ease-in-out" alt="stolnjaci1" title="Radovi: Zavese i draperije 01" /></li>
-                                                <li><img src="images/radovi/zavese2.webp" class="w-full max-w-full max-h-full m-auto rounded-lg transform duration-300 hover:scale-105 ease-in-out" alt="stolnjaci2" title="Radovi: Zavese i draperije 02" /></li>
-                                                <li><img src="images/radovi/zavese3.webp" class="w-full max-w-full max-h-full m-auto rounded-lg transform duration-300 hover:scale-105 ease-in-out" alt="stolnjaci1" title="Radovi: Zavese i draperije 03" /></li>
+                                                <li><img src="../images/radovi/venecijaneri1.webp" class="w-full max-w-full max-h-full m-auto rounded-lg transform duration-300 hover:scale-105 ease-in-out" alt="venecijaneri1" title="Radovi: Venecijaneri 01" /></li>
+                                                <li><img src="../images/radovi/venecijaneri2.webp" class="w-full max-w-full max-h-full m-auto rounded-lg transform duration-300 hover:scale-105 ease-in-out" alt="venecijaneri2" title="Radovi: Venecijaneri 02" /></li>
+                                                <li><img src="../images/radovi/stolnjaci1.webp" class="w-full max-w-full max-h-full m-auto rounded-lg transform duration-300 hover:scale-105 ease-in-out" alt="stolnjaci1" title="Radovi: Stolnjaci 01" /></li>
+                                                <li><img src="../images/radovi/stolnjaci2.webp" class="w-full max-w-full max-h-full m-auto rounded-lg transform duration-300 hover:scale-105 ease-in-out" alt="stolnjaci2" title="Radovi: Stolnjaci 02" /></li>
+                                                <li><img src="../images/radovi/zavese1.webp" class="w-full max-w-full max-h-full m-auto rounded-lg transform duration-300 hover:scale-105 ease-in-out" alt="stolnjaci1" title="Radovi: Zavese i draperije 01" /></li>
+                                                <li><img src="../images/radovi/zavese2.webp" class="w-full max-w-full max-h-full m-auto rounded-lg transform duration-300 hover:scale-105 ease-in-out" alt="stolnjaci2" title="Radovi: Zavese i draperije 02" /></li>
+                                                <li><img src="../images/radovi/zavese3.webp" class="w-full max-w-full max-h-full m-auto rounded-lg transform duration-300 hover:scale-105 ease-in-out" alt="stolnjaci1" title="Radovi: Zavese i draperije 03" /></li>
                                             </ul>
                                         </div>
                                         <!-- Controls -->
@@ -653,19 +527,19 @@
                                     <div class="p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                                         <div class="flex flex-col items-center justify-center">
                                             <a rel="noopener" href="https://www.halogendecorshop.com/" target="_blank">
-                                                <img src="images/start/webshop.webp" class="flex-shrink rounded-lg transform hover:scale-105 duration-300" alt="INTERNET PRODAVNICA">
+                                                <img src="../images/start/webshop.webp" class="flex-shrink rounded-lg transform hover:scale-105 duration-300" alt="INTERNET PRODAVNICA">
                                             </a>
                                             <p class="mt-2">Internet prodavnica</p>
                                         </div>
                                         <div class="flex flex-col items-center justify-center">
                                             <a rel="noopener" href="https://www.instagram.com/halogendecor/" target="_blank">
-                                                <img src="images/start/instagram.webp" class="flex-shrink rounded-lg transform hover:scale-105 duration-300" alt="INSTAGRAM STRANICA">
+                                                <img src="../images/start/instagram.webp" class="flex-shrink rounded-lg transform hover:scale-105 duration-300" alt="INSTAGRAM STRANICA">
                                             </a>
                                             <p class="mt-2">Instagram stranica</p>
                                         </div>
                                         <div class="flex flex-col items-center justify-center">
                                             <a rel="noopener" href="https://www.facebook.com/Halogen-Decor-zavesetapeteroloi-164039537045317/" target="_blank">
-                                                <img src="images/start/facebook.webp" class="flex-shrink rounded-lg transform hover:scale-105 duration-300" alt="FACEBOOK STRANICA">
+                                                <img src="../images/start/facebook.webp" class="flex-shrink rounded-lg transform hover:scale-105 duration-300" alt="FACEBOOK STRANICA">
                                             </a>
                                             <p class="mt-2">Facebook stranica</p>
                                         </div>
@@ -739,7 +613,7 @@
                                         </div>
                                         <div class="flex flex-col items-center justify-center">
                                             <a rel="noopener" href="https://www.google.rs/maps/place/Zavese,tapete:+Halogen+Decor/@45.2414753,19.8115624,15z/data=!4m5!3m4!1s0x0:0x5cb4cdf1927889ce!8m2!3d45.2414753!4d19.8115624" target="_blank">
-                                                <img src="images/mapabus.webp" class="flex-shrink w-96 rounded-lg transform hover:scale-105 duration-300" alt="Pronađite nas na mapi">
+                                                <img src="../images/mapabus.webp" class="flex-shrink w-96 rounded-lg transform hover:scale-105 duration-300" alt="Pronađite nas na mapi">
                                             </a>                
                                             <p class="mt-2">Pronađite nas na mapi</p>
                                         </div>
@@ -821,7 +695,7 @@
                 </ul>
             </div>
         </footer>
-        <script src="js/glide-371.min.js"></script>
+        <script src="../js/glide-371.min.js"></script>
         <script>
             var glide01 = new Glide('.glide-01', {
                 type: 'carousel',
