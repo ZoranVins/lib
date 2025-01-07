@@ -342,7 +342,7 @@
                         <div class="overflow-hidden" data-glide-el="track">
                             <ul class="relative w-full font-semibold overflow-hidden p-0 whitespace-no-wrap flex flex-no-wrap [backface-visibility: hidden] [transform-style: preserve-3d] [touch-action: pan-Y] [will-change: transform]">
                                 <li class="relative w-full inline-block group">
-                                    <img src="images/slider/draperije1.webp" class="z-10 w-full max-w-full max-h-full m-auto rounded-lg" alt="draperije" title="Draperije po meri" />
+                                    <img src="images/slider/draperije1.webp" class="w-full max-w-full max-h-full m-auto rounded-lg" alt="draperije" title="Draperije po meri" />
                                     <div class="absolute bottom-full left-1/2 z-20 -mb-8 md:-mb-16 -translate-x-1/2 whitespace-nowrap px-2 text-lg md:text-2xl lg:text-4xl bg-transparent drop-shadow-lg text-white">DRAPERIJE: Bogatstvo svakog prozora</div>
                                 </li>
                                 <li class="relative w-full inline-block group">
@@ -401,11 +401,11 @@
             <section id="preview" class="py-2 md:py-0 xl:py-8 -mt-8 md:-mt-12 xl:mt-20"> 
                 <div class="container max-w-7xl mx-auto md:mt-8">
                     <h1 class="hover:text-gray-500 focus:text-gray-500 bg-transparent shadow-black drop-shadow-xl p-4 py-8 font-bold uppercase underline text-center first-letter:text-4xl md:first-letter:text-5xl lg:first-letter:text-6xl text-3xl md:text-4xl lg:text-5xl text-neutral-600 dark:text-neutral-400 transform scale-105 duration-300">Halogen Decor</h1>
-                    <ul class="bg-transparent max-w-7xl mx-auto border border-gray-400 dark:border-gray-600 shadow-lg" x-data="{selected:01}">
+                    <ul class="bg-transparent max-w-7xl mx-auto border border-gray-400 dark:border-gray-600 shadow-lg" x-data="{selected:null}">
                         <li class="border-b border-gray-400 dark:border-gray-600 bg-gradient-to-r from-transparent to-white dark:to-black">
                             <div class="p-4 grid grid-cols-1 md:grid-cols-2 gap-4 border-b border-gray-400 dark:border-gray-600">
                                 <a href="#" title="Zavese, draperije, pozamanterija">
-                                    <img src="images/start/izavesedraperije.webp" class="flex-shrink rounded-lg transform hover:scale-105 duration-300" alt="ZAVESE, DRAPERIJE, POZAMANTERIJA">
+                                    <img data-src="images/start/izavesedraperije.webp" class="lazy flex-shrink rounded-lg transform hover:scale-105 duration-300" alt="ZAVESE, DRAPERIJE, POZAMANTERIJA">
                                 </a>
                                 <div class="flex flex-col justify-center">
                                     <span class="relative pr-8 font-medium list-none cursor-pointer text-start italic uppercase text-base sm:text-lg md:text-xl lg:text-2xl focus-visible:outline-none transition-colors duration-300 group-hover:text-gray-400">
@@ -424,14 +424,14 @@
                                     <p class="font-normal text-base md:text-lg lg:text-xl">Današnji trendovi podrazumevaju visoke estetske normative uređenja životnog i poslovnog enterijera, samim tim je teško zamisliti jedno moderno okruženje bez dobre tapete. Naš asortiman tapeta broji preko 20.000 artikala prestižnih brendova, najrazličitijih pravaca.</p>
                                 </div>
                                 <a href="#" title="Tapete, zidne obloge, zidni paneli">
-                                    <img src="images/start/itapete.webp" class="flex-shrink rounded-lg transform hover:scale-105 duration-300" alt="TAPETE, ZIDNE OBLOGE, ZIDNI PANELI">
+                                    <img data-src="images/start/itapete.webp" class="lazy flex-shrink rounded-lg transform hover:scale-105 duration-300" alt="TAPETE, ZIDNE OBLOGE, ZIDNI PANELI">
                                 </a>
                             </div>
                         </li>
                         <li class="border-b border-gray-400 dark:border-gray-600 bg-gradient-to-r from-transparent to-white dark:to-black">
                             <div class="p-4 grid grid-cols-1 md:grid-cols-2 gap-4 border-b border-gray-400 dark:border-gray-600">
                                 <a href="#" title="Fototapete, stikeri, nalepnice">
-                                    <img src="images/start/ifoto.webp" class="flex-shrink rounded-lg transform hover:scale-105 duration-300" alt="FOTOTAPETE, STIKERI, NALEPNICE">
+                                    <img data-src="images/start/ifoto.webp" class="lazy flex-shrink rounded-lg transform hover:scale-105 duration-300" alt="FOTOTAPETE, STIKERI, NALEPNICE">
                                 </a>
                                 <div class="flex flex-col justify-center">
                                     <span class="relative pr-8 font-medium list-none cursor-pointer text-start italic uppercase text-base sm:text-lg md:text-xl lg:text-2xl focus-visible:outline-none transition-colors duration-300 group-hover:text-gray-400">
@@ -450,14 +450,14 @@
                                     <p class="font-normal text-base md:text-lg lg:text-xl">U našoj ponudi imamo brojne kolekcije mebl i OUTDOOR štofova i materijala prestižnih brendova. Ističemo OUTDOOR materijale kao posebno pogodne za pokrivanje spoljnih prostora i oblaganje izloženih površina.</p>
                                 </div>
                                 <a href="#" title="Mebl i outdoor štofovi">
-                                    <img src="images/start/imebl.webp" class="flex-shrink rounded-lg transform hover:scale-105 duration-300" alt="MEBL I OUTDOOR ŠTOFOVI">
+                                    <img data-src="images/start/imebl.webp" class="lazy flex-shrink rounded-lg transform hover:scale-105 duration-300" alt="MEBL I OUTDOOR ŠTOFOVI">
                                 </a>
                             </div>
                         </li>
                         <li class="border-b border-gray-400 dark:border-gray-600 bg-gradient-to-r from-transparent to-white dark:to-black">
                             <div class="p-4 grid grid-cols-1 md:grid-cols-2 gap-4 border-b border-gray-400 dark:border-gray-600">
                                 <a href="#" title="Rolo/screen zavese i sistemi">
-                                    <img src="images/start/irolozavese.webp" class="flex-shrink rounded-lg transform hover:scale-105 duration-300" alt="ROLO SCREEN ZAVESE I SISTEMI">
+                                    <img data-src="images/start/irolozavese.webp" class="lazy flex-shrink rounded-lg transform hover:scale-105 duration-300" alt="ROLO SCREEN ZAVESE I SISTEMI">
                                 </a>
                                 <div class="flex flex-col justify-center">
                                     <span class="relative pr-8 font-medium list-none cursor-pointer text-start italic uppercase text-base sm:text-lg md:text-xl lg:text-2xl focus-visible:outline-none transition-colors duration-300 group-hover:text-gray-400">
@@ -476,14 +476,14 @@
                                     <p class="font-normal text-base md:text-lg lg:text-xl">Zebra zavese, poznate i kao &quot;Noć i dan&quot;, koncipirane su tako da se tačno može dozirati količina svetlosti koju zavesa treba da propusti, zahvaljujući naizmenično raspoređenim prozirnim i neprozirnim poljima materijala rolo mehanizma.</p>
                                 </div>
                                 <a href="#" title="Zebra zavese i sistemi">
-                                    <img src="images/start/izebrazavese.webp" class="flex-shrink rounded-lg transform hover:scale-105 duration-300" alt="ZEBRA ZAVESE I SISTEMI">
+                                    <img data-src="images/start/izebrazavese.webp" class="lazy flex-shrink rounded-lg transform hover:scale-105 duration-300" alt="ZEBRA ZAVESE I SISTEMI">
                                 </a>
                             </div>
                         </li>
                         <li class="border-b border-gray-400 dark:border-gray-600 bg-gradient-to-r from-transparent to-white dark:to-black">
                             <div class="p-4 grid grid-cols-1 md:grid-cols-2 gap-4 border-b border-gray-400 dark:border-gray-600">
                                 <a href="#" title="Panel zavese i sistemi">
-                                    <img src="images/start/ipanelzavese.webp" class="flex-shrink rounded-lg transform hover:scale-105 duration-300" alt="PANEL ZAVESE I SISTEMI">
+                                    <img data-src="images/start/ipanelzavese.webp" class="lazy flex-shrink rounded-lg transform hover:scale-105 duration-300" alt="PANEL ZAVESE I SISTEMI">
                                 </a>
                                 <div class="flex flex-col justify-center">
                                     <span class="relative pr-8 font-medium list-none cursor-pointer text-start italic uppercase text-base sm:text-lg md:text-xl lg:text-2xl focus-visible:outline-none transition-colors duration-300 group-hover:text-gray-400">
@@ -502,14 +502,14 @@
                                     <p class="font-normal text-base md:text-lg lg:text-xl">VELUX nudi veliki broj proizvoda (unutrašnje i spoljne roletne, krovni prozori), koji odgovaraju potrebama i zahtevima kupaca.</p>
                                 </div>
                                 <a href="#" title="Velux prozori i roletne">
-                                    <img src="images/start/iveluxprozoriroletne.webp" class="flex-shrink rounded-lg transform hover:scale-105 duration-300" alt="VELUX PROZORI I ROLETNE">
+                                    <img data-src="images/start/iveluxprozoriroletne.webp" class="lazy flex-shrink rounded-lg transform hover:scale-105 duration-300" alt="VELUX PROZORI I ROLETNE">
                                 </a>
                             </div>
                         </li>
                         <li class="border-b border-gray-400 dark:border-gray-600 bg-gradient-to-r from-transparent to-white dark:to-black">
                             <div class="p-4 grid grid-cols-1 md:grid-cols-2 gap-4 border-b border-gray-400 dark:border-gray-600">
                                 <a href="#" title="Klub stolovi">
-                                    <img src="images/start/iklubstolovi.webp" class="flex-shrink rounded-lg transform hover:scale-105 duration-300" alt="KLUB STOLOVI">
+                                    <img data-src="images/start/iklubstolovi.webp" class="lazy flex-shrink rounded-lg transform hover:scale-105 duration-300" alt="KLUB STOLOVI">
                                 </a>
                                 <div class="flex flex-col justify-center">
                                     <span class="[&::-webkit-details-marker]:hidden relative pr-8 font-medium list-none cursor-pointer text-start italic uppercase text-base sm:text-lg md:text-xl lg:text-2xl focus-visible:outline-none transition-colors duration-300 group-hover:text-gray-400">
@@ -528,20 +528,26 @@
                                     <p class="font-normal text-base md:text-lg lg:text-xl">Tepisi su važan elemenat dekora koji uz kreativan odabir boja i dezena može sa lakoćom da promeni ukupan koncept jednog enterijera. Osim funkcionalne uloge bitan je takođe i estetski dojam koji tepih može imati u celokupnoj kompoziciji uređenja. Iskusni dizajneri imali su običaj da kažu da nameštaj &quot;lebdi&quot; bez tepiha ili da je &quot;previše hladan&quot;.</p>
                                 </div>
                                 <a href="#" title="Tepisi i itisoni">
-                                    <img src="images/start/itepisitisoni.webp" class="flex-shrink rounded-lg transform hover:scale-105 duration-300" alt="TEPISI">
+                                    <img data-src="images/start/itepisitisoni.webp" class="lazy flex-shrink rounded-lg transform hover:scale-105 duration-300" alt="TEPISI">
                                 </a>
                             </div>
                         </li> 
                         <li class="border-b border-gray-400 dark:border-gray-600 bg-white dark:bg-black">
                             <div class="relative border-b border-gray-400 dark:border-gray-600">
-                                <button title="kvalitet" type="button" class="w-full px-4 py-6 text-left group" @click="selected !== 01 ? selected = 01 : selected = null">
+                                <button title="kvalitet" type="button" class="w-full px-4 py-6 text-left group" @click="selected !== 1 ? selected = 1 : selected = null">
                                     <div class="flex items-center justify-between">
                                         <span class="[&::-webkit-details-marker]:hidden relative pr-8 font-medium list-none cursor-pointer text-start italic uppercase text-base sm:text-lg md:text-xl lg:text-2xl focus-visible:outline-none transition-colors duration-300 group-hover:text-gray-400">
                                             Kvalitet ne mora uvek biti skup
                                         </span>
+                                        <svg x-show="selected == 1" class="size-8 shrink-0 text-gray-300 group-hover:text-gray-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
+                                        </svg>
+                                        <svg x-show="selected !== 1" class="size-8 rotate-180 shrink-0 text-gray-300 group-hover:text-gray-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M8.22 5.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L11.94 10 8.22 6.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
+                                        </svg>
                                     </div>
                                 </button>
-                                <div class="relative px-4 overflow-hidden transition-all max-h-0 duration-500" x-ref="container01" x-bind:style="selected == 01 ? 'max-height: ' + $refs.container01.scrollHeight + 'px' : ''">
+                                <div class="relative px-4 overflow-hidden transition-all max-h-0 duration-500" x-ref="container01" x-bind:style="selected == 1 ? 'max-height: ' + $refs.container01.scrollHeight + 'px' : ''">
                                     <div class="pt-4 font-semibold text-lg md:text-xl lg:text-2xl">
                                         <a class="flex flex-row transform hover:text-gray-400 duration-300" title="google maps" rel="noopener" href="https://www.google.rs/maps/place/Zavese,tapete:+Halogen+Decor/@45.2414753,19.8115624,15z/data=!4m5!3m4!1s0x0:0x5cb4cdf1927889ce!8m2!3d45.2414753!4d19.8115624" target="_blank">
                                             <p>Povoljne cene za tapete sa lagera. Dođite i uverite se.&nbsp;</p>
@@ -590,14 +596,20 @@
                         </li>
                         <li class="bg-white dark:bg-black">
                             <div class="relative">
-                                <button type="button" class="w-full px-4 py-6 text-left group" @click="selected !== 02 ? selected = 02 : selected = null">
+                                <button type="button" class="w-full px-4 py-6 text-left group" @click="selected !== 2 ? selected = 2 : selected = null">
                                     <div class="flex items-center justify-between">
                                         <span class="[&::-webkit-details-marker]:hidden relative pr-8 font-medium list-none cursor-pointer text-start italic uppercase text-base sm:text-lg md:text-xl lg:text-2xl focus-visible:outline-none transition-colors duration-300 group-hover:text-gray-400">
                                             Ostvarite sa nama Vaše stambene snove
                                         </span>
+                                        <svg x-show="selected == 2" class="size-8 shrink-0 text-gray-300 group-hover:text-gray-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
+                                        </svg>
+                                        <svg x-show="selected !== 2" class="size-8 rotate-180 shrink-0 text-gray-300 group-hover:text-gray-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M8.22 5.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L11.94 10 8.22 6.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
+                                        </svg>
                                     </div>
                                 </button>
-                                <div class="relative px-4 overflow-hidden transition-all max-h-0 duration-500" x-ref="container02" x-bind:style="selected == 02 ? 'max-height: ' + $refs.container02.scrollHeight + 'px' : ''">
+                                <div class="relative px-4 overflow-hidden transition-all max-h-0 duration-500" x-ref="container02" x-bind:style="selected == 2 ? 'max-height: ' + $refs.container02.scrollHeight + 'px' : ''">
                                     <p class="pt-4 font-semibold text-lg md:text-xl lg:text-2xl">Kako kaže naš slogan &quot;Stambeni snovi&quot;, misija naše kompanije je da želje naših kupaca uz naše višegodišnje iskustvo i saradnju sa arhitektama pretočimo u &quot;realnost iz snova&quot;. Hvala Vam na poverenju!</p>
                                     <div class="relative py-4 w-full glide-03">
                                         <!-- Slides -->
@@ -647,6 +659,12 @@
                                         <span class="[&::-webkit-details-marker]:hidden relative pr-8 font-medium list-none cursor-pointer text-start italic uppercase text-base sm:text-lg md:text-xl lg:text-2xl focus-visible:outline-none transition-colors duration-300 group-hover:text-gray-500">
                                             Pronađite nas na internetu:
                                         </span>
+                                        <svg x-show="selected2 == 1" class="size-8 shrink-0 text-gray-300 group-hover:text-gray-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
+                                        </svg>
+                                        <svg x-show="selected2 !== 1" class="size-8 rotate-180 shrink-0 text-gray-300 group-hover:text-gray-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M8.22 5.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L11.94 10 8.22 6.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
+                                        </svg>
                                     </div>
                                 </button>
                                 <div class="relative overflow-hidden transition-all max-h-0 duration-500" x-ref="container11" x-bind:style="selected2 == 1 ? 'max-height: ' + $refs.container11.scrollHeight + 'px' : ''">
@@ -680,6 +698,12 @@
                                         <span class="[&::-webkit-details-marker]:hidden relative pr-8 font-medium list-none cursor-pointer text-start italic uppercase text-base sm:text-lg md:text-xl lg:text-2xl focus-visible:outline-none transition-colors duration-300 group-hover:text-gray-500">
                                             Uspostavimo kontakt
                                         </span>
+                                        <svg x-show="selected2 == 2" class="size-8 shrink-0 text-gray-300 group-hover:text-gray-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
+                                        </svg>
+                                        <svg x-show="selected2 !== 2" class="size-8 rotate-180 shrink-0 text-gray-300 group-hover:text-gray-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M8.22 5.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L11.94 10 8.22 6.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
+                                        </svg>
                                     </div>
                                 </button>
                                 <div class="relative overflow-hidden transition-all max-h-0 duration-500" x-ref="container12" x-bind:style="selected2 == 2 ? 'max-height: ' + $refs.container12.scrollHeight + 'px' : ''">
@@ -822,6 +846,55 @@
             </div>
         </footer>
         <script src="js/glide-371.min.js"></script>
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                const lazyImages = document.querySelectorAll("img.lazy");
+
+                if ("IntersectionObserver" in window) {
+                    let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
+                        entries.forEach(function(entry) {
+                            if (entry.isIntersecting) {
+                                let lazyImage = entry.target;
+                                lazyImage.src = lazyImage.dataset.src;
+                                lazyImage.classList.remove("lazy");
+                                lazyImageObserver.unobserve(lazyImage);
+                            }
+                        });
+                    });
+
+                    lazyImages.forEach(function(lazyImage) {
+                        lazyImageObserver.observe(lazyImage);
+                    });
+                } else {
+                    // Fallback for browsers that do not support IntersectionObserver
+                    let lazyLoadThrottleTimeout;
+                    function lazyLoad() {
+                        if (lazyLoadThrottleTimeout) {
+                            clearTimeout(lazyLoadThrottleTimeout);
+                        }
+
+                        lazyLoadThrottleTimeout = setTimeout(function() {
+                            let scrollTop = window.scrollY;
+                            lazyImages.forEach(function(img) {
+                                if (img.offsetTop < (window.innerHeight + scrollTop)) {
+                                    img.src = img.dataset.src;
+                                    img.classList.remove('lazy');
+                                }
+                            });
+                            if (lazyImages.length == 0) {
+                                document.removeEventListener("scroll", lazyLoad);
+                                window.removeEventListener("resize", lazyLoad);
+                                window.removeEventListener("orientationChange", lazyLoad);
+                            }
+                        }, 20);
+                    }
+
+                    document.addEventListener("scroll", lazyLoad);
+                    window.addEventListener("resize", lazyLoad);
+                    window.addEventListener("orientationChange", lazyLoad);
+                }
+            });
+        </script>
         <script>
             var glide01 = new Glide('.glide-01', {
                 type: 'carousel',
