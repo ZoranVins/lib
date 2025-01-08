@@ -35,6 +35,7 @@
         <link rel="apple-touch-icon" sizes="180x180" href="../images/logo/touch-icon-iphone-retina.png" />
         <link rel="apple-touch-icon" sizes="167x167" href="../images/logo/touch-icon-ipad-retina.png" />
         <!-- Needed JS -->
+        <script defer src="../js/intersect.min.js"></script>
         <script defer src="../js/alpine.min.js"></script>
         <script>
             // On page load or when changing themes, best to add inline in `head` to avoid FOUC
@@ -398,15 +399,800 @@
                 </div> 
             </section>       
             <!-- Preview Section Start -->
-            <section id="preview" class="py-2 md:py-0 xl:py-8 -mt-8 md:-mt-12 xl:mt-20"> 
-                <div class="container max-w-7xl mx-auto md:mt-8">
-                    <h1 class="hover:text-gray-500 focus:text-gray-500 bg-transparent shadow-black drop-shadow-xl p-4 py-8 font-bold uppercase underline text-center first-letter:text-4xl md:first-letter:text-5xl lg:first-letter:text-6xl text-3xl md:text-4xl lg:text-5xl text-neutral-600 dark:text-neutral-400 transform scale-105 duration-300">Zavese i draperije</h1>
-                    <h2 class=""></h2>
-                    <ul class="bg-transparent max-w-7xl mx-auto border border-gray-400 dark:border-gray-600 shadow-lg" x-data="{selected:01}">
-                        <li class="border-b border-gray-400 dark:border-gray-600 bg-gradient-to-r from-transparent to-white dark:to-black">
+            <section id="preview" class="px-4 py-2 md:py-0 xl:py-8 -mt-8 md:-mt-12 xl:mt-20"> 
+                <div class="container max-w-7xl mx-auto md:mt-8 text-neutral-800 dark:text-neutral-200 hover:text-gray-500 focus:text-gray-500">
+                    <h1 class="bg-transparent shadow-black drop-shadow-xl p-4 py-8 font-bold uppercase text-center first-letter:text-2xl md:first-letter:text-3xl lg:first-letter:text-4xl text-xl md:text-2xl lg:text-3xl transform hover:scale-105 duration-300">ZAVESE, DRAPERIJE, ROLO/SCREEN, ZEBRA I PANEL ZAVESE I SISTEMI</h1>
+                    <h2 class="border-b-2 border-b-gray-800 mb-4 dark:border-b-gray-200 bg-transparent shadow-black drop-shadow-xl p-4 font-semibold text-center first-letter:text-lg md:first-letter:text-xl lg:first-letter:text-2xl text-md md:text-lg lg:text-xl">Predstavljamo Vam kolekcije zavesa i draperija renomiranih proizvođača, uz to možete pogledati izbor garnišni i pozamanterije koje imamo u našoj ponudi. Ujedno Vam predstavljamo i kolekcije rolo, rolo zebra, rolo screen, rolo blackout, panel i rimskih zavesa, kao i paketo sisteme renomiranih proizvođača.</h2>
+                    <!-- ===== Component Image Modal Start ===== -->
+                    <section id="imageModal" aria-label="imageModal" class="py-4 lg:py-8 bg-neutral-200 dark:bg-neutral-800 shadow-black shadow-xl rounded-xl mb-4" x-data="{imgModal: false, imgGroup: 0, imgHeader: '', imgText: ''}" @keydown.escape="imgModal = false; imgGroup = 0; imgHeader = ''; imgText = ''">
+                        <!-- Zavese i draperije -->
+                        <div class="container py-4 w-full mx-auto">
+                            <h3 class="bg-transparent shadow-black drop-shadow-xl font-normal uppercase text-center first-letter:text-lg md:first-letter:text-xl lg:first-letter:text-2xl text-md md:text-lg lg:text-xl transform hover:scale-105 duration-300">Zavese i draperije</h3>
+                            <h4 class="bg-transparent shadow-black drop-shadow-xl p-4 font-light text-center first-letter:text-lg md:first-letter:text-xl lg:first-letter:text-2xl text-md md:text-lg lg:text-xl">Obogatite svoj dom draperijama i zavesama – bez obzira da li se koriste za privatnost u spavaćoj sobi ili zaštitu od sunca u dnevnoj sobi, one uvek upotpunjuju pogled prema spolja. Uz fascinantan izbor dekorativnih zavesa i draperija različitog dizajna i boja, sa klasičnim i modernim motivima, one nisu samo privlačni vizuelni detalji – stvaraju ugodnu i zaštićenu atmosferu u prostoriji; obezbeđuju zdravu unutrašnju klimu u kojoj vazduh može da cirkuliše; obezbeđuju bolju akustiku ujedno pružajući zaštitu od spoljne buke; daju vašem prostoru prozračnu atmosferu filtrirajući dolaznu svetlost (providne i poluprovidne) ili štite vašu privatnost uveče kada upalite svetlo (neprovidne).</h4>
+                            <div class="flex flex-row items-center justify-between">
+                                <button type="button" @click="imgModal = true; imgGroup = 1; imgHeader = 'ZAVESE'; imgText = 'Zavese su prilagođene prostoru u smislu podizanja njegove funkcionalnosti (odnos svetla i tame), ali svakako moraju zadovoljiti i estetsku dimenziju. Bez zavesa enterijeri mogu delovati hladno i odbojno, pa su zbog toga nezamenljivi deo svakog prostora gde želimo da se ljudi prijatno osećaju. Pri izboru zavesa i materijala možete kontaktirati naš tim dizajnera, koji će vam pomoći da donesete ispravnu odluku. Budući da pružamo kompletnu uslugu, krojenje i šivenje tekstila možete prepustiti nama...'"
+                                    class="flex flex-col items-center justify-center cursor-pointer p-2 text-base font-medium text-gray-800 dark:text-gray-200 bg-transparent rounded-xl transform hover:scale-105 duration-300">
+                                    <img src="../gallery/zavesedraperije/zj/cover.webp" alt ="ZAVESE" class="object-cover rounded-xl shadow-lg">
+                                    <p class="text-xs md:text-sm lg:text-md">ZAVESE</p>
+                                </button>
+                                <button type="button" @click="imgModal = true; imgGroup = 2; imgHeader = 'DRAPERIJE'; imgText = 'Draperije su prilagođene prostoru u smislu podizanja njegove funkcionalnosti (odnos svetla i tame), ali svakako moraju zadovoljiti i estetsku dimenziju. Bez draperija enterijeri mogu delovati hladno i odbojno, pa su zbog toga nezamenljivi deo svakog prostora gde želimo da se ljudi prijatno osećaju. Pri izboru draperija i materijala možete kontaktirati naš tim dizajnera, koji će vam pomoći da donesete ispravnu odluku. Budući da pružamo kompletnu uslugu, krojenje i šivenje tekstila možete prepustiti nama.'"
+                                    class="flex flex-col items-center justify-center cursor-pointer p-2 text-base font-medium text-gray-800 dark:text-gray-200 bg-transparent rounded-xl transform hover:scale-105 duration-300">
+                                    <img src="../gallery/zavesedraperije/dj/cover.webp" alt ="DRAPERIJE" class="object-cover rounded-xl shadow-lg">
+                                    <p class="text-xs md:text-sm lg:text-md">DRAPERIJE</p>
+                                </button>
+                                <button type="button" @click="imgModal = true; imgGroup = 3; imgHeader = 'DEČIJA KOLEKCIJA'; imgText = 'Prenesite bajkoviti svet iz mašte vaših mališana na prozore njihove sobe. Mnoštvo boja, likova i oblika uneće radost i vedrinu u svaki dečji kutak. U našoj ponudi možete naći klasične, paketo, plise zavese uz opcione usluge šivenja i postavke.'"
+                                    class="flex flex-col items-center justify-center cursor-pointer p-2 text-base font-medium text-gray-800 dark:text-gray-200 bg-transparent rounded-xl transform hover:scale-105 duration-300">
+                                    <img src="../gallery/zavesedraperije/dk/cover.webp" alt ="DEČIJA KOLEKCIJA" class="object-cover rounded-xl shadow-lg">
+                                    <p class="text-xs md:text-sm lg:text-md">DEČIJA KOLEKCIJA</p>
+                                </button>
+                            </div>
+                        </div>
+                        <div x-show="imgModal && imgGroup == 1" x-transition class="fixed z-50 top-0 left-0 flex items-center justify-center w-screen h-screen">
+                            <div @click.outside="imgModal = false; imgGroup = 0; imgHeader = ''; imgText = ''" class="container w-full h-full min-w-screen min-h-screen px-8 py-4 overflow-y-scroll text-center shadow-md bg-neutral-100 rounded-5 dark:bg-neutral-900">
+                                <div class="flex flex-row items-center justify-between border-b-2 border-b-black dark:border-b-white text-neutral-800 dark:text-neutral-200">
+                                    <div class="flex flex-col items-center justify-start">
+                                        <h2 class="flex pb-2 text-xl md:text-2xl lg:text-3xl font-bold text-black dark:text-white" x-text="imgHeader"></h2>
+                                        <p class="flex pb-2 text-sm md:text-md lg:text-lg font-normal" x-text="imgText"></p>
+                                    </div> 
+                                    <button @click="imgModal = false; imgGroup = 0; imgHeader = ''; imgText = ''" class="block px-4 pb-4 rounded-md" title="Close" type="button">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 50 50" fill="currentColor">
+                                            <path d="M 9.15625 6.3125 L 6.3125 9.15625 L 22.15625 25 L 6.21875 40.96875 L 9.03125 43.78125 L 25 27.84375 L 40.9375 43.78125 L 43.78125 40.9375 L 27.84375 25 L 43.6875 9.15625 L 40.84375 6.3125 L 25 22.15625 Z"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div class="container w-full max-w-screen max-h-screen mx-auto shadow-xl">
+                                    <div 
+                                        x-data="{
+                                            skip: 1,
+                                            atBeginning: false,
+                                            atEnd: false,
+                                            next() {this.to((current, offset) => current + (offset * this.skip))},
+                                            prev() {this.to((current, offset) => current - (offset * this.skip))},
+                                            to(strategy) {
+                                                let slider = this.$refs.slider
+                                                let current = slider.scrollLeft
+                                                let offset = slider.firstElementChild.getBoundingClientRect().width
+                                                slider.scrollTo({ left: strategy(current, offset), behavior: 'smooth' })
+                                            },
+                                            focusableWhenVisible: {
+                                                'x-intersect:enter'() {this.$el.removeAttribute('tabindex')},
+                                                'x-intersect:leave'() {this.$el.setAttribute('tabindex', '-1')},
+                                            },
+                                            disableNextAndPreviousButtons: {
+                                                'x-intersect:enter.threshold.05'() {
+                                                    let slideEls = this.$el.parentElement.children
+                                                    if (slideEls[0] === this.$el) {this.atBeginning = true} 
+                                                    else if (slideEls[slideEls.length-1] === this.$el) {this.atEnd = true}
+                                                },
+                                                'x-intersect:leave.threshold.05'() {
+                                                    let slideEls = this.$el.parentElement.children
+                                                    if (slideEls[0] === this.$el) {this.atBeginning = false} 
+                                                    else if (slideEls[slideEls.length-1] === this.$el) {this.atEnd = false}
+                                                },
+                                            },
+                                        }"
+                                        class="flex w-full flex-col p-2 md:p-4">
+                                        <div x-on:keydown.right="next" x-on:keydown.left="prev" tabindex="0" role="region" aria-labelledby="carousel-label" class="flex flex-row space-x-2 md:space-x-4 lg:space-x-6">
+                                            <h2 id="carousel-label" class="sr-only" hidden>Carousel</h2>
+                                            <!-- Prev Button -->
+                                            <button type="button" x-on:click="prev" class="text-6xl" :aria-disabled="atBeginning" :tabindex="atEnd ? -1 : 0" :class="{ 'opacity-50 cursor-not-allowed': atBeginning }">
+                                                <span aria-hidden="true">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4 md:size-6 lg:size-8 xl:size-10 text-gray-800 dark:text-gray-200">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+                                                    </svg>
+                                                </span>
+                                                <span class="sr-only">Skip to previous slide page</span>
+                                            </button>
+                                            <span id="carousel-content-label" class="sr-only" hidden>Carousel</span>
+                                            <ul x-ref="slider" tabindex="0" role="listbox" aria-labelledby="carousel-content-label" class="flex w-auto max-w-full h-[240px] xs:h-[320px] sm:h-[360px] md:h-[432px] lg:h-[576px] xl:h-[720px] snap-x snap-mandatory overflow-x-scroll">
+                                                <li x-bind="disableNextAndPreviousButtons" class="flex items-center justify-center p-2 snap-start shrink-0" role="option">
+                                                    <div class="container shadow-sm mt-2 w-full bg-transparent">
+                                                        <img class="w-auto h-auto rounded-lg" src="https://vtans-webdesign.in.rs/gallery/zavesedraperije/zj/slide-01.webp" alt="Zavese: Slika 01">
+                                                    </div>
+                                                </li>
+                                                <li x-bind="disableNextAndPreviousButtons" class="flex items-center justify-center p-2 snap-start shrink-0" role="option">
+                                                    <div class="container shadow-sm mt-2 w-full bg-transparent">
+                                                        <img class="w-auto h-auto rounded-lg aspect-h-video" src="../gallery/zavesedraperije/zj/slide-02.webp" alt="Zavese: Slika 02">
+                                                    </div>
+                                                </li>
+                                                <li x-bind="disableNextAndPreviousButtons" class="flex items-center justify-center p-2 snap-start shrink-0" role="option">
+                                                    <div class="container shadow-sm mt-2 w-full bg-transparent">
+                                                        <img class="w-auto h-auto rounded-lg aspect-h-video" src="../gallery/zavesedraperije/zj/slide-03.webp" alt="Zavese: Slika 03">
+                                                    </div>
+                                                </li>
+                                                <li x-bind="disableNextAndPreviousButtons" class="flex items-center justify-center p-2 snap-start shrink-0" role="option">
+                                                    <div class="container shadow-sm mt-2 w-full bg-transparent">
+                                                        <img class="w-auto h-auto rounded-lg aspect-h-video" src="../gallery/zavesedraperije/zj/slide-04.webp" alt="Zavese: Slika 04">
+                                                    </div>
+                                                </li>
+                                                <li x-bind="disableNextAndPreviousButtons" class="flex items-center justify-center p-2 snap-start shrink-0" role="option">
+                                                    <div class="container shadow-sm mt-2 w-full bg-transparent">
+                                                        <img class="w-auto h-auto rounded-lg aspect-h-video" src="../gallery/zavesedraperije/zj/slide-05.webp" alt="Zavese: Slika 05">
+                                                    </div>
+                                                </li>
+                                                <li x-bind="disableNextAndPreviousButtons" class="flex items-center justify-center p-2 snap-start shrink-0" role="option">
+                                                    <div class="container shadow-sm mt-2 w-full bg-transparent">
+                                                        <img class="w-auto h-auto rounded-lg aspect-h-video" src="../gallery/zavesedraperije/zj/slide-06.webp" alt="Zavese: Slika 06">
+                                                    </div>
+                                                </li>
+                                                <li x-bind="disableNextAndPreviousButtons" class="flex items-center justify-center p-2 snap-start shrink-0" role="option">
+                                                    <div class="container shadow-sm mt-2 w-full bg-transparent">
+                                                        <img class="w-auto h-auto rounded-lg aspect-h-video" src="../gallery/zavesedraperije/zj/slide-07.webp" alt="Zavese: Slika 07">
+                                                    </div>
+                                                </li>
+                                                <li x-bind="disableNextAndPreviousButtons" class="flex items-center justify-center p-2 snap-start shrink-0" role="option">
+                                                    <div class="container shadow-sm mt-2 w-full bg-transparent">
+                                                        <img class="w-auto h-auto rounded-lg aspect-h-video" src="../gallery/zavesedraperije/zj/slide-08.webp" alt="Zavese: Slika 08">
+                                                    </div>
+                                                </li>
+                                                <li x-bind="disableNextAndPreviousButtons" class="flex items-center justify-center p-2 snap-start shrink-0" role="option">
+                                                    <div class="container shadow-sm mt-2 w-full bg-transparent">
+                                                        <img class="w-auto h-auto rounded-lg aspect-h-video" src="../gallery/zavesedraperije/zj/slide-09.webp" alt="Zavese: Slika 09">
+                                                    </div>
+                                                </li>
+                                                <li x-bind="disableNextAndPreviousButtons" class="flex items-center justify-center p-2 snap-start shrink-0" role="option">
+                                                    <div class="container shadow-sm mt-2 w-full bg-transparent">
+                                                        <img class="w-auto h-auto rounded-lg aspect-h-video" src="../gallery/zavesedraperije/zj/slide-10.webp" alt="Zavese: Slika 10">
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                            <!-- Next Button -->
+                                            <button type="button" x-on:click="next" class="text-6xl" :aria-disabled="atEnd" :tabindex="atEnd ? -1 : 0" :class="{ 'opacity-50 cursor-not-allowed': atEnd }">
+                                                <span aria-hidden="true">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4 md:size-6 lg:size-8 xl:size-10 text-gray-800 dark:text-gray-200">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                                                    </svg>
+                                                </span>
+                                                <span class="sr-only">Skip to next slide page</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div x-show="imgModal && imgGroup == 2" x-transition class="fixed z-50 top-0 left-0 flex items-center justify-center w-screen h-screen">
+                            <div @click.outside="imgModal = false; imgGroup = 0; imgHeader = ''; imgText = ''" class="container w-full h-full min-h-screen px-8 py-4 overflow-y-scroll text-center shadow-md bg-neutral-100 rounded-5 dark:bg-neutral-900 lg:py-8 lg:px-20 lg:overflow-y-auto">
+                                <div class="flex flex-row items-center justify-between border-b-2 border-b-black dark:border-b-white text-neutral-800 dark:text-neutral-200">
+                                    <div class="flex flex-col items-center justify-start">
+                                        <h2 class="flex pb-2 text-xl md:text-2xl lg:text-3xl font-bold text-black dark:text-white" x-text="imgHeader"></h2>
+                                        <p class="flex pb-2 text-sm md:text-md lg:text-lg font-normal" x-text="imgText"></p>
+                                    </div> 
+                                    <button @click="imgModal = false; imgGroup = 0; imgHeader = ''; imgText = ''" class="block px-4 pb-4 rounded-md" title="Close" type="button">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 50 50" fill="currentColor">
+                                            <path d="M 9.15625 6.3125 L 6.3125 9.15625 L 22.15625 25 L 6.21875 40.96875 L 9.03125 43.78125 L 25 27.84375 L 40.9375 43.78125 L 43.78125 40.9375 L 27.84375 25 L 43.6875 9.15625 L 40.84375 6.3125 L 25 22.15625 Z"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div class="container max-w-full max-h-screen mx-auto shadow-xl">
+                                    <div 
+                                        x-data="{
+                                            skip: 1,
+                                            atBeginning: false,
+                                            atEnd: false,
+                                            next() {this.to((current, offset) => current + (offset * this.skip))},
+                                            prev() {this.to((current, offset) => current - (offset * this.skip))},
+                                            to(strategy) {
+                                                let slider = this.$refs.slider
+                                                let current = slider.scrollLeft
+                                                let offset = slider.firstElementChild.getBoundingClientRect().width
+                                                slider.scrollTo({ left: strategy(current, offset), behavior: 'smooth' })
+                                            },
+                                            focusableWhenVisible: {
+                                                'x-intersect:enter'() {this.$el.removeAttribute('tabindex')},
+                                                'x-intersect:leave'() {this.$el.setAttribute('tabindex', '-1')},
+                                            },
+                                            disableNextAndPreviousButtons: {
+                                                'x-intersect:enter.threshold.05'() {
+                                                    let slideEls = this.$el.parentElement.children
+                                                    if (slideEls[0] === this.$el) {this.atBeginning = true} 
+                                                    else if (slideEls[slideEls.length-1] === this.$el) {this.atEnd = true}
+                                                },
+                                                'x-intersect:leave.threshold.05'() {
+                                                    let slideEls = this.$el.parentElement.children
+                                                    if (slideEls[0] === this.$el) {this.atBeginning = false} 
+                                                    else if (slideEls[slideEls.length-1] === this.$el) {this.atEnd = false}
+                                                },
+                                            },
+                                        }"
+                                        class="flex w-full flex-col p-2 md:p-4">
+                                        <div x-on:keydown.right="next" x-on:keydown.left="prev" tabindex="0" role="region" aria-labelledby="carousel-label" class="flex flex-row space-x-2 md:space-x-4 lg:space-x-6 xl:space-x-8">
+                                            <h2 id="carousel-label" class="sr-only" hidden>Carousel</h2>
+                                            <!-- Prev Button -->
+                                            <button type="button" x-on:click="prev" class="text-6xl" :aria-disabled="atBeginning" :tabindex="atEnd ? -1 : 0" :class="{ 'opacity-50 cursor-not-allowed': atBeginning }">
+                                                <span aria-hidden="true">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 md:size-8 lg:size-10 xl:size-12 text-gray-800 dark:text-gray-200">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+                                                    </svg>
+                                                </span>
+                                                <span class="sr-only">Skip to previous slide page</span>
+                                            </button>
+                                            <span id="carousel-content-label" class="sr-only" hidden>Carousel</span>
+                                            <ul x-ref="slider" tabindex="0" role="listbox" aria-labelledby="carousel-content-label" class="flex w-auto h-[240px] xs:h-[320px] sm:h-[360px] md:h-[432px] lg:h-[576px] xl:h-[720px] snap-x snap-mandatory overflow-x-scroll">
+                                                <li x-bind="disableNextAndPreviousButtons" class="flex items-center justify-center p-2 snap-start shrink-0" role="option">
+                                                    <div class="container shadow-sm mt-2 w-full bg-transparent">
+                                                        <img class="w-auto h-auto rounded-lg aspect-h-video" src="../gallery/zavesedraperije/dj/slide-01.webp" alt="Draperije: Slika 01">
+                                                    </div>
+                                                </li>
+                                                <li x-bind="disableNextAndPreviousButtons" class="flex items-center justify-center p-2 snap-start shrink-0" role="option">
+                                                    <div class="container shadow-sm mt-2 w-full bg-transparent">
+                                                        <img class="w-auto h-auto rounded-lg aspect-h-video" src="../gallery/zavesedraperije/dj/slide-02.webp" alt="Draperije: Slika 02">
+                                                    </div>
+                                                </li>
+                                                <li x-bind="disableNextAndPreviousButtons" class="flex items-center justify-center p-2 snap-start shrink-0" role="option">
+                                                    <div class="container shadow-sm mt-2 w-full bg-transparent">
+                                                        <img class="w-auto h-auto rounded-lg aspect-h-video" src="../gallery/zavesedraperije/dj/slide-03.webp" alt="Draperije: Slika 03">
+                                                    </div>
+                                                </li>
+                                                <li x-bind="disableNextAndPreviousButtons" class="flex items-center justify-center p-2 snap-start shrink-0" role="option">
+                                                    <div class="container shadow-sm mt-2 w-full bg-transparent">
+                                                        <img class="w-auto h-auto rounded-lg aspect-h-video" src="../gallery/zavesedraperije/dj/slide-04.webp" alt="Draperije: Slika 04">
+                                                    </div>
+                                                </li>
+                                                <li x-bind="disableNextAndPreviousButtons" class="flex items-center justify-center p-2 snap-start shrink-0" role="option">
+                                                    <div class="container shadow-sm mt-2 w-full bg-transparent">
+                                                        <img class="w-auto h-auto rounded-lg aspect-h-video" src="../gallery/zavesedraperije/dj/slide-05.webp" alt="Draperije: Slika 05">
+                                                    </div>
+                                                </li>
+                                                <li x-bind="disableNextAndPreviousButtons" class="flex items-center justify-center p-2 snap-start shrink-0" role="option">
+                                                    <div class="container shadow-sm mt-2 w-full bg-transparent">
+                                                        <img class="w-auto h-auto rounded-lg aspect-h-video" src="../gallery/zavesedraperije/dj/slide-06.webp" alt="Draperije: Slika 06">
+                                                    </div>
+                                                </li>
+                                                <li x-bind="disableNextAndPreviousButtons" class="flex items-center justify-center p-2 snap-start shrink-0" role="option">
+                                                    <div class="container shadow-sm mt-2 w-full bg-transparent">
+                                                        <img class="w-auto h-auto rounded-lg aspect-h-video" src="../gallery/zavesedraperije/dj/slide-07.webp" alt="Draperije: Slika 07">
+                                                    </div>
+                                                </li>
+                                                <li x-bind="disableNextAndPreviousButtons" class="flex items-center justify-center p-2 snap-start shrink-0" role="option">
+                                                    <div class="container shadow-sm mt-2 w-full bg-transparent">
+                                                        <img class="w-auto h-auto rounded-lg aspect-h-video" src="../gallery/zavesedraperije/dj/slide-08.webp" alt="Draperije: Slika 08">
+                                                    </div>
+                                                </li>
+                                                <li x-bind="disableNextAndPreviousButtons" class="flex items-center justify-center p-2 snap-start shrink-0" role="option">
+                                                    <div class="container shadow-sm mt-2 w-full bg-transparent">
+                                                        <img class="w-auto h-auto rounded-lg aspect-h-video" src="../gallery/zavesedraperije/dj/slide-09.webp" alt="Draperije: Slika 09">
+                                                    </div>
+                                                </li>
+                                                <li x-bind="disableNextAndPreviousButtons" class="flex items-center justify-center p-2 snap-start shrink-0" role="option">
+                                                    <div class="container shadow-sm mt-2 w-full bg-transparent">
+                                                        <img class="w-auto h-auto rounded-lg aspect-h-video" src="../gallery/zavesedraperije/dj/slide-10.webp" alt="Draperije: Slika 10">
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                            <!-- Next Button -->
+                                            <button type="button" x-on:click="next" class="text-6xl" :aria-disabled="atEnd" :tabindex="atEnd ? -1 : 0" :class="{ 'opacity-50 cursor-not-allowed': atEnd }">
+                                                <span aria-hidden="true">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 md:size-8 lg:size-10 xl:size-12 text-gray-800 dark:text-gray-200">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                                                    </svg>
+                                                </span>
+                                                <span class="sr-only">Skip to next slide page</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div x-show="imgModal && imgGroup == 3" x-transition class="fixed z-50 top-0 left-0 flex items-center justify-center w-screen h-screen">
+                            <div @click.outside="imgModal = false; imgGroup = 0; imgHeader = ''; imgText = ''" class="container w-full h-full min-h-screen px-8 py-4 overflow-y-scroll text-center shadow-md bg-neutral-100 rounded-5 dark:bg-neutral-900 lg:py-8 lg:px-20 lg:overflow-y-auto">
+                                <div class="flex flex-row items-center justify-between border-b-2 border-b-black dark:border-b-white text-neutral-800 dark:text-neutral-200">
+                                    <div class="flex flex-col items-center justify-start">
+                                        <h2 class="flex pb-2 text-xl md:text-2xl lg:text-3xl font-bold text-black dark:text-white" x-text="imgHeader"></h2>
+                                        <p class="flex pb-2 text-sm md:text-md lg:text-lg font-normal" x-text="imgText"></p>
+                                    </div> 
+                                    <button @click="imgModal = false; imgGroup = 0; imgHeader = ''; imgText = ''" class="block px-4 pb-4 rounded-md" title="Close" type="button">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 50 50" fill="currentColor">
+                                            <path d="M 9.15625 6.3125 L 6.3125 9.15625 L 22.15625 25 L 6.21875 40.96875 L 9.03125 43.78125 L 25 27.84375 L 40.9375 43.78125 L 43.78125 40.9375 L 27.84375 25 L 43.6875 9.15625 L 40.84375 6.3125 L 25 22.15625 Z"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div class="container max-w-full max-h-screen mx-auto shadow-xl">
+                                    <div 
+                                        x-data="{
+                                            skip: 1,
+                                            atBeginning: false,
+                                            atEnd: false,
+                                            next() {this.to((current, offset) => current + (offset * this.skip))},
+                                            prev() {this.to((current, offset) => current - (offset * this.skip))},
+                                            to(strategy) {
+                                                let slider = this.$refs.slider
+                                                let current = slider.scrollLeft
+                                                let offset = slider.firstElementChild.getBoundingClientRect().width
+                                                slider.scrollTo({ left: strategy(current, offset), behavior: 'smooth' })
+                                            },
+                                            focusableWhenVisible: {
+                                                'x-intersect:enter'() {this.$el.removeAttribute('tabindex')},
+                                                'x-intersect:leave'() {this.$el.setAttribute('tabindex', '-1')},
+                                            },
+                                            disableNextAndPreviousButtons: {
+                                                'x-intersect:enter.threshold.05'() {
+                                                    let slideEls = this.$el.parentElement.children
+                                                    if (slideEls[0] === this.$el) {this.atBeginning = true} 
+                                                    else if (slideEls[slideEls.length-1] === this.$el) {this.atEnd = true}
+                                                },
+                                                'x-intersect:leave.threshold.05'() {
+                                                    let slideEls = this.$el.parentElement.children
+                                                    if (slideEls[0] === this.$el) {this.atBeginning = false} 
+                                                    else if (slideEls[slideEls.length-1] === this.$el) {this.atEnd = false}
+                                                },
+                                            },
+                                        }"
+                                        class="flex w-full flex-col p-2 md:p-4">
+                                        <div x-on:keydown.right="next" x-on:keydown.left="prev" tabindex="0" role="region" aria-labelledby="carousel-label" class="flex flex-row space-x-2 md:space-x-4 lg:space-x-6">
+                                            <h2 id="carousel-label" class="sr-only" hidden>Carousel</h2>
+                                            <!-- Prev Button -->
+                                            <button type="button" x-on:click="prev" class="text-6xl" :aria-disabled="atBeginning" :tabindex="atEnd ? -1 : 0" :class="{ 'opacity-50 cursor-not-allowed': atBeginning }">
+                                                <span aria-hidden="true">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 md:size-8 lg:size-10 xl:size-12 text-gray-800 dark:text-gray-200">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+                                                    </svg>
+                                                </span>
+                                                <span class="sr-only">Skip to previous slide page</span>
+                                            </button>
+                                            <span id="carousel-content-label" class="sr-only" hidden>Carousel</span>
+                                            <ul x-ref="slider" tabindex="0" role="listbox" aria-labelledby="carousel-content-label" class="flex w-auto h-[240px] xs:h-[320px] sm:h-[360px] md:h-[432px] lg:h-[576px] xl:h-[720px] snap-x snap-mandatory overflow-x-scroll">
+                                                <li x-bind="disableNextAndPreviousButtons" class="flex items-center justify-center p-2 snap-start shrink-0" role="option">
+                                                    <div class="container shadow-sm mt-2 w-full bg-transparent">
+                                                        <img class="w-fit h-fit rounded-lg aspect-h-video" src="../gallery/zavesedraperije/dk/slide-01.webp" alt="Dečija kolekcija: Slika 01">
+                                                    </div>
+                                                </li>
+                                                <li x-bind="disableNextAndPreviousButtons" class="flex items-center justify-center p-2 snap-start shrink-0" role="option">
+                                                    <div class="container shadow-sm mt-2 w-full bg-transparent">
+                                                        <img class="w-fit h-fit rounded-lg aspect-h-video" src="../gallery/zavesedraperije/dk/slide-02.webp" alt="Dečija kolekcija: Slika 02">
+                                                    </div>
+                                                </li>
+                                                <li x-bind="disableNextAndPreviousButtons" class="flex items-center justify-center p-2 snap-start shrink-0" role="option">
+                                                    <div class="container shadow-sm mt-2 w-full bg-transparent">
+                                                        <img class="w-auto h-auto rounded-lg aspect-h-video" src="../gallery/zavesedraperije/dk/slide-03.webp" alt="Dečija kolekcija: Slika 03">
+                                                    </div>
+                                                </li>
+                                                <li x-bind="disableNextAndPreviousButtons" class="flex items-center justify-center p-2 snap-start shrink-0" role="option">
+                                                    <div class="container shadow-sm mt-2 w-full bg-transparent">
+                                                        <img class="w-auto h-auto rounded-lg aspect-h-video" src="../gallery/zavesedraperije/dk/slide-04.webp" alt="Dečija kolekcija: Slika 04">
+                                                    </div>
+                                                </li>
+                                                <li x-bind="disableNextAndPreviousButtons" class="flex items-center justify-center p-2 snap-start shrink-0" role="option">
+                                                    <div class="container shadow-sm mt-2 w-full bg-transparent">
+                                                        <img class="w-auto h-auto rounded-lg aspect-h-video" src="../gallery/zavesedraperije/dk/slide-05.webp" alt="Dečija kolekcija: Slika 05">
+                                                    </div>
+                                                </li>
+                                                <li x-bind="disableNextAndPreviousButtons" class="flex items-center justify-center p-2 snap-start shrink-0" role="option">
+                                                    <div class="container shadow-sm mt-2 w-full bg-transparent">
+                                                        <img class="w-auto h-auto rounded-lg aspect-h-video" src="../gallery/zavesedraperije/dk/slide-06.webp" alt="Dečija kolekcija: Slika 06">
+                                                    </div>
+                                                </li>
+                                                <li x-bind="disableNextAndPreviousButtons" class="flex items-center justify-center p-2 snap-start shrink-0" role="option">
+                                                    <div class="container shadow-sm mt-2 w-full bg-transparent">
+                                                        <img class="w-auto h-auto rounded-lg aspect-h-video" src="../gallery/zavesedraperije/dk/slide-07.webp" alt="Dečija kolekcija: Slika 07">
+                                                    </div>
+                                                </li>
+                                                <li x-bind="disableNextAndPreviousButtons" class="flex items-center justify-center p-2 snap-start shrink-0" role="option">
+                                                    <div class="container shadow-sm mt-2 w-full bg-transparent">
+                                                        <img class="w-auto h-auto rounded-lg aspect-h-video" src="../gallery/zavesedraperije/dk/slide-08.webp" alt="Dečija kolekcija: Slika 08">
+                                                    </div>
+                                                </li>
+                                                <li x-bind="disableNextAndPreviousButtons" class="flex items-center justify-center p-2 snap-start shrink-0" role="option">
+                                                    <div class="container shadow-sm mt-2 w-full bg-transparent">
+                                                        <img class="w-auto h-auto rounded-lg aspect-h-video" src="../gallery/zavesedraperije/dk/slide-09.webp" alt="Dečija kolekcija: Slika 09">
+                                                    </div>
+                                                </li>
+                                                <li x-bind="disableNextAndPreviousButtons" class="flex items-center justify-center p-2 snap-start shrink-0" role="option">
+                                                    <div class="container shadow-sm mt-2 w-full bg-transparent">
+                                                        <img class="w-auto h-auto rounded-lg aspect-h-video" src="../gallery/zavesedraperije/dk/slide-10.webp" alt="Dečija kolekcija: Slika 10">
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                            <!-- Next Button -->
+                                            <button type="button" x-on:click="next" class="text-6xl" :aria-disabled="atEnd" :tabindex="atEnd ? -1 : 0" :class="{ 'opacity-50 cursor-not-allowed': atEnd }">
+                                                <span aria-hidden="true">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4 md:size-6 lg:size-8 xl:size-10 text-gray-800 dark:text-gray-200">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                                                    </svg>
+                                                </span>
+                                                <span class="sr-only">Skip to next slide page</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- ROLO, SCREEN I ZEBRA ZAVESE I SISTEMI -->
+                        <div class="container py-4 w-full mx-auto">
+                            <h3 class="bg-transparent shadow-black drop-shadow-xl font-normal uppercase text-center first-letter:text-lg md:first-letter:text-xl lg:first-letter:text-2xl text-md md:text-lg lg:text-xl transform hover:scale-105 duration-300">Rolo, screen i zebra zavese i sistemi</h3>
+                            <h4 class="bg-transparent shadow-black drop-shadow-xl p-4 font-light text-center first-letter:text-lg md:first-letter:text-xl lg:first-letter:text-2xl text-md md:text-lg lg:text-xl">UNUTRAŠNJA I SPOLJNA ZAŠTITA OD SUNCA – Nudi maksimalnu zaštitu od sunca, blokirajući UV i IC zračenje. Sama montaža ROLO SCREEN SISTEMA vrši se na spoljnoj ili unutrašnjoj strani prozora, i podrazumeva njihovu kontrolu daljinskim putem, uz opcionu kompatibilnost sa sistemima pametnih kuća.<br>
+                                Nudimo veliki izbor boja, tekstura i dezena u zavisnosti od zahteva kupaca. Posebno napominjemo i grupu akustičnih rolo zavesa, koje osim zaštite od sunca pružaju i delimičnu zvučnu izolaciju prostora.</h4>
+                            <div class="flex flex-row items-center justify-between">
+                                <button type="button" @click="imgModal = true; imgGroup = 11; imgHeader = 'ZAVESE'; imgText = 'Zavese su prilagođene prostoru u smislu podizanja njegove funkcionalnosti (odnos svetla i tame), ali svakako moraju zadovoljiti i estetsku dimenziju. Bez zavesa enterijeri mogu delovati hladno i odbojno, pa su zbog toga nezamenljivi deo svakog prostora gde želimo da se ljudi prijatno osećaju. Pri izboru zavesa i materijala možete kontaktirati naš tim dizajnera, koji će vam pomoći da donesete ispravnu odluku. Budući da pružamo kompletnu uslugu, krojenje i šivenje tekstila možete prepustiti nama...'"
+                                    class="flex flex-col items-center justify-center cursor-pointer p-2 text-base font-medium text-gray-800 dark:text-gray-200 bg-transparent rounded-xl transform hover:scale-105 duration-300">
+                                    <img src="../gallery/zavesedraperije/zj/cover.webp" alt ="ZAVESE" class="object-cover rounded-xl shadow-lg">
+                                    <p class="text-xs md:text-sm lg:text-md">ZAVESE</p>
+                                </button>
+                                <button type="button" @click="imgModal = true; imgGroup = 12; imgHeader = 'DRAPERIJE'; imgText = 'Draperije su prilagođene prostoru u smislu podizanja njegove funkcionalnosti (odnos svetla i tame), ali svakako moraju zadovoljiti i estetsku dimenziju. Bez draperija enterijeri mogu delovati hladno i odbojno, pa su zbog toga nezamenljivi deo svakog prostora gde želimo da se ljudi prijatno osećaju. Pri izboru draperija i materijala možete kontaktirati naš tim dizajnera, koji će vam pomoći da donesete ispravnu odluku. Budući da pružamo kompletnu uslugu, krojenje i šivenje tekstila možete prepustiti nama.'"
+                                    class="flex flex-col items-center justify-center cursor-pointer p-2 text-base font-medium text-gray-800 dark:text-gray-200 bg-transparent rounded-xl transform hover:scale-105 duration-300">
+                                    <img src="../gallery/zavesedraperije/dj/cover.webp" alt ="DRAPERIJE" class="object-cover rounded-xl shadow-lg">
+                                    <p class="text-xs md:text-sm lg:text-md">DRAPERIJE</p>
+                                </button>
+                                <button type="button" @click="imgModal = true; imgGroup = 13; imgHeader = 'DEČIJA KOLEKCIJA'; imgText = 'Prenesite bajkoviti svet iz mašte vaših mališana na prozore njihove sobe. Mnoštvo boja, likova i oblika uneće radost i vedrinu u svaki dečji kutak. U našoj ponudi možete naći klasične, paketo, plise zavese uz opcione usluge šivenja i postavke.'"
+                                    class="flex flex-col items-center justify-center cursor-pointer p-2 text-base font-medium text-gray-800 dark:text-gray-200 bg-transparent rounded-xl transform hover:scale-105 duration-300">
+                                    <img src="../gallery/zavesedraperije/dk/cover.webp" alt ="DEČIJA KOLEKCIJA" class="object-cover rounded-xl shadow-lg">
+                                    <p class="text-xs md:text-sm lg:text-md">DEČIJA KOLEKCIJA</p>
+                                </button>
+                            </div>
+                        </div>
+                        <div x-show="imgModal && imgGroup == 11" x-transition class="fixed z-50 top-0 left-0 flex items-center justify-center w-screen h-screen">
+                            <div @click.outside="imgModal = false; imgGroup = 0; imgHeader = ''; imgText = ''" class="container w-full h-full min-w-screen min-h-screen px-8 py-4 overflow-y-scroll text-center shadow-md bg-neutral-100 rounded-5 dark:bg-neutral-900">
+                                <div class="flex flex-row items-center justify-between border-b-2 border-b-black dark:border-b-white text-neutral-800 dark:text-neutral-200">
+                                    <div class="flex flex-col items-center justify-start">
+                                        <h2 class="flex pb-2 text-xl md:text-2xl lg:text-3xl font-bold text-black dark:text-white" x-text="imgHeader"></h2>
+                                        <p class="flex pb-2 text-sm md:text-md lg:text-lg font-normal" x-text="imgText"></p>
+                                    </div> 
+                                    <button @click="imgModal = false; imgGroup = 0; imgHeader = ''; imgText = ''" class="block px-4 pb-4 rounded-md" title="Close" type="button">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 50 50" fill="currentColor">
+                                            <path d="M 9.15625 6.3125 L 6.3125 9.15625 L 22.15625 25 L 6.21875 40.96875 L 9.03125 43.78125 L 25 27.84375 L 40.9375 43.78125 L 43.78125 40.9375 L 27.84375 25 L 43.6875 9.15625 L 40.84375 6.3125 L 25 22.15625 Z"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div class="container w-full max-w-screen max-h-screen mx-auto shadow-xl">
+                                    <div 
+                                        x-data="{
+                                            skip: 1,
+                                            atBeginning: false,
+                                            atEnd: false,
+                                            next() {this.to((current, offset) => current + (offset * this.skip))},
+                                            prev() {this.to((current, offset) => current - (offset * this.skip))},
+                                            to(strategy) {
+                                                let slider = this.$refs.slider
+                                                let current = slider.scrollLeft
+                                                let offset = slider.firstElementChild.getBoundingClientRect().width
+                                                slider.scrollTo({ left: strategy(current, offset), behavior: 'smooth' })
+                                            },
+                                            focusableWhenVisible: {
+                                                'x-intersect:enter'() {this.$el.removeAttribute('tabindex')},
+                                                'x-intersect:leave'() {this.$el.setAttribute('tabindex', '-1')},
+                                            },
+                                            disableNextAndPreviousButtons: {
+                                                'x-intersect:enter.threshold.05'() {
+                                                    let slideEls = this.$el.parentElement.children
+                                                    if (slideEls[0] === this.$el) {this.atBeginning = true} 
+                                                    else if (slideEls[slideEls.length-1] === this.$el) {this.atEnd = true}
+                                                },
+                                                'x-intersect:leave.threshold.05'() {
+                                                    let slideEls = this.$el.parentElement.children
+                                                    if (slideEls[0] === this.$el) {this.atBeginning = false} 
+                                                    else if (slideEls[slideEls.length-1] === this.$el) {this.atEnd = false}
+                                                },
+                                            },
+                                        }"
+                                        class="flex w-full flex-col p-2 md:p-4">
+                                        <div x-on:keydown.right="next" x-on:keydown.left="prev" tabindex="0" role="region" aria-labelledby="carousel-label" class="flex flex-row space-x-2 md:space-x-4 lg:space-x-6">
+                                            <h2 id="carousel-label" class="sr-only" hidden>Carousel</h2>
+                                            <!-- Prev Button -->
+                                            <button type="button" x-on:click="prev" class="text-6xl" :aria-disabled="atBeginning" :tabindex="atEnd ? -1 : 0" :class="{ 'opacity-50 cursor-not-allowed': atBeginning }">
+                                                <span aria-hidden="true">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4 md:size-6 lg:size-8 xl:size-10 text-gray-800 dark:text-gray-200">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+                                                    </svg>
+                                                </span>
+                                                <span class="sr-only">Skip to previous slide page</span>
+                                            </button>
+                                            <span id="carousel-content-label" class="sr-only" hidden>Carousel</span>
+                                            <ul x-ref="slider" tabindex="0" role="listbox" aria-labelledby="carousel-content-label" class="flex w-auto max-w-full h-[240px] xs:h-[320px] sm:h-[360px] md:h-[432px] lg:h-[576px] xl:h-[720px] snap-x snap-mandatory overflow-x-scroll">
+                                                <li x-bind="disableNextAndPreviousButtons" class="flex items-center justify-center p-2 snap-start shrink-0" role="option">
+                                                    <div class="container shadow-sm mt-2 w-full bg-transparent">
+                                                        <img class="w-auto h-auto rounded-lg" src="https://vtans-webdesign.in.rs/gallery/zavesedraperije/zj/slide-01.webp" alt="Zavese: Slika 01">
+                                                    </div>
+                                                </li>
+                                                <li x-bind="disableNextAndPreviousButtons" class="flex items-center justify-center p-2 snap-start shrink-0" role="option">
+                                                    <div class="container shadow-sm mt-2 w-full bg-transparent">
+                                                        <img class="w-auto h-auto rounded-lg aspect-h-video" src="../gallery/zavesedraperije/zj/slide-02.webp" alt="Zavese: Slika 02">
+                                                    </div>
+                                                </li>
+                                                <li x-bind="disableNextAndPreviousButtons" class="flex items-center justify-center p-2 snap-start shrink-0" role="option">
+                                                    <div class="container shadow-sm mt-2 w-full bg-transparent">
+                                                        <img class="w-auto h-auto rounded-lg aspect-h-video" src="../gallery/zavesedraperije/zj/slide-03.webp" alt="Zavese: Slika 03">
+                                                    </div>
+                                                </li>
+                                                <li x-bind="disableNextAndPreviousButtons" class="flex items-center justify-center p-2 snap-start shrink-0" role="option">
+                                                    <div class="container shadow-sm mt-2 w-full bg-transparent">
+                                                        <img class="w-auto h-auto rounded-lg aspect-h-video" src="../gallery/zavesedraperije/zj/slide-04.webp" alt="Zavese: Slika 04">
+                                                    </div>
+                                                </li>
+                                                <li x-bind="disableNextAndPreviousButtons" class="flex items-center justify-center p-2 snap-start shrink-0" role="option">
+                                                    <div class="container shadow-sm mt-2 w-full bg-transparent">
+                                                        <img class="w-auto h-auto rounded-lg aspect-h-video" src="../gallery/zavesedraperije/zj/slide-05.webp" alt="Zavese: Slika 05">
+                                                    </div>
+                                                </li>
+                                                <li x-bind="disableNextAndPreviousButtons" class="flex items-center justify-center p-2 snap-start shrink-0" role="option">
+                                                    <div class="container shadow-sm mt-2 w-full bg-transparent">
+                                                        <img class="w-auto h-auto rounded-lg aspect-h-video" src="../gallery/zavesedraperije/zj/slide-06.webp" alt="Zavese: Slika 06">
+                                                    </div>
+                                                </li>
+                                                <li x-bind="disableNextAndPreviousButtons" class="flex items-center justify-center p-2 snap-start shrink-0" role="option">
+                                                    <div class="container shadow-sm mt-2 w-full bg-transparent">
+                                                        <img class="w-auto h-auto rounded-lg aspect-h-video" src="../gallery/zavesedraperije/zj/slide-07.webp" alt="Zavese: Slika 07">
+                                                    </div>
+                                                </li>
+                                                <li x-bind="disableNextAndPreviousButtons" class="flex items-center justify-center p-2 snap-start shrink-0" role="option">
+                                                    <div class="container shadow-sm mt-2 w-full bg-transparent">
+                                                        <img class="w-auto h-auto rounded-lg aspect-h-video" src="../gallery/zavesedraperije/zj/slide-08.webp" alt="Zavese: Slika 08">
+                                                    </div>
+                                                </li>
+                                                <li x-bind="disableNextAndPreviousButtons" class="flex items-center justify-center p-2 snap-start shrink-0" role="option">
+                                                    <div class="container shadow-sm mt-2 w-full bg-transparent">
+                                                        <img class="w-auto h-auto rounded-lg aspect-h-video" src="../gallery/zavesedraperije/zj/slide-09.webp" alt="Zavese: Slika 09">
+                                                    </div>
+                                                </li>
+                                                <li x-bind="disableNextAndPreviousButtons" class="flex items-center justify-center p-2 snap-start shrink-0" role="option">
+                                                    <div class="container shadow-sm mt-2 w-full bg-transparent">
+                                                        <img class="w-auto h-auto rounded-lg aspect-h-video" src="../gallery/zavesedraperije/zj/slide-10.webp" alt="Zavese: Slika 10">
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                            <!-- Next Button -->
+                                            <button type="button" x-on:click="next" class="text-6xl" :aria-disabled="atEnd" :tabindex="atEnd ? -1 : 0" :class="{ 'opacity-50 cursor-not-allowed': atEnd }">
+                                                <span aria-hidden="true">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4 md:size-6 lg:size-8 xl:size-10 text-gray-800 dark:text-gray-200">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                                                    </svg>
+                                                </span>
+                                                <span class="sr-only">Skip to next slide page</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div x-show="imgModal && imgGroup == 12" x-transition class="fixed z-50 top-0 left-0 flex items-center justify-center w-screen h-screen">
+                            <div @click.outside="imgModal = false; imgGroup = 0; imgHeader = ''; imgText = ''" class="container w-full h-full min-h-screen px-8 py-4 overflow-y-scroll text-center shadow-md bg-neutral-100 rounded-5 dark:bg-neutral-900 lg:py-8 lg:px-20 lg:overflow-y-auto">
+                                <div class="flex flex-row items-center justify-between border-b-2 border-b-black dark:border-b-white text-neutral-800 dark:text-neutral-200">
+                                    <div class="flex flex-col items-center justify-start">
+                                        <h2 class="flex pb-2 text-xl md:text-2xl lg:text-3xl font-bold text-black dark:text-white" x-text="imgHeader"></h2>
+                                        <p class="flex pb-2 text-sm md:text-md lg:text-lg font-normal" x-text="imgText"></p>
+                                    </div> 
+                                    <button @click="imgModal = false; imgGroup = 0; imgHeader = ''; imgText = ''" class="block px-4 pb-4 rounded-md" title="Close" type="button">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 50 50" fill="currentColor">
+                                            <path d="M 9.15625 6.3125 L 6.3125 9.15625 L 22.15625 25 L 6.21875 40.96875 L 9.03125 43.78125 L 25 27.84375 L 40.9375 43.78125 L 43.78125 40.9375 L 27.84375 25 L 43.6875 9.15625 L 40.84375 6.3125 L 25 22.15625 Z"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div class="container max-w-full max-h-screen mx-auto shadow-xl">
+                                    <div 
+                                        x-data="{
+                                            skip: 1,
+                                            atBeginning: false,
+                                            atEnd: false,
+                                            next() {this.to((current, offset) => current + (offset * this.skip))},
+                                            prev() {this.to((current, offset) => current - (offset * this.skip))},
+                                            to(strategy) {
+                                                let slider = this.$refs.slider
+                                                let current = slider.scrollLeft
+                                                let offset = slider.firstElementChild.getBoundingClientRect().width
+                                                slider.scrollTo({ left: strategy(current, offset), behavior: 'smooth' })
+                                            },
+                                            focusableWhenVisible: {
+                                                'x-intersect:enter'() {this.$el.removeAttribute('tabindex')},
+                                                'x-intersect:leave'() {this.$el.setAttribute('tabindex', '-1')},
+                                            },
+                                            disableNextAndPreviousButtons: {
+                                                'x-intersect:enter.threshold.05'() {
+                                                    let slideEls = this.$el.parentElement.children
+                                                    if (slideEls[0] === this.$el) {this.atBeginning = true} 
+                                                    else if (slideEls[slideEls.length-1] === this.$el) {this.atEnd = true}
+                                                },
+                                                'x-intersect:leave.threshold.05'() {
+                                                    let slideEls = this.$el.parentElement.children
+                                                    if (slideEls[0] === this.$el) {this.atBeginning = false} 
+                                                    else if (slideEls[slideEls.length-1] === this.$el) {this.atEnd = false}
+                                                },
+                                            },
+                                        }"
+                                        class="flex w-full flex-col p-2 md:p-4">
+                                        <div x-on:keydown.right="next" x-on:keydown.left="prev" tabindex="0" role="region" aria-labelledby="carousel-label" class="flex flex-row space-x-2 md:space-x-4 lg:space-x-6 xl:space-x-8">
+                                            <h2 id="carousel-label" class="sr-only" hidden>Carousel</h2>
+                                            <!-- Prev Button -->
+                                            <button type="button" x-on:click="prev" class="text-6xl" :aria-disabled="atBeginning" :tabindex="atEnd ? -1 : 0" :class="{ 'opacity-50 cursor-not-allowed': atBeginning }">
+                                                <span aria-hidden="true">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 md:size-8 lg:size-10 xl:size-12 text-gray-800 dark:text-gray-200">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+                                                    </svg>
+                                                </span>
+                                                <span class="sr-only">Skip to previous slide page</span>
+                                            </button>
+                                            <span id="carousel-content-label" class="sr-only" hidden>Carousel</span>
+                                            <ul x-ref="slider" tabindex="0" role="listbox" aria-labelledby="carousel-content-label" class="flex w-auto h-[240px] xs:h-[320px] sm:h-[360px] md:h-[432px] lg:h-[576px] xl:h-[720px] snap-x snap-mandatory overflow-x-scroll">
+                                                <li x-bind="disableNextAndPreviousButtons" class="flex items-center justify-center p-2 snap-start shrink-0" role="option">
+                                                    <div class="container shadow-sm mt-2 w-full bg-transparent">
+                                                        <img class="w-auto h-auto rounded-lg aspect-h-video" src="../gallery/zavesedraperije/dj/slide-01.webp" alt="Draperije: Slika 01">
+                                                    </div>
+                                                </li>
+                                                <li x-bind="disableNextAndPreviousButtons" class="flex items-center justify-center p-2 snap-start shrink-0" role="option">
+                                                    <div class="container shadow-sm mt-2 w-full bg-transparent">
+                                                        <img class="w-auto h-auto rounded-lg aspect-h-video" src="../gallery/zavesedraperije/dj/slide-02.webp" alt="Draperije: Slika 02">
+                                                    </div>
+                                                </li>
+                                                <li x-bind="disableNextAndPreviousButtons" class="flex items-center justify-center p-2 snap-start shrink-0" role="option">
+                                                    <div class="container shadow-sm mt-2 w-full bg-transparent">
+                                                        <img class="w-auto h-auto rounded-lg aspect-h-video" src="../gallery/zavesedraperije/dj/slide-03.webp" alt="Draperije: Slika 03">
+                                                    </div>
+                                                </li>
+                                                <li x-bind="disableNextAndPreviousButtons" class="flex items-center justify-center p-2 snap-start shrink-0" role="option">
+                                                    <div class="container shadow-sm mt-2 w-full bg-transparent">
+                                                        <img class="w-auto h-auto rounded-lg aspect-h-video" src="../gallery/zavesedraperije/dj/slide-04.webp" alt="Draperije: Slika 04">
+                                                    </div>
+                                                </li>
+                                                <li x-bind="disableNextAndPreviousButtons" class="flex items-center justify-center p-2 snap-start shrink-0" role="option">
+                                                    <div class="container shadow-sm mt-2 w-full bg-transparent">
+                                                        <img class="w-auto h-auto rounded-lg aspect-h-video" src="../gallery/zavesedraperije/dj/slide-05.webp" alt="Draperije: Slika 05">
+                                                    </div>
+                                                </li>
+                                                <li x-bind="disableNextAndPreviousButtons" class="flex items-center justify-center p-2 snap-start shrink-0" role="option">
+                                                    <div class="container shadow-sm mt-2 w-full bg-transparent">
+                                                        <img class="w-auto h-auto rounded-lg aspect-h-video" src="../gallery/zavesedraperije/dj/slide-06.webp" alt="Draperije: Slika 06">
+                                                    </div>
+                                                </li>
+                                                <li x-bind="disableNextAndPreviousButtons" class="flex items-center justify-center p-2 snap-start shrink-0" role="option">
+                                                    <div class="container shadow-sm mt-2 w-full bg-transparent">
+                                                        <img class="w-auto h-auto rounded-lg aspect-h-video" src="../gallery/zavesedraperije/dj/slide-07.webp" alt="Draperije: Slika 07">
+                                                    </div>
+                                                </li>
+                                                <li x-bind="disableNextAndPreviousButtons" class="flex items-center justify-center p-2 snap-start shrink-0" role="option">
+                                                    <div class="container shadow-sm mt-2 w-full bg-transparent">
+                                                        <img class="w-auto h-auto rounded-lg aspect-h-video" src="../gallery/zavesedraperije/dj/slide-08.webp" alt="Draperije: Slika 08">
+                                                    </div>
+                                                </li>
+                                                <li x-bind="disableNextAndPreviousButtons" class="flex items-center justify-center p-2 snap-start shrink-0" role="option">
+                                                    <div class="container shadow-sm mt-2 w-full bg-transparent">
+                                                        <img class="w-auto h-auto rounded-lg aspect-h-video" src="../gallery/zavesedraperije/dj/slide-09.webp" alt="Draperije: Slika 09">
+                                                    </div>
+                                                </li>
+                                                <li x-bind="disableNextAndPreviousButtons" class="flex items-center justify-center p-2 snap-start shrink-0" role="option">
+                                                    <div class="container shadow-sm mt-2 w-full bg-transparent">
+                                                        <img class="w-auto h-auto rounded-lg aspect-h-video" src="../gallery/zavesedraperije/dj/slide-10.webp" alt="Draperije: Slika 10">
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                            <!-- Next Button -->
+                                            <button type="button" x-on:click="next" class="text-6xl" :aria-disabled="atEnd" :tabindex="atEnd ? -1 : 0" :class="{ 'opacity-50 cursor-not-allowed': atEnd }">
+                                                <span aria-hidden="true">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 md:size-8 lg:size-10 xl:size-12 text-gray-800 dark:text-gray-200">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                                                    </svg>
+                                                </span>
+                                                <span class="sr-only">Skip to next slide page</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div x-show="imgModal && imgGroup == 13" x-transition class="fixed z-50 top-0 left-0 flex items-center justify-center w-screen h-screen">
+                            <div @click.outside="imgModal = false; imgGroup = 0; imgHeader = ''; imgText = ''" class="container w-full h-full min-h-screen px-8 py-4 overflow-y-scroll text-center shadow-md bg-neutral-100 rounded-5 dark:bg-neutral-900 lg:py-8 lg:px-20 lg:overflow-y-auto">
+                                <div class="flex flex-row items-center justify-between border-b-2 border-b-black dark:border-b-white text-neutral-800 dark:text-neutral-200">
+                                    <div class="flex flex-col items-center justify-start">
+                                        <h2 class="flex pb-2 text-xl md:text-2xl lg:text-3xl font-bold text-black dark:text-white" x-text="imgHeader"></h2>
+                                        <p class="flex pb-2 text-sm md:text-md lg:text-lg font-normal" x-text="imgText"></p>
+                                    </div> 
+                                    <button @click="imgModal = false; imgGroup = 0; imgHeader = ''; imgText = ''" class="block px-4 pb-4 rounded-md" title="Close" type="button">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 50 50" fill="currentColor">
+                                            <path d="M 9.15625 6.3125 L 6.3125 9.15625 L 22.15625 25 L 6.21875 40.96875 L 9.03125 43.78125 L 25 27.84375 L 40.9375 43.78125 L 43.78125 40.9375 L 27.84375 25 L 43.6875 9.15625 L 40.84375 6.3125 L 25 22.15625 Z"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div class="container max-w-full max-h-screen mx-auto shadow-xl">
+                                    <div 
+                                        x-data="{
+                                            skip: 1,
+                                            atBeginning: false,
+                                            atEnd: false,
+                                            next() {this.to((current, offset) => current + (offset * this.skip))},
+                                            prev() {this.to((current, offset) => current - (offset * this.skip))},
+                                            to(strategy) {
+                                                let slider = this.$refs.slider
+                                                let current = slider.scrollLeft
+                                                let offset = slider.firstElementChild.getBoundingClientRect().width
+                                                slider.scrollTo({ left: strategy(current, offset), behavior: 'smooth' })
+                                            },
+                                            focusableWhenVisible: {
+                                                'x-intersect:enter'() {this.$el.removeAttribute('tabindex')},
+                                                'x-intersect:leave'() {this.$el.setAttribute('tabindex', '-1')},
+                                            },
+                                            disableNextAndPreviousButtons: {
+                                                'x-intersect:enter.threshold.05'() {
+                                                    let slideEls = this.$el.parentElement.children
+                                                    if (slideEls[0] === this.$el) {this.atBeginning = true} 
+                                                    else if (slideEls[slideEls.length-1] === this.$el) {this.atEnd = true}
+                                                },
+                                                'x-intersect:leave.threshold.05'() {
+                                                    let slideEls = this.$el.parentElement.children
+                                                    if (slideEls[0] === this.$el) {this.atBeginning = false} 
+                                                    else if (slideEls[slideEls.length-1] === this.$el) {this.atEnd = false}
+                                                },
+                                            },
+                                        }"
+                                        class="flex w-full flex-col p-2 md:p-4">
+                                        <div x-on:keydown.right="next" x-on:keydown.left="prev" tabindex="0" role="region" aria-labelledby="carousel-label" class="flex flex-row space-x-2 md:space-x-4 lg:space-x-6">
+                                            <h2 id="carousel-label" class="sr-only" hidden>Carousel</h2>
+                                            <!-- Prev Button -->
+                                            <button type="button" x-on:click="prev" class="text-6xl" :aria-disabled="atBeginning" :tabindex="atEnd ? -1 : 0" :class="{ 'opacity-50 cursor-not-allowed': atBeginning }">
+                                                <span aria-hidden="true">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 md:size-8 lg:size-10 xl:size-12 text-gray-800 dark:text-gray-200">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+                                                    </svg>
+                                                </span>
+                                                <span class="sr-only">Skip to previous slide page</span>
+                                            </button>
+                                            <span id="carousel-content-label" class="sr-only" hidden>Carousel</span>
+                                            <ul x-ref="slider" tabindex="0" role="listbox" aria-labelledby="carousel-content-label" class="flex w-auto h-[240px] xs:h-[320px] sm:h-[360px] md:h-[432px] lg:h-[576px] xl:h-[720px] snap-x snap-mandatory overflow-x-scroll">
+                                                <li x-bind="disableNextAndPreviousButtons" class="flex items-center justify-center p-2 snap-start shrink-0" role="option">
+                                                    <div class="container shadow-sm mt-2 w-full bg-transparent">
+                                                        <img class="w-fit h-fit rounded-lg aspect-h-video" src="../gallery/zavesedraperije/dk/slide-01.webp" alt="Dečija kolekcija: Slika 01">
+                                                    </div>
+                                                </li>
+                                                <li x-bind="disableNextAndPreviousButtons" class="flex items-center justify-center p-2 snap-start shrink-0" role="option">
+                                                    <div class="container shadow-sm mt-2 w-full bg-transparent">
+                                                        <img class="w-fit h-fit rounded-lg aspect-h-video" src="../gallery/zavesedraperije/dk/slide-02.webp" alt="Dečija kolekcija: Slika 02">
+                                                    </div>
+                                                </li>
+                                                <li x-bind="disableNextAndPreviousButtons" class="flex items-center justify-center p-2 snap-start shrink-0" role="option">
+                                                    <div class="container shadow-sm mt-2 w-full bg-transparent">
+                                                        <img class="w-auto h-auto rounded-lg aspect-h-video" src="../gallery/zavesedraperije/dk/slide-03.webp" alt="Dečija kolekcija: Slika 03">
+                                                    </div>
+                                                </li>
+                                                <li x-bind="disableNextAndPreviousButtons" class="flex items-center justify-center p-2 snap-start shrink-0" role="option">
+                                                    <div class="container shadow-sm mt-2 w-full bg-transparent">
+                                                        <img class="w-auto h-auto rounded-lg aspect-h-video" src="../gallery/zavesedraperije/dk/slide-04.webp" alt="Dečija kolekcija: Slika 04">
+                                                    </div>
+                                                </li>
+                                                <li x-bind="disableNextAndPreviousButtons" class="flex items-center justify-center p-2 snap-start shrink-0" role="option">
+                                                    <div class="container shadow-sm mt-2 w-full bg-transparent">
+                                                        <img class="w-auto h-auto rounded-lg aspect-h-video" src="../gallery/zavesedraperije/dk/slide-05.webp" alt="Dečija kolekcija: Slika 05">
+                                                    </div>
+                                                </li>
+                                                <li x-bind="disableNextAndPreviousButtons" class="flex items-center justify-center p-2 snap-start shrink-0" role="option">
+                                                    <div class="container shadow-sm mt-2 w-full bg-transparent">
+                                                        <img class="w-auto h-auto rounded-lg aspect-h-video" src="../gallery/zavesedraperije/dk/slide-06.webp" alt="Dečija kolekcija: Slika 06">
+                                                    </div>
+                                                </li>
+                                                <li x-bind="disableNextAndPreviousButtons" class="flex items-center justify-center p-2 snap-start shrink-0" role="option">
+                                                    <div class="container shadow-sm mt-2 w-full bg-transparent">
+                                                        <img class="w-auto h-auto rounded-lg aspect-h-video" src="../gallery/zavesedraperije/dk/slide-07.webp" alt="Dečija kolekcija: Slika 07">
+                                                    </div>
+                                                </li>
+                                                <li x-bind="disableNextAndPreviousButtons" class="flex items-center justify-center p-2 snap-start shrink-0" role="option">
+                                                    <div class="container shadow-sm mt-2 w-full bg-transparent">
+                                                        <img class="w-auto h-auto rounded-lg aspect-h-video" src="../gallery/zavesedraperije/dk/slide-08.webp" alt="Dečija kolekcija: Slika 08">
+                                                    </div>
+                                                </li>
+                                                <li x-bind="disableNextAndPreviousButtons" class="flex items-center justify-center p-2 snap-start shrink-0" role="option">
+                                                    <div class="container shadow-sm mt-2 w-full bg-transparent">
+                                                        <img class="w-auto h-auto rounded-lg aspect-h-video" src="../gallery/zavesedraperije/dk/slide-09.webp" alt="Dečija kolekcija: Slika 09">
+                                                    </div>
+                                                </li>
+                                                <li x-bind="disableNextAndPreviousButtons" class="flex items-center justify-center p-2 snap-start shrink-0" role="option">
+                                                    <div class="container shadow-sm mt-2 w-full bg-transparent">
+                                                        <img class="w-auto h-auto rounded-lg aspect-h-video" src="../gallery/zavesedraperije/dk/slide-10.webp" alt="Dečija kolekcija: Slika 10">
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                            <!-- Next Button -->
+                                            <button type="button" x-on:click="next" class="text-6xl" :aria-disabled="atEnd" :tabindex="atEnd ? -1 : 0" :class="{ 'opacity-50 cursor-not-allowed': atEnd }">
+                                                <span aria-hidden="true">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4 md:size-6 lg:size-8 xl:size-10 text-gray-800 dark:text-gray-200">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                                                    </svg>
+                                                </span>
+                                                <span class="sr-only">Skip to next slide page</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <!-- ===== Component Image Modal Start ===== -->
 
-                        </li>
-                        <li class="border-b border-gray-400 dark:border-gray-600 bg-white dark:bg-black">
+                    <ul class="bg-neutral-200 dark:bg-neutral-800 max-w-7xl mx-auto border border-gray-400 dark:border-gray-600 shadow-black shadow-xl rounded-xl" x-data="{selected:null}">
+                        <li class="">
                             <div class="relative border-b border-gray-400 dark:border-gray-600">
                                 <button title="kvalitet" type="button" class="w-full px-4 py-6 text-left group" @click="selected !== 01 ? selected = 01 : selected = null">
                                     <div class="flex items-center justify-between">
@@ -462,7 +1248,7 @@
                                 </div>   
                             </div>
                         </li>
-                        <li class="bg-white dark:bg-black">
+                        <li class="">
                             <div class="relative">
                                 <button type="button" class="w-full px-4 py-6 text-left group" @click="selected !== 02 ? selected = 02 : selected = null">
                                     <div class="flex items-center justify-between">
@@ -511,10 +1297,10 @@
             <!-- Preview Section End -->
             <!-- Contact Section Start -->
             <section id="contact" class="">
-                <h2 class="hover:text-gray-500 focus:text-gray-500 bg-transparent shadow-black drop-shadow-xl p-4 py-8 font-bold uppercase underline text-center first-letter:text-3xl md:first-letter:text-4xl lg:first-letter:text-5xl text-2xl md:text-3xl lg:text-4xl text-neutral-600 dark:text-neutral-400 transform scale-105 duration-300">Kontakt</h2>
+                <h2 class="hover:text-gray-500 focus:text-gray-500 bg-transparent shadow-black drop-shadow-xl p-4 py-8 font-bold uppercase text-center first-letter:text-2xl md:first-letter:text-3xl lg:first-letter:text-4xl text-xl md:text-2xl lg:text-3xl text-neutral-800 dark:text-neutral-200 transform scale-105 duration-300">Kontakt</h2>
                 <div class="container mx-auto max-w-7xl">
-                    <ul class="bg-white dark:bg-black max-w-7xl mx-auto border border-gray-400 dark:border-gray-600 shadow-lg rounded-xl" x-data="{selected2:null}">
-                        <li class="box-shadow">
+                    <ul class="bg-neutral-200 dark:bg-neutral-800 max-w-7xl mx-auto border border-gray-400 dark:border-gray-600 shadow-black shadow-xl rounded-xl" x-data="{selected2:null}">
+                        <li class="">
                             <div class="relative border-b border-gray-400 dark:border-gray-600">
                                 <button type="button" class="w-full px-4 py-6 text-left group" @click="selected2 !== 1 ? selected2 = 1 : selected2 = null">
                                     <div class="flex items-center justify-between">
@@ -547,7 +1333,7 @@
                                 </div>
                             </div> 
                         </li>
-                        <li class="box-shadow">
+                        <li class="">
                             <div class="relative">
                                 <button type="button" class="w-full px-4 py-6 text-left group" @click="selected2 !== 2 ? selected2 = 2 : selected2 = null">
                                     <div class="flex items-center justify-between">
@@ -706,44 +1492,6 @@
                 gap: 2,
             });
             glide01.mount();
-        </script>
-        <script>
-            var glide02 = new Glide('.glide-02', {
-                type: 'carousel',
-                focusAt: 'center',
-                perView: 3,
-                autoplay: 4500,
-                animationDuration: 1500,
-                gap: 2,
-                breakpoints: {
-                    1536: {
-                    perView: 2
-                    },
-                    960: {
-                    perView: 1
-                    },
-                },
-            });
-            glide02.mount();
-        </script>
-        <script>
-            var glide03 = new Glide('.glide-03', {
-                type: 'carousel',
-                focusAt: 'center',
-                perView: 3,
-                autoplay: 4500,
-                animationDuration: 1500,
-                gap: 2,
-                breakpoints: {
-                    1536: {
-                    perView: 2
-                    },
-                    960: {
-                    perView: 1
-                    },
-                },
-            });
-            glide03.mount();
         </script>
     </body>
 </html>
